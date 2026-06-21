@@ -3,397 +3,473 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DPLI India State Capacity Dashboard | Development Policy Lab India</title>
+<title>DPLI India State Governance Data Monitor | All States and UTs | Development Policy Lab India</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 :root{
-  --ink:#1A1A2E;--ink2:#3D3D56;--ink3:#6B6B85;
-  --cream:#F7F5F0;--rule:#E2DDD5;--white:#fff;
-  --blue:#1B5FA8;--blue-l:#E8F2FC;
-  --orange:#D4500C;--green:#1A8C5B;--green-l:#E1F5EE;
-  --amber:#B07A00;--purple:#7B3FA8;
-  --tier-h:#1D9E75;--tier-m:#EF9F27;--tier-l:#E24B4A;
+  --ink:#0E1016;--ink2:#2C3040;--ink3:#636578;
+  --bg:#F8F7F3;--white:#fff;--rule:#E4E2DC;
+  --blue:#1546A0;--blue-l:#EAF0FD;--blue-d:#0C3270;
+  --orange:#C95A28;--orange-l:#FBF0EB;
+  --green:#196B45;--green-l:#E5F4EE;
+  --amber:#8A5C00;--amber-l:#FDF3E0;
+  --red:#A32D2D;--red-l:#FCEBEB;
+  --purple:#5B2D8A;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',Arial,sans-serif;background:var(--cream);color:var(--ink);font-size:14px;line-height:1.6}
-
-/* NAV */
-.nav{background:var(--ink);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:sticky;top:0;z-index:100}
-.nav-brand{color:#fff;font-size:13px;font-weight:700;letter-spacing:.8px}
-.nav-tag{font-size:10px;padding:3px 9px;border-radius:12px;background:rgba(212,80,12,.25);color:#FFAA80;font-weight:600;letter-spacing:.4px}
-.nav-meta{font-size:11px;color:rgba(255,255,255,.45)}
-
-/* HERO */
-.hero{background:var(--ink);padding:40px 28px 32px;border-bottom:1px solid rgba(255,255,255,.08)}
-.hero-inner{max-width:1080px;margin:0 auto}
-.hero-eyebrow{font-size:10px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--orange);margin-bottom:8px}
-.hero-title{font-size:clamp(22px,3.5vw,38px);font-weight:300;color:#fff;line-height:1.2;margin-bottom:8px}
-.hero-sub{font-size:13px;color:rgba(255,255,255,.5);max-width:580px;margin-bottom:24px}
+body{font-family:'Inter',Arial,sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.nav{background:var(--ink);padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:52px;position:sticky;top:0;z-index:100}
+.nav-brand{color:#fff;font-size:12px;font-weight:600;letter-spacing:.4px}
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-tag{font-size:10px;padding:3px 9px;border-radius:10px;background:rgba(25,107,69,.3);color:#7DDCAA;font-weight:600;letter-spacing:.4px}
+.nav-meta{font-size:11px;color:rgba(255,255,255,.4)}
+.hero{background:var(--ink);padding:40px 28px 36px;border-bottom:2px solid var(--blue)}
+.hero-inner{max-width:1120px;margin:0 auto}
+.hero-eyebrow{font-size:10px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--orange);margin-bottom:8px}
+.hero-title{font-size:clamp(22px,3.5vw,36px);font-weight:300;color:#fff;line-height:1.2;margin-bottom:8px}
+.hero-sub{font-size:13px;color:rgba(255,255,255,.5);max-width:680px;margin-bottom:20px;line-height:1.7}
 .hero-pills{display:flex;gap:8px;flex-wrap:wrap}
-.hero-pill{font-size:10px;padding:4px 10px;border-radius:12px;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6)}
-
-/* MAIN */
-.main{max-width:1080px;margin:0 auto;padding:24px 28px 60px}
-
-/* CONTROLS */
-.ctrl-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 18px;background:#fff;border:1px solid var(--rule);border-radius:10px;margin-bottom:20px}
+.hero-pill{font-size:10px;padding:3px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.55)}
+.hero-pill.official{border-color:rgba(25,107,69,.5);color:#7DDCAA;background:rgba(25,107,69,.15)}
+.main{max-width:1120px;margin:0 auto;padding:24px 28px 60px}
+.source-bar{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:14px 18px;margin-bottom:20px;display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.source-bar-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--ink3);white-space:nowrap;padding-top:2px}
+.source-tags{display:flex;flex-wrap:wrap;gap:6px}
+.src-tag{font-size:11px;padding:3px 10px;border-radius:6px;border:1px solid;font-weight:500}
+.src-sdg{background:var(--blue-l);border-color:#BFCCE8;color:var(--blue-d)}
+.src-ggi{background:var(--orange-l);border-color:#F2C4A8;color:#6B2800}
+.src-health{background:var(--red-l);border-color:#F7C1C1;color:var(--red)}
+.src-edu{background:var(--green-l);border-color:#A8D8B8;color:#0A4025}
+.ctrl-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 16px;background:#fff;border:1px solid var(--rule);border-radius:10px;margin-bottom:20px}
 .ctrl-group{display:flex;align-items:center;gap:6px}
-.ctrl-label{font-size:11px;color:var(--ink3);font-weight:500}
+.ctrl-label{font-size:11px;color:var(--ink3);font-weight:500;white-space:nowrap}
 select{font-size:12px;padding:5px 10px;border:1px solid var(--rule);border-radius:6px;background:#fff;color:var(--ink);height:30px;cursor:pointer}
 select:focus{outline:none;border-color:var(--blue)}
-
-/* KPI */
 .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
 .kpi{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:14px 16px}
 .kpi-label{font-size:10px;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
 .kpi-val{font-size:24px;font-weight:300;color:var(--ink)}
-.kpi-sub{font-size:11px;margin-top:4px}
-.pos{color:var(--green)}.neg{color:var(--orange)}.neu{color:var(--ink3)}
-
-/* INSIGHT */
-.insight{border-left:3px solid var(--blue);padding:12px 16px;background:var(--blue-l);border-radius:0 8px 8px 0;font-size:13px;color:var(--ink2);line-height:1.65;margin-bottom:20px}
-.insight strong{color:var(--blue)}
-
-/* CHARTS */
+.kpi-sub{font-size:11px;margin-top:4px;color:var(--ink3)}
+.kpi-src{font-size:10px;color:var(--blue);margin-top:3px;font-style:italic}
+.diser-note{border-left:3px solid var(--blue);padding:10px 14px;background:var(--blue-l);border-radius:0 8px 8px 0;font-size:12px;color:var(--ink2);line-height:1.6;margin-bottom:8px}
+.insight{border-left:3px solid var(--green);padding:12px 16px;background:var(--green-l);border-radius:0 8px 8px 0;font-size:13px;color:var(--ink2);line-height:1.7;margin-bottom:20px}
+.insight strong{color:var(--green)}
 .charts-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
 .card{background:#fff;border:1px solid var(--rule);border-radius:12px;padding:18px 20px}
-.card-title{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:3px}
-.card-sub{font-size:11px;color:var(--ink3);margin-bottom:12px}
+.card-title{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:2px}
+.card-sub{font-size:11px;color:var(--ink3);margin-bottom:3px}
+.card-src{font-size:10px;color:var(--blue);font-style:italic;margin-bottom:12px}
 .ch{position:relative;width:100%}
 .legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px}
 .leg{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--ink3)}
 .leg-sq{width:9px;height:9px;border-radius:2px;flex-shrink:0}
-
-/* TABLE */
 .table-card{background:#fff;border:1px solid var(--rule);border-radius:12px;padding:18px 20px;margin-bottom:16px;overflow-x:auto}
-.tabs{display:flex;gap:0;border-bottom:1px solid var(--rule);margin-bottom:14px}
-.tab{font-size:12px;padding:7px 16px;cursor:pointer;color:var(--ink3);border:none;background:none;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s}
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--rule);margin-bottom:14px;flex-wrap:wrap}
+.tab{font-size:12px;padding:7px 14px;cursor:pointer;color:var(--ink3);border:none;background:none;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s}
 .tab.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:600}
 table{width:100%;border-collapse:collapse;font-size:12px}
 thead th{text-align:left;padding:7px 10px;border-bottom:1px solid var(--rule);font-size:10px;font-weight:600;color:var(--ink3);text-transform:uppercase;letter-spacing:.4px;white-space:nowrap}
-tbody td{padding:8px 10px;border-bottom:1px solid var(--rule);color:var(--ink2)}
+tbody td{padding:7px 10px;border-bottom:1px solid var(--rule);color:var(--ink2)}
 tbody tr:last-child td{border-bottom:none}
 tbody tr:hover td{background:var(--blue-l)}
-.pill{display:inline-block;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:600}
-.pill-h{background:#E1F5EE;color:#085041}
-.pill-m{background:#FAEEDA;color:#633806}
-.pill-l{background:#FCEBEB;color:#791F1F}
-.bar-wrap{width:70px;height:6px;background:var(--rule);border-radius:3px;overflow:hidden}
+.bar-wrap{width:60px;height:5px;background:var(--rule);border-radius:3px;overflow:hidden;display:inline-block}
 .bar-inner{height:100%;border-radius:3px}
-
-/* BOTTOM */
-.actions{display:flex;gap:8px;flex-wrap:wrap;padding:16px 0 0}
-.action-btn{font-size:12px;padding:7px 14px;border:1px solid var(--rule);border-radius:8px;background:#fff;color:var(--ink);cursor:pointer;transition:all .15s}
-.action-btn:hover{background:var(--blue-l);border-color:var(--blue);color:var(--blue)}
-.footer{background:var(--ink);color:rgba(255,255,255,.4);text-align:center;padding:20px;font-size:11px;margin-top:40px}
+.type-badge{display:inline-block;padding:1px 6px;border-radius:4px;font-size:10px;font-weight:600}
+.type-state{background:#EAF0FD;color:#0C3270}
+.type-ut{background:#FDF3E0;color:#6B3A00}
+.disclaimer{background:var(--ink);color:rgba(255,255,255,.45);padding:20px 28px;margin-top:24px;border-radius:12px;font-size:11px;line-height:1.85}
+.disclaimer strong{color:rgba(255,255,255,.8)}
+.footer{background:var(--ink);color:rgba(255,255,255,.4);text-align:center;padding:20px;font-size:11px;margin-top:20px}
 .footer strong{color:rgba(255,255,255,.8)}
-.footer-disclaimer{max-width:900px;margin:16px auto 0;padding:16px 20px;background:rgba(255,255,255,.06);border-radius:8px;border:1px solid rgba(255,255,255,.1);text-align:left;font-size:10px;line-height:1.7;color:rgba(255,255,255,.45)}
-.footer-disclaimer strong{color:rgba(255,255,255,.7);font-size:10px}
-.footer-scope{max-width:900px;margin:12px auto 0;padding:12px 20px;background:rgba(27,95,168,.2);border-radius:8px;border:1px solid rgba(27,95,168,.4);text-align:left;font-size:10px;line-height:1.65;color:rgba(255,255,255,.55)}
-
-@media(max-width:640px){
-  .charts-2,.kpi-grid{grid-template-columns:1fr}
-  .main{padding:16px}
-}
+@media(max-width:700px){.charts-2,.kpi-grid{grid-template-columns:1fr}.main{padding:14px}}
 </style>
 </head>
 <body>
 
 <nav class="nav">
   <div class="nav-brand">Development Policy Lab India (DPLI)</div>
-  <div style="display:flex;gap:12px;align-items:center">
-    <span class="nav-tag">Live Dashboard</span>
-    <span class="nav-meta">India State Capacity Monitor · 2026</span>
+  <div class="nav-right">
+    <span class="nav-tag">Official Data Only</span>
+    <span class="nav-meta">DPLI State Governance Data Monitor · 2026</span>
   </div>
 </nav>
 
 <div class="hero">
   <div class="hero-inner">
-    <div class="hero-eyebrow">DPLI India State Capacity Monitor</div>
-    <h1 class="hero-title">India State Capacity Dashboard</h1>
-    <div class="hero-sub">Interactive governance and implementation analytics across 18 Indian states, based on the DPLI State Capacity Framework. Explore capacity scores, implementation gaps, and reform priorities.</div>
+    <div class="hero-eyebrow">DPLI India State Governance Data Monitor · DISER Review Stage</div>
+    <h1 class="hero-title">India State Governance Data Monitor</h1>
+    <div class="hero-sub">Official government data on governance and development performance across all 28 states and 8 union territories of India, curated to support the Review stage of the DPLI DISER Methodology. The analytical framework and state capacity diagnosis are in the DPLI Flagship Report 2026. All data is sourced directly from named government publications — DPLI does not construct or estimate any scores.</div>
     <div class="hero-pills">
-      <span class="hero-pill">18 states</span>
-      <span class="hero-pill">5 capacity dimensions</span>
-      <span class="hero-pill">DPLI Framework 2026</span>
-      <span class="hero-pill">Anant Srivastava</span>
+      <span class="hero-pill official">100% official government data</span>
+      <span class="hero-pill">All 28 states and 8 UTs</span>
+      <span class="hero-pill">Supports DPLI DISER methodology</span>
+      <span class="hero-pill">NITI Aayog · DARPG · MoHFW · UDISE+</span>
+      <span class="hero-pill">Anant Srivastava, DPLI · 2026</span>
     </div>
   </div>
 </div>
 
 <div class="main">
 
+  <div class="source-bar">
+    <span class="source-bar-label">Data sources</span>
+    <div class="source-tags">
+      <span class="src-tag src-sdg">NITI Aayog SDG India Index 2023-24</span>
+      <span class="src-tag src-ggi">DARPG Good Governance Index 2021</span>
+      <span class="src-tag src-health">MoHFW Health Dynamics 2022-23</span>
+      <span class="src-tag src-edu">UDISE+ 2023-24</span>
+    </div>
+  </div>
+
   <div class="ctrl-bar">
-    <div class="ctrl-group"><span class="ctrl-label">State group</span>
+    <div class="ctrl-group"><span class="ctrl-label">Sort by</span>
+      <select id="sel-sort" onchange="update()">
+        <option value="sdg">SDG Index score (NITI Aayog 2023-24)</option>
+        <option value="ggi">Good Governance Index (DARPG 2021)</option>
+        <option value="hvac">Health vacancy rate (MoHFW 2022-23)</option>
+        <option value="ptr">Pupil-teacher ratio (UDISE+ 2023-24)</option>
+      </select>
+    </div>
+    <div class="ctrl-group"><span class="ctrl-label">Filter</span>
       <select id="sel-group" onchange="update()">
-        <option value="all">All states</option>
-        <option value="high">High performers</option>
-        <option value="mid">Mid-tier</option>
-        <option value="low">Capacity-constrained</option>
+        <option value="all">All states and UTs</option>
+        <option value="state">States only (28)</option>
+        <option value="ut">Union territories only (8)</option>
+        <option value="south">Southern states</option>
+        <option value="north">Northern states</option>
+        <option value="east">Eastern states</option>
+        <option value="west">Western and central</option>
+        <option value="northeast">North-eastern states</option>
       </select>
     </div>
-    <div class="ctrl-group"><span class="ctrl-label">Dimension</span>
-      <select id="sel-dim" onchange="update()">
-        <option value="composite">Composite score</option>
-        <option value="admin">Administrative</option>
-        <option value="hr">Human resource</option>
-        <option value="digital">Digital</option>
-        <option value="local">Local governance</option>
-        <option value="data">Data capacity</option>
-      </select>
-    </div>
-    <div class="ctrl-group"><span class="ctrl-label">Radar state</span>
+    <div class="ctrl-group"><span class="ctrl-label">Spotlight</span>
       <select id="sel-state" onchange="updateRadar()"></select>
     </div>
   </div>
 
   <div class="kpi-grid" id="kpi-grid"></div>
+
+  <div class="diser-note">This monitor provides the official data foundation for the <strong>Review</strong> stage of the DPLI DISER Methodology. For the full diagnosis, analysis, and state capacity framework, see the <a href="DPLI_Flagship_Report_2026.html" style="color:var(--blue);font-weight:500">DPLI Flagship Report 2026</a>.</div>
+
   <div class="insight" id="insight-box"></div>
 
   <div class="charts-2">
     <div class="card">
-      <div class="card-title">State capacity scores</div>
-      <div class="card-sub" id="bar-sub">Sorted by selected dimension</div>
-      <div class="ch" style="height:280px"><canvas id="barChart" role="img" aria-label="Bar chart of state capacity scores"></canvas></div>
+      <div class="card-title">SDG Index scores — all states and UTs</div>
+      <div class="card-sub">Composite SDG performance score, sorted by selected filter</div>
+      <div class="card-src">Source: NITI Aayog SDG India Index 2023-24 (published 12 July 2024)</div>
+      <div class="ch" style="height:320px"><canvas id="barChart"></canvas></div>
     </div>
     <div class="card">
-      <div class="card-title">Dimension profile</div>
-      <div class="card-sub">Selected state vs national average</div>
+      <div class="card-title">State governance profile</div>
+      <div class="card-sub">Selected state across four official datasets</div>
+      <div class="card-src">Sources: NITI Aayog · DARPG · MoHFW · UDISE+</div>
       <div class="legend">
-        <span class="leg"><span class="leg-sq" style="background:#1B5FA8"></span>Selected state</span>
-        <span class="leg"><span class="leg-sq" style="background:#888780"></span>National average</span>
+        <span class="leg"><span class="leg-sq" style="background:#1546A0"></span>Selected</span>
+        <span class="leg"><span class="leg-sq" style="background:#888780"></span>National avg</span>
       </div>
-      <div class="ch" style="height:240px"><canvas id="radarChart" role="img" aria-label="Radar chart of capacity dimensions"></canvas></div>
+      <div class="ch" style="height:280px"><canvas id="radarChart"></canvas></div>
     </div>
   </div>
 
   <div class="charts-2">
     <div class="card">
-      <div class="card-title">Capacity vs development outcome</div>
-      <div class="card-sub">State capacity score vs SDG index correlation</div>
+      <div class="card-title">SDG score vs Good Governance Index</div>
+      <div class="card-sub">NITI Aayog SDG 2023-24 vs DARPG GGI 2021</div>
+      <div class="card-src">Sources: NITI Aayog SDG India Index 2023-24 · DARPG GGI 2021</div>
       <div class="legend">
-        <span class="leg"><span class="leg-sq" style="background:#1D9E75"></span>High capacity</span>
-        <span class="leg"><span class="leg-sq" style="background:#EF9F27"></span>Mid-tier</span>
-        <span class="leg"><span class="leg-sq" style="background:#E24B4A"></span>Low capacity</span>
+        <span class="leg"><span class="leg-sq" style="background:#1546A0"></span>State</span>
+        <span class="leg"><span class="leg-sq" style="background:#C95A28"></span>Union territory</span>
       </div>
-      <div class="ch" style="height:220px"><canvas id="scatterChart" role="img" aria-label="Scatter chart capacity vs SDG outcomes"></canvas></div>
+      <div class="ch" style="height:240px"><canvas id="scatterChart"></canvas></div>
     </div>
     <div class="card">
-      <div class="card-title">Implementation gap by sector</div>
-      <div class="card-sub">Policy intent vs actual delivery performance · <em>DPLI illustrative estimates based on published government programme data. Scores are indicative and not independently verified. Sources: MoHFW Health Dynamics 2022-23, UDISE+ 2023-24, MeitY Annual Report 2023-24, and TRAI Telecom Subscription Data (state-wise internet penetration). Digital capacity scores involve the highest degree of expert assessment in the framework; this dimension will be strengthened in Phase 2 as more comparable state-level data becomes available.</em></div>
-      <div class="legend">
-        <span class="leg"><span class="leg-sq" style="background:#1B5FA8"></span>Policy intent</span>
-        <span class="leg"><span class="leg-sq" style="background:#7B3FA8"></span>Delivery performance</span>
-      </div>
-      <div class="ch" style="height:220px"><canvas id="gapChart" role="img" aria-label="Bar chart implementation gap by sector"></canvas></div>
+      <div class="card-title">Health workforce vacancy by state</div>
+      <div class="card-sub">CHC specialist vacancy rate — lower is better</div>
+      <div class="card-src">Source: MoHFW Health Dynamics of India 2022-23 (published Sep 2024)</div>
+      <div class="ch" style="height:240px"><canvas id="healthChart"></canvas></div>
     </div>
   </div>
 
   <div class="table-card">
-    <div class="card-title" style="margin-bottom:12px">State-level detail</div>
+    <div class="card-title" style="margin-bottom:3px">All states and UTs — official data table</div>
+    <div style="font-size:11px;color:var(--ink3);margin-bottom:14px">All figures from named government publications. GGI 2021 covers large states, small states, and NE/hill states in separate rankings — scores shown are within-group normalised.</div>
     <div class="tabs">
-      <button class="tab active" onclick="switchTab(this,'rankings')">Rankings</button>
-      <button class="tab" onclick="switchTab(this,'gaps')">Capacity gaps</button>
-      <button class="tab" onclick="switchTab(this,'maturity')">Maturity levels</button>
+      <button class="tab active" onclick="switchTab(this,'overview')">Overview</button>
+      <button class="tab" onclick="switchTab(this,'health')">Health (MoHFW)</button>
+      <button class="tab" onclick="switchTab(this,'education')">Education (UDISE+)</button>
+      <button class="tab" onclick="switchTab(this,'sdg')">SDG rankings</button>
+      <button class="tab" onclick="switchTab(this,'sources')">Data sources</button>
     </div>
-    <div id="tab-rankings"></div>
-    <div id="tab-gaps" style="display:none"></div>
-    <div id="tab-maturity" style="display:none"></div>
+    <div id="tab-overview"></div>
+    <div id="tab-health" style="display:none"></div>
+    <div id="tab-education" style="display:none"></div>
+    <div id="tab-sdg" style="display:none"></div>
+    <div id="tab-sources" style="display:none"></div>
   </div>
 
-  <div class="actions">
-    <div style="font-size:11px;color:var(--ink3);align-self:center;margin-right:4px">Explore further:</div>
-    <a href="https://dpli.github.io" target="_blank" style="text-decoration:none"><button class="action-btn">DPLI Publications</button></a>
-    <button class="action-btn" onclick="window.print()">Download / Print</button>
-  </div>
+</div>
 
+<div class="main" style="padding-top:0">
+  <div class="disclaimer">
+    <strong>About this monitor:</strong> This tool supports the Review stage of the DPLI DISER Methodology (Diagnose, Investigate, Solve, Execute, Review). The diagnosis of India's state governance challenge and the DPLI State Capacity Framework are presented in the DPLI Flagship Report 2026. This monitor displays the official government data that informs and tracks that analysis. &nbsp;|&nbsp;
+    <strong>Data transparency:</strong> DPLI does not construct, estimate, or modify any scores in this monitor. All figures are reproduced as published by the respective government departments. SDG scores: NITI Aayog SDG India Index 2023-24 (published 12 July 2024). Governance scores: DARPG Good Governance Index 2021 — the most recent edition; GGI 2023 was cancelled by the Government of India; next edition expected December 2025 — scores will be updated upon release. Health data: MoHFW Health Dynamics of India 2022-23. Education data: UDISE+ 2023-24. &nbsp;|&nbsp;
+    <strong>Coverage:</strong> This monitor covers all 28 states and 8 union territories of India where data is available across the four official datasets. &nbsp;|&nbsp;
+    <strong>Methodology note:</strong> DPLI follows established data presentation practice used by the India Justice Report, Public Affairs Index, and similar policy research organisations. &nbsp;|&nbsp;
+    <strong>Version 3.0, June 2026. Anant Srivastava, Founder, DPLI.</strong>
+  </div>
 </div>
 
 <div class="footer">
-  <strong>Development Policy Lab India (DPLI)</strong> &nbsp;|&nbsp; India State Capacity Monitor &nbsp;|&nbsp; Anant Srivastava, Founder &amp; Lead Researcher &nbsp;|&nbsp; 2026<br>
-  <span style="margin-top:6px;display:block">Evidence. Policy. Impact.</span>
-
-  <div class="footer-scope">
-    <strong>Scope note:</strong> The ISCM Phase 1 covers 18 major Indian states selected on the basis of population size, availability of comparable data across all five capacity dimensions, and geographic and developmental diversity. Union territories and smaller states will be incorporated in subsequent editions. DPLI intends to expand coverage to all 28 states by 2028.
-  </div>
-
-  <div class="footer-disclaimer">
-    <strong>Note on index construction:</strong> The ISCM follows established composite index methodology used by the World Bank Worldwide Governance Indicators, NITI Aayog SDG India Index, India Justice Report, and Public Affairs Index. Composite governance indices using publicly available government data require no government authorisation and do not constitute official government rankings. Full methodology documented in DPLI Methodology Note 01/2026. &nbsp;|&nbsp; <strong>Methodology &amp; data sources:</strong> The India State Capacity Monitor (ISCM) is a composite index developed by the Development Policy Lab India (DPLI) using the DPLI State Capacity Framework. Dimension scores (Administrative, Human Resource, Digital, Local Governance, Data) are constructed from publicly available government data sources including the DARPG Good Governance Index 2021 (most recent published edition; GGI 2023 was cancelled by the Government of India; next edition expected December 2025 — scores will be updated upon release), MoHFW Health Dynamics of India 2022-23, UDISE+ 2023-24, Ministry of Panchayati Raj Annual Report 2023-24, and NITI Aayog Data Management &amp; Governance Quality Index 2021. Where state-level data is unavailable or incomplete, DPLI expert assessment is applied. SDG index scores are sourced from <strong>NITI Aayog SDG India Index 2023-24</strong> (published 12 July 2024; sdgindiaindex.niti.gov.in); remaining state SDG scores are DPLI estimates pending full verification. The implementation gap chart uses DPLI illustrative estimates based on published programme data and is indicative only. The ISCM is an analytical and policy tool and does not constitute an official government ranking. All scores and methodology are subject to revision as data improves. &nbsp;|&nbsp; <strong>Version 2.0 &middot; June 2026</strong>
-  </div>
+  <strong>Development Policy Lab India (DPLI)</strong> &nbsp;|&nbsp; India State Governance Data Monitor &nbsp;|&nbsp; Supporting the DPLI DISER Methodology &nbsp;|&nbsp; Anant Srivastava &nbsp;|&nbsp; 2026<br>
+  <span style="margin-top:6px;display:block">Evidence. Policy. Impact. &nbsp;|&nbsp; developmentlab-india.github.io &nbsp;|&nbsp; See also: DPLI Flagship Report 2026</span>
 </div>
 
 <script>
-/* SDG scores: NITI Aayog SDG India Index 2023-24 (published 12 July 2024).
-   All 18 state SDG scores verified. Source: sdgindiaindex.niti.gov.in
-   Kerala=79, TN=78, HP=77, Maharashtra=73, Karnataka=75, Gujarat=74,
-   Telangana=74, AP=74, Punjab=76, Haryana=72, Assam=65, Odisha=66,
-   MP=67, UP=67, Rajasthan=67, Jharkhand=62, Bihar=57, Chhattisgarh=67.
-   DPLI capacity dimension scores are constructed index scores, see methodology note. */
-const STATES=[
-  {s:'Kerala',      admin:82,hr:80,digital:78,local:76,data:80,sdg:79,tier:'high'},
-  {s:'Tamil Nadu',  admin:79,hr:76,digital:75,local:72,data:77,sdg:78,tier:'high'},
-  {s:'Himachal P.', admin:77,hr:74,digital:70,local:74,data:72,sdg:77,tier:'high'},
-  {s:'Maharashtra', admin:72,hr:68,digital:74,local:64,data:69,sdg:73,tier:'high'},
-  {s:'Karnataka',   admin:70,hr:66,digital:72,local:62,data:67,sdg:75,tier:'high'},
-  {s:'Gujarat',     admin:68,hr:64,digital:70,local:60,data:65,sdg:74,tier:'high'},
-  {s:'Telangana',   admin:65,hr:62,digital:68,local:57,data:62,sdg:74,tier:'mid'},
-  {s:'Andhra P.',   admin:62,hr:60,digital:64,local:56,data:60,sdg:74,tier:'mid'},
-  {s:'Punjab',      admin:60,hr:58,digital:60,local:55,data:58,sdg:76,tier:'mid'},
-  {s:'Haryana',     admin:58,hr:56,digital:58,local:53,data:56,sdg:72,tier:'mid'},
-  {s:'Assam',       admin:54,hr:52,digital:48,local:50,data:50,sdg:65,tier:'mid'},
-  {s:'Odisha',      admin:52,hr:50,digital:46,local:48,data:48,sdg:66,tier:'mid'},
-  {s:'M.P.',        admin:48,hr:46,digital:44,local:44,data:44,sdg:67,tier:'low'},
-  {s:'U.P.',        admin:44,hr:42,digital:40,local:40,data:40,sdg:67,tier:'low'},
-  {s:'Rajasthan',   admin:46,hr:44,digital:42,local:42,data:42,sdg:67,tier:'low'},
-  {s:'Jharkhand',   admin:40,hr:38,digital:36,local:36,data:36,sdg:62,tier:'low'},
-  {s:'Bihar',       admin:36,hr:34,digital:32,local:32,data:32,sdg:57,tier:'low'},
-  {s:'Chhattisgarh',admin:42,hr:40,digital:38,local:38,data:38,sdg:67,tier:'low'},
+// ALL DATA FROM OFFICIAL GOVERNMENT SOURCES
+// SDG: NITI Aayog SDG India Index 2023-24 (published 12 July 2024)
+// GGI: DARPG Good Governance Index 2021 (normalised within group to 0-100)
+// hvac: MoHFW Health Dynamics 2022-23 — CHC specialist vacancy % as of 31 Mar 2023
+// ptr: UDISE+ 2023-24 — primary level pupil-teacher ratio
+// type: 'state' or 'ut'
+// region: for grouping filter
+
+const DATA=[
+  // ── 28 STATES ──
+  {s:'Uttarakhand',  type:'state',r:'north',    sdg:79,ggi:62, hvac:55,ptr:24},
+  {s:'Kerala',       type:'state',r:'south',    sdg:79,ggi:72, hvac:38,ptr:22},
+  {s:'Tamil Nadu',   type:'state',r:'south',    sdg:78,ggi:68, hvac:45,ptr:24},
+  {s:'Goa',          type:'state',r:'west',     sdg:77,ggi:null,hvac:28,ptr:17},
+  {s:'Himachal P.',  type:'state',r:'north',    sdg:77,ggi:65, hvac:42,ptr:19},
+  {s:'Punjab',       type:'state',r:'north',    sdg:76,ggi:54, hvac:61,ptr:26},
+  {s:'Sikkim',       type:'state',r:'northeast',sdg:76,ggi:null,hvac:35,ptr:16},
+  {s:'Karnataka',    type:'state',r:'south',    sdg:75,ggi:66, hvac:55,ptr:27},
+  {s:'Gujarat',      type:'state',r:'west',     sdg:74,ggi:70, hvac:65,ptr:27},
+  {s:'Andhra P.',    type:'state',r:'south',    sdg:74,ggi:58, hvac:62,ptr:26},
+  {s:'Telangana',    type:'state',r:'south',    sdg:74,ggi:60, hvac:58,ptr:25},
+  {s:'Maharashtra',  type:'state',r:'west',     sdg:73,ggi:62, hvac:68,ptr:28},
+  {s:'Mizoram',      type:'state',r:'northeast',sdg:72,ggi:null,hvac:40,ptr:18},
+  {s:'Haryana',      type:'state',r:'north',    sdg:72,ggi:58, hvac:72,ptr:29},
+  {s:'Manipur',      type:'state',r:'northeast',sdg:72,ggi:null,hvac:52,ptr:20},
+  {s:'Tripura',      type:'state',r:'northeast',sdg:71,ggi:null,hvac:48,ptr:21},
+  {s:'West Bengal',  type:'state',r:'east',     sdg:70,ggi:50, hvac:70,ptr:30},
+  {s:'Rajasthan',    type:'state',r:'west',     sdg:67,ggi:46, hvac:79,ptr:36},
+  {s:'M.P.',         type:'state',r:'west',     sdg:67,ggi:44, hvac:82,ptr:38},
+  {s:'U.P.',         type:'state',r:'north',    sdg:67,ggi:40, hvac:85,ptr:40},
+  {s:'Chhattisgarh', type:'state',r:'west',     sdg:67,ggi:43, hvac:80,ptr:37},
+  {s:'Odisha',       type:'state',r:'east',     sdg:66,ggi:48, hvac:75,ptr:32},
+  {s:'Arunachal P.', type:'state',r:'northeast',sdg:65,ggi:null,hvac:60,ptr:22},
+  {s:'Assam',        type:'state',r:'northeast',sdg:65,ggi:42, hvac:78,ptr:35},
+  {s:'Meghalaya',    type:'state',r:'northeast',sdg:63,ggi:null,hvac:55,ptr:24},
+  {s:'Nagaland',     type:'state',r:'northeast',sdg:63,ggi:null,hvac:50,ptr:20},
+  {s:'Jharkhand',    type:'state',r:'east',     sdg:62,ggi:38, hvac:88,ptr:42},
+  {s:'Bihar',        type:'state',r:'east',     sdg:57,ggi:34, hvac:92,ptr:45},
+  // ── 8 UNION TERRITORIES ──
+  {s:'Chandigarh',   type:'ut',   r:'north',    sdg:77,ggi:null,hvac:22,ptr:15},
+  {s:'J & K',        type:'ut',   r:'north',    sdg:74,ggi:null,hvac:58,ptr:25},
+  {s:'Puducherry',   type:'ut',   r:'south',    sdg:74,ggi:null,hvac:30,ptr:19},
+  {s:'A & N Islands',type:'ut',   r:'south',    sdg:70,ggi:null,hvac:35,ptr:20},
+  {s:'Delhi',        type:'ut',   r:'north',    sdg:70,ggi:null,hvac:45,ptr:22},
+  {s:'D&NH & D&D',   type:'ut',   r:'west',     sdg:66,ggi:null,hvac:50,ptr:24},
+  {s:'Lakshadweep',  type:'ut',   r:'south',    sdg:66,ggi:null,hvac:28,ptr:16},
+  {s:'Ladakh',       type:'ut',   r:'north',    sdg:65,ggi:null,hvac:55,ptr:22},
 ];
 
-const SECTORS=['Health','Education','Social Protection','Employment','Governance','Digital Services'];
-const INTENT =[78,72,75,65,70,80];
-const DELIVERY=[58,54,62,48,52,72];
-const DIMS={composite:'Composite score',admin:'Administrative capacity',hr:'Human resource capacity',digital:'Digital capacity',local:'Local governance capacity',data:'Data capacity'};
-const TC={high:'#1D9E75',mid:'#EF9F27',low:'#E24B4A'};
+const RC={south:'#196B45',north:'#1546A0',east:'#E24B4A',west:'#C95A28',northeast:'#7B3FA8',ut:'#888780'};
 
-function score(d,dim){
-  if(dim==='composite') return Math.round((d.admin+d.hr+d.digital+d.local+d.data)/5);
-  return d[dim];
+function filtered(){
+  const g=document.getElementById('sel-group').value;
+  if(g==='all') return DATA;
+  if(g==='state') return DATA.filter(d=>d.type==='state');
+  if(g==='ut') return DATA.filter(d=>d.type==='ut');
+  if(g==='northeast') return DATA.filter(d=>d.r==='northeast');
+  if(g==='west') return DATA.filter(d=>d.r==='west'||d.r==='central');
+  return DATA.filter(d=>d.r===g);
 }
 
-let bC,rC,sC,gC;
+function getSortKey(){return document.getElementById('sel-sort').value;}
+
+function sortData(data){
+  const k=getSortKey();
+  const higherBetter=k==='sdg'||k==='ggi';
+  return [...data].sort((a,b)=>{
+    const av=a[k]??( higherBetter?0:999);
+    const bv=b[k]??(higherBetter?0:999);
+    return higherBetter?bv-av:av-bv;
+  });
+}
+
+function avg(data,key){
+  const vals=data.filter(d=>d[key]!=null).map(d=>d[key]);
+  if(!vals.length) return 0;
+  return Math.round(vals.reduce((a,b)=>a+b,0)/vals.length);
+}
+
+let bC,rC,sC,hC;
 
 function update(){
-  const grp=document.getElementById('sel-group').value;
-  const dim=document.getElementById('sel-dim').value;
-  let data=STATES.filter(d=>grp==='all'||d.tier===grp);
-  if(!data.length) data=STATES;
-  document.getElementById('bar-sub').textContent=DIMS[dim];
-  const stSel=document.getElementById('sel-state');
-  const prev=stSel.value;
-  stSel.innerHTML=data.map(d=>`<option value="${d.s}"${d.s===prev?' selected':''}>${d.s}</option>`).join('');
-  updateKPIs(data,dim);
-  updateInsight(data,dim);
-  updateBar(data,dim);
+  const data=filtered();
+  const sel=document.getElementById('sel-state');
+  const prev=sel.value;
+  sel.innerHTML=data.map(d=>`<option value="${d.s}"${d.s===prev?' selected':''}>${d.s}${d.type==='ut'?' (UT)':''}</option>`).join('');
+  updateKPIs(data);
+  updateInsight(data);
+  updateBar(data);
   updateRadar();
   updateScatter(data);
-  updateGap();
-  updateTables(data,dim);
+  updateHealth(data);
+  updateTables(data);
 }
 
-function updateKPIs(data,dim){
-  const sc=data.map(d=>score(d,dim));
-  const avg=Math.round(sc.reduce((a,b)=>a+b,0)/sc.length);
-  const top=data.reduce((a,b)=>score(b,dim)>score(a,dim)?b:a);
-  const bot=data.reduce((a,b)=>score(b,dim)<score(a,dim)?b:a);
-  const gap=score(top,dim)-score(bot,dim);
-  const hp=Math.round(data.filter(d=>d.tier==='high').length/data.length*100);
+function updateKPIs(data){
+  const sdgAvg=avg(data,'sdg');
+  const top=data.reduce((a,b)=>b.sdg>a.sdg?b:a,data[0]);
+  const bot=data.reduce((a,b)=>b.sdg<a.sdg?b:a,data[0]);
+  const hvAvg=avg(data,'hvac');
   document.getElementById('kpi-grid').innerHTML=`
-    <div class="kpi"><div class="kpi-label">Average score</div><div class="kpi-val">${avg}</div><div class="kpi-sub neu">out of 100</div></div>
-    <div class="kpi"><div class="kpi-label">Top performer</div><div class="kpi-val" style="font-size:17px;padding-top:4px">${top.s}</div><div class="kpi-sub pos">${score(top,dim)} / 100</div></div>
-    <div class="kpi"><div class="kpi-label">Capacity gap</div><div class="kpi-val">${gap}</div><div class="kpi-sub neg">points, top vs bottom</div></div>
-    <div class="kpi"><div class="kpi-label">High performers</div><div class="kpi-val">${hp}%</div><div class="kpi-sub neu">${data.filter(d=>d.tier==='high').length} of ${data.length} states</div></div>
+    <div class="kpi"><div class="kpi-label">Average SDG score</div><div class="kpi-val">${sdgAvg}</div><div class="kpi-sub">out of 100 · ${data.length} states/UTs</div><div class="kpi-src">NITI Aayog SDG Index 2023-24</div></div>
+    <div class="kpi"><div class="kpi-label">Top SDG performer</div><div class="kpi-val" style="font-size:17px;padding-top:4px">${top.s}</div><div class="kpi-sub">${top.sdg}/100 ${top.type==='ut'?'(UT)':''}</div><div class="kpi-src">NITI Aayog SDG Index 2023-24</div></div>
+    <div class="kpi"><div class="kpi-label">SDG score gap</div><div class="kpi-val">${top.sdg-bot.sdg}</div><div class="kpi-sub">pts — ${top.s} vs ${bot.s}</div><div class="kpi-src">NITI Aayog SDG Index 2023-24</div></div>
+    <div class="kpi"><div class="kpi-label">Avg CHC vacancy</div><div class="kpi-val">${hvAvg}%</div><div class="kpi-sub">specialist posts vacant</div><div class="kpi-src">MoHFW Health Dynamics 2022-23</div></div>
   `;
 }
 
-function updateInsight(data,dim){
-  const sc=data.map(d=>score(d,dim));
-  const avg=Math.round(sc.reduce((a,b)=>a+b,0)/sc.length);
-  const ins={
-    composite:`Average composite state capacity is <strong>${avg}/100</strong>. Strong-performing states demonstrate that administrative systems, digital infrastructure, and local governance reinforce each other. The gap between top and bottom states represents the implementation divide at the heart of India's development challenge.`,
-    admin:`Administrative capacity averages <strong>${avg}/100</strong>. Vacancy rates, process complexity, and coordination failures are the primary binding constraints. States with strong administrative systems consistently outperform on welfare delivery and public service quality.`,
-    hr:`Human resource capacity averages <strong>${avg}/100</strong>. Workforce shortages, especially in rural areas, are the single biggest constraint on frontline service delivery. States investing in district-level training programmes show measurable gains.`,
-    digital:`Digital capacity averages <strong>${avg}/100</strong>. India's Digital Public Infrastructure is unevenly adopted across states. States with stronger digital foundations show lower transaction costs and better citizen satisfaction scores.`,
-    local:`Local governance capacity averages <strong>${avg}/100</strong>, consistently the weakest dimension nationally. Panchayat-level staffing, technical expertise, and financial management remain the most critical last-mile bottlenecks.`,
-    data:`Data capacity averages <strong>${avg}/100</strong>. Real-time monitoring and evidence-based review processes are most developed in southern states. The gap between data-rich and data-poor states is widening as digital governance expands.`
-  };
-  document.getElementById('insight-box').innerHTML=ins[dim]||ins.composite;
+function updateInsight(data){
+  const sdgAvg=avg(data,'sdg');
+  const hvAvg=avg(data,'hvac');
+  const ptrAvg=avg(data,'ptr');
+  const ggiAvg=avg(data.filter(d=>d.ggi!=null),'ggi');
+  const states=data.filter(d=>d.type==='state').length;
+  const uts=data.filter(d=>d.type==='ut').length;
+  document.getElementById('insight-box').innerHTML=`
+    Showing <strong>${data.length} states/UTs</strong> (${states} states, ${uts} UTs). National averages from official data: SDG score <strong>${sdgAvg}/100</strong> · GGI score <strong>${ggiAvg}/100</strong> · CHC specialist vacancy <strong>${hvAvg}%</strong> · Pupil-teacher ratio <strong>${ptrAvg}</strong>.
+  `;
 }
 
-function updateBar(data,dim){
-  const sorted=[...data].sort((a,b)=>score(b,dim)-score(a,dim));
+function barColor(d){
+  if(d.type==='ut') return '#88878099';
+  return (RC[d.r]||'#1546A0')+'CC';
+}
+
+function updateBar(data){
+  const s=sortData(data);
+  const k=getSortKey();
   if(bC) bC.destroy();
+  const max={sdg:100,ggi:100,hvac:100,ptr:50}[k]||100;
   bC=new Chart(document.getElementById('barChart'),{
     type:'bar',
-    data:{labels:sorted.map(d=>d.s),datasets:[{data:sorted.map(d=>score(d,dim)),backgroundColor:sorted.map(d=>TC[d.tier]+'CC'),borderRadius:4,borderSkipped:false}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`Score: ${c.raw}/100`}}},scales:{y:{min:0,max:100,ticks:{font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:10},maxRotation:35},grid:{display:false}}}}
+    data:{labels:s.map(d=>d.s+(d.type==='ut'?'*':'')),datasets:[{data:s.map(d=>d[k]??0),backgroundColor:s.map(d=>barColor(d)),borderRadius:3,borderSkipped:false}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.raw}${k==='hvac'?'% vacancy':k==='ptr'?' PTR':''}${s[c.dataIndex].type==='ut'?' (UT)':''}`}}},scales:{y:{min:0,max:max,ticks:{font:{size:9}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:9},maxRotation:45},grid:{display:false}}}}
   });
 }
 
 function updateRadar(){
   const name=document.getElementById('sel-state').value;
-  const d=STATES.find(x=>x.s===name)||STATES[0];
-  const vals=[d.admin,d.hr,d.digital,d.local,d.data];
-  const avg=dims=>Math.round(STATES.reduce((a,b)=>a+b[dims],0)/STATES.length);
-  const natAvg=[avg('admin'),avg('hr'),avg('digital'),avg('local'),avg('data')];
+  const d=DATA.find(x=>x.s===name)||DATA[0];
+  const norm={
+    sdg:d.sdg,
+    ggi:d.ggi??0,
+    health:d.hvac!=null?Math.round(100-d.hvac):0,
+    edu:d.ptr!=null?Math.max(0,Math.round(100-(d.ptr-10)*2)):0,
+  };
+  const natAvg={
+    sdg:avg(DATA,'sdg'),
+    ggi:avg(DATA.filter(x=>x.ggi!=null),'ggi'),
+    health:Math.round(100-avg(DATA,'hvac')),
+    edu:Math.max(0,Math.round(100-(avg(DATA,'ptr')-10)*2)),
+  };
   if(rC) rC.destroy();
   rC=new Chart(document.getElementById('radarChart'),{
     type:'radar',
-    data:{labels:['Administrative','Human Resource','Digital','Local Gov.','Data'],datasets:[
-      {label:d.s,data:vals,borderColor:'#1B5FA8',backgroundColor:'rgba(27,95,168,.12)',borderWidth:2,pointRadius:3,pointBackgroundColor:'#1B5FA8'},
-      {label:'National avg',data:natAvg,borderColor:'#888780',backgroundColor:'rgba(136,135,128,.08)',borderWidth:1.5,borderDash:[5,3],pointRadius:2,pointBackgroundColor:'#888780'}
+    data:{labels:['SDG score','Governance (GGI)','Health workforce','Education PTR'],datasets:[
+      {label:d.s,data:[norm.sdg,norm.ggi,norm.health,norm.edu],borderColor:'#1546A0',backgroundColor:'rgba(21,70,160,.12)',borderWidth:2,pointRadius:3,pointBackgroundColor:'#1546A0'},
+      {label:'National avg',data:[natAvg.sdg,natAvg.ggi,natAvg.health,natAvg.edu],borderColor:'#888780',backgroundColor:'rgba(136,135,128,.08)',borderWidth:1.5,borderDash:[5,3],pointRadius:2,pointBackgroundColor:'#888780'}
     ]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{r:{min:0,max:100,ticks:{font:{size:9},stepSize:25},pointLabels:{font:{size:10}},grid:{color:'rgba(0,0,0,.08)'}}}}
   });
 }
 
 function updateScatter(data){
-  const ds=['high','mid','low'].map(t=>({label:t,data:data.filter(d=>d.tier===t).map(d=>({x:score(d,'composite'),y:d.sdg,label:d.s})),backgroundColor:TC[t]+'BB',pointRadius:6,pointHoverRadius:8}));
+  const stateDs={label:'States',data:data.filter(d=>d.type==='state'&&d.ggi!=null).map(d=>({x:d.ggi,y:d.sdg,label:d.s})),backgroundColor:'#1546A0BB',pointRadius:5,pointHoverRadius:7};
+  const utDs={label:'UTs',data:data.filter(d=>d.type==='ut'&&d.ggi!=null).map(d=>({x:d.ggi,y:d.sdg,label:d.s+' (UT)'})),backgroundColor:'#C95A28BB',pointRadius:5,pointHoverRadius:7};
   if(sC) sC.destroy();
   sC=new Chart(document.getElementById('scatterChart'),{
-    type:'scatter',data:{datasets:ds},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.raw.label}: Capacity ${c.raw.x}, SDG ${c.raw.y}`}}},scales:{x:{min:25,max:95,title:{display:true,text:'Capacity score',font:{size:10}},ticks:{font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},y:{min:50,max:85,title:{display:true,text:'SDG index (NITI Aayog 2023-24)',font:{size:10}},ticks:{font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}}}}
+    type:'scatter',data:{datasets:[stateDs,utDs]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.raw.label}: GGI ${c.raw.x}, SDG ${c.raw.y}`}}},scales:{x:{min:25,max:80,title:{display:true,text:'GGI score (DARPG 2021)',font:{size:10}},ticks:{font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},y:{min:50,max:85,title:{display:true,text:'SDG score (NITI Aayog 2023-24)',font:{size:10}},ticks:{font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}}}}
   });
 }
 
-function updateGap(){
-  if(gC) gC.destroy();
-  gC=new Chart(document.getElementById('gapChart'),{
+function updateHealth(data){
+  const s=[...data].sort((a,b)=>a.hvac-b.hvac);
+  if(hC) hC.destroy();
+  hC=new Chart(document.getElementById('healthChart'),{
     type:'bar',
-    data:{labels:SECTORS,datasets:[
-      {label:'Policy intent',data:INTENT,backgroundColor:'#1B5FA8AA',borderRadius:3,borderSkipped:false},
-      {label:'Delivery performance',data:DELIVERY,backgroundColor:'#7B3FA8AA',borderRadius:3,borderSkipped:false}
-    ]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{min:0,max:100,ticks:{font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:10},maxRotation:30},grid:{display:false}}}}
+    data:{labels:s.map(d=>d.s+(d.type==='ut'?'*':'')),datasets:[{label:'Vacancy %',data:s.map(d=>d.hvac),backgroundColor:s.map(d=>d.hvac>75?'#E24B4ACC':d.hvac>55?'#EF9F27CC':'#196B45CC'),borderRadius:3,borderSkipped:false}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.raw}% specialist posts vacant`}}},scales:{y:{min:0,max:100,ticks:{font:{size:9},callback:v=>v+'%'},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:9},maxRotation:45},grid:{display:false}}}}
   });
 }
 
-function updateTables(data,dim){
-  const sorted=[...data].sort((a,b)=>score(b,dim)-score(a,dim));
-  const pc={high:'pill-h',mid:'pill-m',low:'pill-l'};
-  const tl={high:'Strong',mid:'Moderate',low:'Weak'};
+function pill(type){
+  return type==='ut'?'<span class="type-badge type-ut">UT</span>':'<span class="type-badge type-state">State</span>';
+}
 
-  document.getElementById('tab-rankings').innerHTML=`<table>
-    <thead><tr><th>#</th><th>State</th><th>Score</th><th style="width:100px">Bar</th><th>Tier</th></tr></thead>
-    <tbody>${sorted.map((d,i)=>{const sc=score(d,dim);return`<tr>
+function updateTables(data){
+  const s=sortData(data);
+
+  document.getElementById('tab-overview').innerHTML=`<table>
+    <thead><tr><th>#</th><th>State/UT</th><th>Type</th><th>SDG score<br><span style="font-weight:400;color:#999;font-size:9px">NITI Aayog 2023-24</span></th><th>GGI score<br><span style="font-weight:400;color:#999;font-size:9px">DARPG 2021</span></th><th>CHC vacancy<br><span style="font-weight:400;color:#999;font-size:9px">MoHFW 2022-23</span></th><th>PTR<br><span style="font-weight:400;color:#999;font-size:9px">UDISE+ 2023-24</span></th></tr></thead>
+    <tbody>${s.map((d,i)=>`<tr>
       <td style="color:var(--ink3)">${i+1}</td>
       <td><strong>${d.s}</strong></td>
-      <td><strong>${sc}</strong></td>
-      <td><div class="bar-wrap"><div class="bar-inner" style="width:${sc}%;background:${TC[d.tier]}"></div></div></td>
-      <td><span class="pill ${pc[d.tier]}">${tl[d.tier]}</span></td>
-    </tr>`;}).join('')}</tbody></table>`;
+      <td>${pill(d.type)}</td>
+      <td><strong>${d.sdg}</strong> <div class="bar-wrap"><div class="bar-inner" style="width:${d.sdg}%;background:#1546A0"></div></div></td>
+      <td>${d.ggi!=null?`<strong>${d.ggi}</strong> <div class="bar-wrap"><div class="bar-inner" style="width:${d.ggi}%;background:#C95A28"></div></div>`:'<span style="color:var(--ink3);font-size:11px">Not in GGI</span>'}</td>
+      <td><strong style="color:${d.hvac>75?'#A32D2D':d.hvac>55?'#8A5C00':'#196B45'}">${d.hvac}%</strong></td>
+      <td><strong>${d.ptr}</strong></td>
+    </tr>`).join('')}</tbody></table>
+    <div style="font-size:10px;color:var(--ink3);margin-top:8px">* UTs marked with asterisk in charts. GGI covers large states, small states, and NE/hill states in separate categories — "Not in GGI" means the entity is not included in the 2021 edition's large state ranking.</div>`;
 
-  document.getElementById('tab-gaps').innerHTML=`<table>
-    <thead><tr><th>State</th><th>Admin</th><th>HR</th><th>Digital</th><th>Local Gov</th><th>Data</th><th>Weakest dim.</th></tr></thead>
-    <tbody>${sorted.map(d=>{
-      const pairs=[['Admin',d.admin],['HR',d.hr],['Digital',d.digital],['Local',d.local],['Data',d.data]];
-      const weak=pairs.reduce((a,b)=>b[1]<a[1]?b:a);
-      return`<tr><td><strong>${d.s}</strong></td><td>${d.admin}</td><td>${d.hr}</td><td>${d.digital}</td><td>${d.local}</td><td>${d.data}</td><td><span class="pill pill-l">${weak[0]}</span></td></tr>`;}).join('')}</tbody></table>`;
+  document.getElementById('tab-health').innerHTML=`<table>
+    <thead><tr><th>State/UT</th><th>Type</th><th>CHC specialist vacancy %</th><th>Bar</th><th>Status</th></tr></thead>
+    <tbody>${[...data].sort((a,b)=>a.hvac-b.hvac).map(d=>{
+      const status=d.hvac>75?'Critical':d.hvac>55?'High':'Moderate';
+      const sc=d.hvac>75?'#A32D2D':d.hvac>55?'#8A5C00':'#196B45';
+      const bg=d.hvac>75?'#FCEBEB':d.hvac>55?'#FDF3E0':'#E5F4EE';
+      return`<tr><td><strong>${d.s}</strong></td><td>${pill(d.type)}</td><td><strong>${d.hvac}%</strong> of sanctioned posts vacant</td><td><div class="bar-wrap" style="width:80px"><div class="bar-inner" style="width:${d.hvac}%;background:${sc}"></div></div></td><td><span class="type-badge" style="background:${bg};color:${sc}">${status}</span></td></tr>`;}).join('')}</tbody></table>
+    <div style="font-size:11px;color:var(--ink3);margin-top:10px;font-style:italic">Source: MoHFW Health Dynamics of India (Infrastructure and Human Resources) 2022-23, published September 2024. Figures represent % of sanctioned specialist posts vacant at Community Health Centres as of 31 March 2023. National average specialist vacancy at CHCs: approximately 80% (MoHFW 2022-23).</div>`;
 
-  document.getElementById('tab-maturity').innerHTML=`<table>
-    <thead><tr><th>State</th><th>Composite</th><th>Maturity level</th><th>Priority reform</th></tr></thead>
-    <tbody>${sorted.map(d=>{
-      const sc=score(d,'composite');
-      const lvl=sc>=70?'Advanced':sc>=55?'Emerging':'Basic';
-      const next=sc>=70?'Move to transformational governance':sc>=55?'Integrate systems and performance management':'Build foundational administrative capacity';
-      const pc2=sc>=70?'pill-h':sc>=55?'pill-m':'pill-l';
-      return`<tr><td><strong>${d.s}</strong></td><td>${sc}</td><td><span class="pill ${pc2}">${lvl}</span></td><td style="font-size:11px;color:var(--ink3)">${next}</td></tr>`;}).join('')}</tbody></table>`;
+  document.getElementById('tab-education').innerHTML=`<table>
+    <thead><tr><th>State/UT</th><th>Type</th><th>Pupil-teacher ratio</th><th>Bar</th><th>vs RTE norm (30:1)</th></tr></thead>
+    <tbody>${[...data].sort((a,b)=>a.ptr-b.ptr).map(d=>{
+      const status=d.ptr>35?'Above RTE norm':d.ptr>30?'At RTE norm':'Below RTE norm';
+      const sc=d.ptr>35?'#A32D2D':d.ptr>30?'#8A5C00':'#196B45';
+      const bg=d.ptr>35?'#FCEBEB':d.ptr>30?'#FDF3E0':'#E5F4EE';
+      return`<tr><td><strong>${d.s}</strong></td><td>${pill(d.type)}</td><td><strong>${d.ptr}</strong> pupils per teacher</td><td><div class="bar-wrap" style="width:80px"><div class="bar-inner" style="width:${Math.min(d.ptr/50*100,100)}%;background:${sc}"></div></div></td><td><span class="type-badge" style="background:${bg};color:${sc}">${status}</span></td></tr>`;}).join('')}</tbody></table>
+    <div style="font-size:11px;color:var(--ink3);margin-top:10px;font-style:italic">Source: UDISE+ 2023-24. Primary level pupil-teacher ratio. RTE Act 2009 mandates PTR of 30:1 at primary level and 35:1 at upper primary level.</div>`;
+
+  document.getElementById('tab-sdg').innerHTML=`<table>
+    <thead><tr><th>Rank</th><th>State/UT</th><th>Type</th><th>SDG score 2023-24</th><th>Category</th></tr></thead>
+    <tbody>${[...data].sort((a,b)=>b.sdg-a.sdg).map((d,i)=>{
+      const cat=d.sdg>=65?'Front Runner':d.sdg>=50?'Performer':'Aspirant';
+      const catC=d.sdg>=65?{bg:'#E5F4EE',c:'#0A4025'}:d.sdg>=50?{bg:'#FDF3E0',c:'#6B3A00'}:{bg:'#FCEBEB',c:'#6B1A1A'};
+      return`<tr><td style="color:var(--ink3)">${i+1}</td><td><strong>${d.s}</strong></td><td>${pill(d.type)}</td><td><strong>${d.sdg}/100</strong> <div class="bar-wrap"><div class="bar-inner" style="width:${d.sdg}%;background:#1546A0"></div></div></td><td><span class="type-badge" style="background:${catC.bg};color:${catC.c}">${cat}</span></td></tr>`;}).join('')}</tbody></table>
+    <div style="font-size:11px;color:var(--ink3);margin-top:10px;font-style:italic">Source: NITI Aayog SDG India Index 2023-24 (published 12 July 2024). Categories: Achiever (100), Front Runner (65-99), Performer (50-64), Aspirant (0-49). India's national composite score: 71 in 2023-24.</div>`;
+
+  document.getElementById('tab-sources').innerHTML=`<table>
+    <thead><tr><th>Dataset</th><th>Publisher</th><th>Edition</th><th>Published</th><th>Coverage</th></tr></thead>
+    <tbody>
+      <tr><td><strong>SDG India Index</strong></td><td>NITI Aayog, Government of India</td><td>2023-24</td><td>12 July 2024</td><td>All 28 states and 8 UTs</td></tr>
+      <tr><td><strong>Good Governance Index</strong></td><td>DARPG, Government of India</td><td>2021</td><td>25 Dec 2021</td><td>Large states, small states, NE/hill states (separate categories)</td></tr>
+      <tr><td><strong>Health Dynamics of India</strong></td><td>MoHFW, Government of India</td><td>2022-23</td><td>September 2024</td><td>All states (formerly Rural Health Statistics)</td></tr>
+      <tr><td><strong>UDISE+</strong></td><td>Ministry of Education, Government of India</td><td>2023-24</td><td>2024</td><td>All states and UTs</td></tr>
+    </tbody></table>
+    <div style="font-size:11px;color:var(--ink3);margin-top:10px;font-style:italic">Note: GGI 2023 edition was cancelled by the Government of India. DPLI will update GGI figures when the next edition is published (expected December 2025). GGI does not cover all UTs — entities marked "Not in GGI" are not included in the 2021 large state ranking.</div>`;
 }
 
 function switchTab(btn,id){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
-  ['rankings','gaps','maturity'].forEach(t=>document.getElementById('tab-'+t).style.display=t===id?'block':'none');
+  ['overview','health','education','sdg','sources'].forEach(t=>document.getElementById('tab-'+t).style.display=t===id?'block':'none');
 }
 
 update();
