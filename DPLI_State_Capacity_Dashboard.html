@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPLI India State Capacity Dashboard | Development Policy Lab India</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+:root{
+  --ink:#1A1A2E;--ink2:#3D3D56;--ink3:#6B6B85;
+  --cream:#F7F5F0;--rule:#E2DDD5;--white:#fff;
+  --blue:#1B5FA8;--blue-l:#E8F2FC;
+  --orange:#D4500C;--green:#1A8C5B;--green-l:#E1F5EE;
+  --amber:#B07A00;--purple:#7B3FA8;
+  --tier-h:#1D9E75;--tier-m:#EF9F27;--tier-l:#E24B4A;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',Arial,sans-serif;background:var(--cream);color:var(--ink);font-size:14px;line-height:1.6}
+
+/* NAV */
+.nav{background:var(--ink);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:sticky;top:0;z-index:100}
+.nav-brand{color:#fff;font-size:13px;font-weight:700;letter-spacing:.8px}
+.nav-tag{font-size:10px;padding:3px 9px;border-radius:12px;background:rgba(212,80,12,.25);color:#FFAA80;font-weight:600;letter-spacing:.4px}
+.nav-meta{font-size:11px;color:rgba(255,255,255,.45)}
+
+/* HERO */
+.hero{background:var(--ink);padding:40px 28px 32px;border-bottom:1px solid rgba(255,255,255,.08)}
+.hero-inner{max-width:1080px;margin:0 auto}
+.hero-eyebrow{font-size:10px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--orange);margin-bottom:8px}
+.hero-title{font-size:clamp(22px,3.5vw,38px);font-weight:300;color:#fff;line-height:1.2;margin-bottom:8px}
+.hero-sub{font-size:13px;color:rgba(255,255,255,.5);max-width:580px;margin-bottom:24px}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap}
+.hero-pill{font-size:10px;padding:4px 10px;border-radius:12px;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6)}
+
+/* MAIN */
+.main{max-width:1080px;margin:0 auto;padding:24px 28px 60px}
+
+/* CONTROLS */
+.ctrl-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 18px;background:#fff;border:1px solid var(--rule);border-radius:10px;margin-bottom:20px}
+.ctrl-group{display:flex;align-items:center;gap:6px}
+.ctrl-label{font-size:11px;color:var(--ink3);font-weight:500}
+select{font-size:12px;padding:5px 10px;border:1px solid var(--rule);border-radius:6px;background:#fff;color:var(--ink);height:30px;cursor:pointer}
+select:focus{outline:none;border-color:var(--blue)}
+
+/* KPI */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.kpi{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:14px 16px}
+.kpi-label{font-size:10px;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.kpi-val{font-size:24px;font-weight:300;color:var(--ink)}
+.kpi-sub{font-size:11px;margin-top:4px}
+.pos{color:var(--green)}.neg{color:var(--orange)}.neu{color:var(--ink3)}
+
+/* INSIGHT */
+.insight{border-left:3px solid var(--blue);padding:12px 16px;background:var(--blue-l);border-radius:0 8px 8px 0;font-size:13px;color:var(--ink2);line-height:1.65;margin-bottom:20px}
+.insight strong{color:var(--blue)}
+
+/* CHARTS */
+.charts-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.card{background:#fff;border:1px solid var(--rule);border-radius:12px;padding:18px 20px}
+.card-title{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:3px}
+.card-sub{font-size:11px;color:var(--ink3);margin-bottom:12px}
+.ch{position:relative;width:100%}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px}
+.leg{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--ink3)}
+.leg-sq{width:9px;height:9px;border-radius:2px;flex-shrink:0}
+
+/* TABLE */
+.table-card{background:#fff;border:1px solid var(--rule);border-radius:12px;padding:18px 20px;margin-bottom:16px;overflow-x:auto}
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--rule);margin-bottom:14px}
+.tab{font-size:12px;padding:7px 16px;cursor:pointer;color:var(--ink3);border:none;background:none;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s}
+.tab.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:600}
+table{width:100%;border-collapse:collapse;font-size:12px}
+thead th{text-align:left;padding:7px 10px;border-bottom:1px solid var(--rule);font-size:10px;font-weight:600;color:var(--ink3);text-transform:uppercase;letter-spacing:.4px;white-space:nowrap}
+tbody td{padding:8px 10px;border-bottom:1px solid var(--rule);color:var(--ink2)}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--blue-l)}
+.pill{display:inline-block;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:600}
+.pill-h{background:#E1F5EE;color:#085041}
+.pill-m{background:#FAEEDA;color:#633806}
+.pill-l{background:#FCEBEB;color:#791F1F}
+.bar-wrap{width:70px;height:6px;background:var(--rule);border-radius:3px;overflow:hidden}
+.bar-inner{height:100%;border-radius:3px}
+
+/* BOTTOM */
+.actions{display:flex;gap:8px;flex-wrap:wrap;padding:16px 0 0}
+.action-btn{font-size:12px;padding:7px 14px;border:1px solid var(--rule);border-radius:8px;background:#fff;color:var(--ink);cursor:pointer;transition:all .15s}
+.action-btn:hover{background:var(--blue-l);border-color:var(--blue);color:var(--blue)}
+.footer{background:var(--ink);color:rgba(255,255,255,.4);text-align:center;padding:20px;font-size:11px;margin-top:40px}
+.footer strong{color:rgba(255,255,255,.8)}
+.footer-disclaimer{max-width:900px;margin:16px auto 0;padding:16px 20px;background:rgba(255,255,255,.06);border-radius:8px;border:1px solid rgba(255,255,255,.1);text-align:left;font-size:10px;line-height:1.7;color:rgba(255,255,255,.45)}
+.footer-disclaimer strong{color:rgba(255,255,255,.7);font-size:10px}
+.footer-scope{max-width:900px;margin:12px auto 0;padding:12px 20px;background:rgba(27,95,168,.2);border-radius:8px;border:1px solid rgba(27,95,168,.4);text-align:left;font-size:10px;line-height:1.65;color:rgba(255,255,255,.55)}
+
+@media(max-width:640px){
+  .charts-2,.kpi-grid{grid-template-columns:1fr}
+  .main{padding:16px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-brand">Development Policy Lab India (DPLI)</div>
+  <div style="display:flex;gap:12px;align-items:center">
+    <span class="nav-tag">Live Dashboard</span>
+    <span class="nav-meta">India State Capacity Monitor · 2026</span>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">DPLI India State Capacity Monitor</div>
+    <h1 class="hero-title">India State Capacity Dashboard</h1>
+    <div class="hero-sub">Interactive governance and implementation analytics across 18 Indian states, based on the DPLI State Capacity Framework. Explore capacity scores, implementation gaps, and reform priorities.</div>
+    <div class="hero-pills">
+      <span class="hero-pill">18 states</span>
+      <span class="hero-pill">5 capacity dimensions</span>
+      <span class="hero-pill">DPLI Framework 2026</span>
+      <span class="hero-pill">Anant Srivastava</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="ctrl-bar">
+    <div class="ctrl-group"><span class="ctrl-label">State group</span>
+      <select id="sel-group" onchange="update()">
+        <option value="all">All states</option>
+        <option value="high">High performers</option>
+        <option value="mid">Mid-tier</option>
+        <option value="low">Capacity-constrained</option>
+      </select>
+    </div>
+    <div class="ctrl-group"><span class="ctrl-label">Dimension</span>
+      <select id="sel-dim" onchange="update()">
+        <option value="composite">Composite score</option>
+        <option value="admin">Administrative</option>
+        <option value="hr">Human resource</option>
+        <option value="digital">Digital</option>
+        <option value="local">Local governance</option>
+        <option value="data">Data capacity</option>
+      </select>
+    </div>
+    <div class="ctrl-group"><span class="ctrl-label">Radar state</span>
+      <select id="sel-state" onchange="updateRadar()"></select>
+    </div>
+  </div>
+
+  <div class="kpi-grid" id="kpi-grid"></div>
+  <div class="insight" id="insight-box"></div>
+
+  <div class="charts-2">
+    <div class="card">
+      <div class="card-title">State capacity scores</div>
+      <div class="card-sub" id="bar-sub">Sorted by selected dimension</div>
+      <div class="ch" style="height:280px"><canvas id="barChart" role="img" aria-label="Bar chart of state capacity scores"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Dimension profile</div>
+      <div class="card-sub">Selected state vs national average</div>
+      <div class="legend">
+        <span class="leg"><span class="leg-sq" style="background:#1B5FA8"></span>Selected state</span>
+        <span class="leg"><span class="leg-sq" style="background:#888780"></span>National average</span>
+      </div>
+      <div class="ch" style="height:240px"><canvas id="radarChart" role="img" aria-label="Radar chart of capacity dimensions"></canvas></div>
+    </div>
+  </div>
+
+  <div class="charts-2">
+    <div class="card">
+      <div class="card-title">Capacity vs development outcome</div>
+      <div class="card-sub">State capacity score vs SDG index correlation</div>
+      <div class="legend">
+        <span class="leg"><span class="leg-sq" style="background:#1D9E75"></span>High capacity</span>
+        <span class="leg"><span class="leg-sq" style="background:#EF9F27"></span>Mid-tier</span>
+        <span class="leg"><span class="leg-sq" style="background:#E24B4A"></span>Low capacity</span>
+      </div>
+      <div class="ch" style="height:220px"><canvas id="scatterChart" role="img" aria-label="Scatter chart capacity vs SDG outcomes"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Implementation gap by sector</div>
+      <div class="card-sub">Policy intent vs actual delivery performance · <em>DPLI illustrative estimates based on published government programme data. Scores are indicative and not independently verified. Sources: MoHFW Health Dynamics 2022-23, UDISE+ 2023-24, MeitY Annual Report 2023-24, and TRAI Telecom Subscription Data (state-wise internet penetration). Digital capacity scores involve the highest degree of expert assessment in the framework; this dimension will be strengthened in Phase 2 as more comparable state-level data becomes available.</em></div>
+      <div class="legend">
+        <span class="leg"><span class="leg-sq" style="background:#1B5FA8"></span>Policy intent</span>
+        <span class="leg"><span class="leg-sq" style="background:#7B3FA8"></span>Delivery performance</span>
+      </div>
+      <div class="ch" style="height:220px"><canvas id="gapChart" role="img" aria-label="Bar chart implementation gap by sector"></canvas></div>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <div class="card-title" style="margin-bottom:12px">State-level detail</div>
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab(this,'rankings')">Rankings</button>
+      <button class="tab" onclick="switchTab(this,'gaps')">Capacity gaps</button>
+      <button class="tab" onclick="switchTab(this,'maturity')">Maturity levels</button>
+    </div>
+    <div id="tab-rankings"></div>
+    <div id="tab-gaps" style="display:none"></div>
+    <div id="tab-maturity" style="display:none"></div>
+  </div>
+
+  <div class="actions">
+    <div style="font-size:11px;color:var(--ink3);align-self:center;margin-right:4px">Explore further:</div>
+    <a href="https://dpli.github.io" target="_blank" style="text-decoration:none"><button class="action-btn">DPLI Publications</button></a>
+    <button class="action-btn" onclick="window.print()">Download / Print</button>
+  </div>
+
+</div>
+
+<div class="footer">
+  <strong>Development Policy Lab India (DPLI)</strong> &nbsp;|&nbsp; India State Capacity Monitor &nbsp;|&nbsp; Anant Srivastava, Founder &amp; Lead Researcher &nbsp;|&nbsp; 2026<br>
+  <span style="margin-top:6px;display:block">Evidence. Policy. Impact.</span>
+
+  <div class="footer-scope">
+    <strong>Scope note:</strong> The ISCM Phase 1 covers 18 major Indian states selected on the basis of population size, availability of comparable data across all five capacity dimensions, and geographic and developmental diversity. Union territories and smaller states will be incorporated in subsequent editions. DPLI intends to expand coverage to all 28 states by 2028.
+  </div>
+
+  <div class="footer-disclaimer">
+    <strong>Methodology &amp; data sources:</strong> The India State Capacity Monitor (ISCM) is a composite index developed by the Development Policy Lab India (DPLI) using the DPLI State Capacity Framework. Dimension scores (Administrative, Human Resource, Digital, Local Governance, Data) are constructed from publicly available government data sources including the DARPG Good Governance Index 2021 (most recent published edition; GGI 2023 was cancelled by the Government of India; next edition expected December 2025 — scores will be updated upon release), MoHFW Health Dynamics of India 2022-23, UDISE+ 2023-24, Ministry of Panchayati Raj Annual Report 2023-24, and NITI Aayog Data Management &amp; Governance Quality Index 2021. Where state-level data is unavailable or incomplete, DPLI expert assessment is applied. SDG index scores are sourced from <strong>NITI Aayog SDG India Index 2023-24</strong> (published 12 July 2024; sdgindiaindex.niti.gov.in); remaining state SDG scores are DPLI estimates pending full verification. The implementation gap chart uses DPLI illustrative estimates based on published programme data and is indicative only. The ISCM is an analytical and policy tool and does not constitute an official government ranking. All scores and methodology are subject to revision as data improves. &nbsp;|&nbsp; <strong>Version 2.0 &middot; June 2026</strong>
+  </div>
+</div>
+
+<script>
+/* SDG scores: NITI Aayog SDG India Index 2023-24 (published 12 July 2024).
+   All 18 state SDG scores verified. Source: sdgindiaindex.niti.gov.in
+   Kerala=79, TN=78, HP=77, Maharashtra=73, Karnataka=75, Gujarat=74,
+   Telangana=74, AP=74, Punjab=76, Haryana=72, Assam=65, Odisha=66,
+   MP=67, UP=67, Rajasthan=67, Jharkhand=62, Bihar=57, Chhattisgarh=67.
+   DPLI capacity dimension scores are constructed index scores, see methodology note. */
+const STATES=[
+  {s:'Kerala',      admin:82,hr:80,digital:78,local:76,data:80,sdg:79,tier:'high'},
+  {s:'Tamil Nadu',  admin:79,hr:76,digital:75,local:72,data:77,sdg:78,tier:'high'},
+  {s:'Himachal P.', admin:77,hr:74,digital:70,local:74,data:72,sdg:77,tier:'high'},
+  {s:'Maharashtra', admin:72,hr:68,digital:74,local:64,data:69,sdg:73,tier:'high'},
+  {s:'Karnataka',   admin:70,hr:66,digital:72,local:62,data:67,sdg:75,tier:'high'},
+  {s:'Gujarat',     admin:68,hr:64,digital:70,local:60,data:65,sdg:74,tier:'high'},
+  {s:'Telangana',   admin:65,hr:62,digital:68,local:57,data:62,sdg:74,tier:'mid'},
+  {s:'Andhra P.',   admin:62,hr:60,digital:64,local:56,data:60,sdg:74,tier:'mid'},
+  {s:'Punjab',      admin:60,hr:58,digital:60,local:55,data:58,sdg:76,tier:'mid'},
+  {s:'Haryana',     admin:58,hr:56,digital:58,local:53,data:56,sdg:72,tier:'mid'},
+  {s:'Assam',       admin:54,hr:52,digital:48,local:50,data:50,sdg:65,tier:'mid'},
+  {s:'Odisha',      admin:52,hr:50,digital:46,local:48,data:48,sdg:66,tier:'mid'},
+  {s:'M.P.',        admin:48,hr:46,digital:44,local:44,data:44,sdg:67,tier:'low'},
+  {s:'U.P.',        admin:44,hr:42,digital:40,local:40,data:40,sdg:67,tier:'low'},
+  {s:'Rajasthan',   admin:46,hr:44,digital:42,local:42,data:42,sdg:67,tier:'low'},
+  {s:'Jharkhand',   admin:40,hr:38,digital:36,local:36,data:36,sdg:62,tier:'low'},
+  {s:'Bihar',       admin:36,hr:34,digital:32,local:32,data:32,sdg:57,tier:'low'},
+  {s:'Chhattisgarh',admin:42,hr:40,digital:38,local:38,data:38,sdg:67,tier:'low'},
+];
+
+const SECTORS=['Health','Education','Social Protection','Employment','Governance','Digital Services'];
+const INTENT =[78,72,75,65,70,80];
+const DELIVERY=[58,54,62,48,52,72];
+const DIMS={composite:'Composite score',admin:'Administrative capacity',hr:'Human resource capacity',digital:'Digital capacity',local:'Local governance capacity',data:'Data capacity'};
+const TC={high:'#1D9E75',mid:'#EF9F27',low:'#E24B4A'};
+
+function score(d,dim){
+  if(dim==='composite') return Math.round((d.admin+d.hr+d.digital+d.local+d.data)/5);
+  return d[dim];
+}
+
+let bC,rC,sC,gC;
+
+function update(){
+  const grp=document.getElementById('sel-group').value;
+  const dim=document.getElementById('sel-dim').value;
+  let data=STATES.filter(d=>grp==='all'||d.tier===grp);
+  if(!data.length) data=STATES;
+  document.getElementById('bar-sub').textContent=DIMS[dim];
+  const stSel=document.getElementById('sel-state');
+  const prev=stSel.value;
+  stSel.innerHTML=data.map(d=>`<option value="${d.s}"${d.s===prev?' selected':''}>${d.s}</option>`).join('');
+  updateKPIs(data,dim);
+  updateInsight(data,dim);
+  updateBar(data,dim);
+  updateRadar();
+  updateScatter(data);
+  updateGap();
+  updateTables(data,dim);
+}
+
+function updateKPIs(data,dim){
+  const sc=data.map(d=>score(d,dim));
+  const avg=Math.round(sc.reduce((a,b)=>a+b,0)/sc.length);
+  const top=data.reduce((a,b)=>score(b,dim)>score(a,dim)?b:a);
+  const bot=data.reduce((a,b)=>score(b,dim)<score(a,dim)?b:a);
+  const gap=score(top,dim)-score(bot,dim);
+  const hp=Math.round(data.filter(d=>d.tier==='high').length/data.length*100);
+  document.getElementById('kpi-grid').innerHTML=`
+    <div class="kpi"><div class="kpi-label">Average score</div><div class="kpi-val">${avg}</div><div class="kpi-sub neu">out of 100</div></div>
+    <div class="kpi"><div class="kpi-label">Top performer</div><div class="kpi-val" style="font-size:17px;padding-top:4px">${top.s}</div><div class="kpi-sub pos">${score(top,dim)} / 100</div></div>
+    <div class="kpi"><div class="kpi-label">Capacity gap</div><div class="kpi-val">${gap}</div><div class="kpi-sub neg">points, top vs bottom</div></div>
+    <div class="kpi"><div class="kpi-label">High performers</div><div class="kpi-val">${hp}%</div><div class="kpi-sub neu">${data.filter(d=>d.tier==='high').length} of ${data.length} states</div></div>
+  `;
+}
+
+function updateInsight(data,dim){
+  const sc=data.map(d=>score(d,dim));
+  const avg=Math.round(sc.reduce((a,b)=>a+b,0)/sc.length);
+  const ins={
+    composite:`Average composite state capacity is <strong>${avg}/100</strong>. Strong-performing states demonstrate that administrative systems, digital infrastructure, and local governance reinforce each other. The gap between top and bottom states represents the implementation divide at the heart of India's development challenge.`,
+    admin:`Administrative capacity averages <strong>${avg}/100</strong>. Vacancy rates, process complexity, and coordination failures are the primary binding constraints. States with strong administrative systems consistently outperform on welfare delivery and public service quality.`,
+    hr:`Human resource capacity averages <strong>${avg}/100</strong>. Workforce shortages, especially in rural areas, are the single biggest constraint on frontline service delivery. States investing in district-level training programmes show measurable gains.`,
+    digital:`Digital capacity averages <strong>${avg}/100</strong>. India's Digital Public Infrastructure is unevenly adopted across states. States with stronger digital foundations show lower transaction costs and better citizen satisfaction scores.`,
+    local:`Local governance capacity averages <strong>${avg}/100</strong>, consistently the weakest dimension nationally. Panchayat-level staffing, technical expertise, and financial management remain the most critical last-mile bottlenecks.`,
+    data:`Data capacity averages <strong>${avg}/100</strong>. Real-time monitoring and evidence-based review processes are most developed in southern states. The gap between data-rich and data-poor states is widening as digital governance expands.`
+  };
+  document.getElementById('insight-box').innerHTML=ins[dim]||ins.composite;
+}
+
+function updateBar(data,dim){
+  const sorted=[...data].sort((a,b)=>score(b,dim)-score(a,dim));
+  if(bC) bC.destroy();
+  bC=new Chart(document.getElementById('barChart'),{
+    type:'bar',
+    data:{labels:sorted.map(d=>d.s),datasets:[{data:sorted.map(d=>score(d,dim)),backgroundColor:sorted.map(d=>TC[d.tier]+'CC'),borderRadius:4,borderSkipped:false}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`Score: ${c.raw}/100`}}},scales:{y:{min:0,max:100,ticks:{font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:10},maxRotation:35},grid:{display:false}}}}
+  });
+}
+
+function updateRadar(){
+  const name=document.getElementById('sel-state').value;
+  const d=STATES.find(x=>x.s===name)||STATES[0];
+  const vals=[d.admin,d.hr,d.digital,d.local,d.data];
+  const avg=dims=>Math.round(STATES.reduce((a,b)=>a+b[dims],0)/STATES.length);
+  const natAvg=[avg('admin'),avg('hr'),avg('digital'),avg('local'),avg('data')];
+  if(rC) rC.destroy();
+  rC=new Chart(document.getElementById('radarChart'),{
+    type:'radar',
+    data:{labels:['Administrative','Human Resource','Digital','Local Gov.','Data'],datasets:[
+      {label:d.s,data:vals,borderColor:'#1B5FA8',backgroundColor:'rgba(27,95,168,.12)',borderWidth:2,pointRadius:3,pointBackgroundColor:'#1B5FA8'},
+      {label:'National avg',data:natAvg,borderColor:'#888780',backgroundColor:'rgba(136,135,128,.08)',borderWidth:1.5,borderDash:[5,3],pointRadius:2,pointBackgroundColor:'#888780'}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{r:{min:0,max:100,ticks:{font:{size:9},stepSize:25},pointLabels:{font:{size:10}},grid:{color:'rgba(0,0,0,.08)'}}}}
+  });
+}
+
+function updateScatter(data){
+  const ds=['high','mid','low'].map(t=>({label:t,data:data.filter(d=>d.tier===t).map(d=>({x:score(d,'composite'),y:d.sdg,label:d.s})),backgroundColor:TC[t]+'BB',pointRadius:6,pointHoverRadius:8}));
+  if(sC) sC.destroy();
+  sC=new Chart(document.getElementById('scatterChart'),{
+    type:'scatter',data:{datasets:ds},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.raw.label}: Capacity ${c.raw.x}, SDG ${c.raw.y}`}}},scales:{x:{min:25,max:95,title:{display:true,text:'Capacity score',font:{size:10}},ticks:{font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},y:{min:50,max:85,title:{display:true,text:'SDG index (NITI Aayog 2023-24)',font:{size:10}},ticks:{font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}}}}
+  });
+}
+
+function updateGap(){
+  if(gC) gC.destroy();
+  gC=new Chart(document.getElementById('gapChart'),{
+    type:'bar',
+    data:{labels:SECTORS,datasets:[
+      {label:'Policy intent',data:INTENT,backgroundColor:'#1B5FA8AA',borderRadius:3,borderSkipped:false},
+      {label:'Delivery performance',data:DELIVERY,backgroundColor:'#7B3FA8AA',borderRadius:3,borderSkipped:false}
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{min:0,max:100,ticks:{font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:10},maxRotation:30},grid:{display:false}}}}
+  });
+}
+
+function updateTables(data,dim){
+  const sorted=[...data].sort((a,b)=>score(b,dim)-score(a,dim));
+  const pc={high:'pill-h',mid:'pill-m',low:'pill-l'};
+  const tl={high:'Strong',mid:'Moderate',low:'Weak'};
+
+  document.getElementById('tab-rankings').innerHTML=`<table>
+    <thead><tr><th>#</th><th>State</th><th>Score</th><th style="width:100px">Bar</th><th>Tier</th></tr></thead>
+    <tbody>${sorted.map((d,i)=>{const sc=score(d,dim);return`<tr>
+      <td style="color:var(--ink3)">${i+1}</td>
+      <td><strong>${d.s}</strong></td>
+      <td><strong>${sc}</strong></td>
+      <td><div class="bar-wrap"><div class="bar-inner" style="width:${sc}%;background:${TC[d.tier]}"></div></div></td>
+      <td><span class="pill ${pc[d.tier]}">${tl[d.tier]}</span></td>
+    </tr>`;}).join('')}</tbody></table>`;
+
+  document.getElementById('tab-gaps').innerHTML=`<table>
+    <thead><tr><th>State</th><th>Admin</th><th>HR</th><th>Digital</th><th>Local Gov</th><th>Data</th><th>Weakest dim.</th></tr></thead>
+    <tbody>${sorted.map(d=>{
+      const pairs=[['Admin',d.admin],['HR',d.hr],['Digital',d.digital],['Local',d.local],['Data',d.data]];
+      const weak=pairs.reduce((a,b)=>b[1]<a[1]?b:a);
+      return`<tr><td><strong>${d.s}</strong></td><td>${d.admin}</td><td>${d.hr}</td><td>${d.digital}</td><td>${d.local}</td><td>${d.data}</td><td><span class="pill pill-l">${weak[0]}</span></td></tr>`;}).join('')}</tbody></table>`;
+
+  document.getElementById('tab-maturity').innerHTML=`<table>
+    <thead><tr><th>State</th><th>Composite</th><th>Maturity level</th><th>Priority reform</th></tr></thead>
+    <tbody>${sorted.map(d=>{
+      const sc=score(d,'composite');
+      const lvl=sc>=70?'Advanced':sc>=55?'Emerging':'Basic';
+      const next=sc>=70?'Move to transformational governance':sc>=55?'Integrate systems and performance management':'Build foundational administrative capacity';
+      const pc2=sc>=70?'pill-h':sc>=55?'pill-m':'pill-l';
+      return`<tr><td><strong>${d.s}</strong></td><td>${sc}</td><td><span class="pill ${pc2}">${lvl}</span></td><td style="font-size:11px;color:var(--ink3)">${next}</td></tr>`;}).join('')}</tbody></table>`;
+}
+
+function switchTab(btn,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  ['rankings','gaps','maturity'].forEach(t=>document.getElementById('tab-'+t).style.display=t===id?'block':'none');
+}
+
+update();
+</script>
+</body>
+</html>

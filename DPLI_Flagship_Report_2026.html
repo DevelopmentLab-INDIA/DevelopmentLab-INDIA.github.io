@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Building State Capacity for Development Outcomes in India | DPLI 2026 | Version 2.0</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+:root{
+  --ink:#1A1A2E; --ink2:#3D3D56; --ink3:#6B6B85;
+  --cream:#F7F5F0; --rule:#E2DDD5; --white:#FFFFFF;
+  --blue:#1B5FA8; --blue-l:#E8F2FC; --blue-d:#0C3B6E;
+  --orange:#D4500C; --orange-l:#FCF0E8;
+  --green:#1A8C5B; --green-l:#E1F5EE;
+  --purple:#7B3FA8; --amber:#B07A00;
+  --nav-h:52px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Georgia,serif;background:var(--cream);color:var(--ink);font-size:15px;line-height:1.75}
+
+/* ─── NAV ─── */
+.topnav{position:sticky;top:0;z-index:200;background:var(--ink);height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 28px;box-shadow:0 2px 12px rgba(0,0,0,.3)}
+.nav-brand{font-family:Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#fff}
+.nav-links{display:flex;gap:0;overflow-x:auto}
+.nav-links a{font-family:Arial,sans-serif;font-size:11px;color:rgba(255,255,255,.55);text-decoration:none;padding:6px 12px;border-radius:4px;white-space:nowrap;transition:all .2s}
+.nav-links a:hover,.nav-links a.active{color:#fff;background:rgba(255,255,255,.1)}
+
+/* ─── COVER ─── */
+.cover{background:var(--ink);color:#fff;padding:0;position:relative;overflow:hidden;min-height:520px;display:flex;flex-direction:column}
+.cover-stripe{height:5px;background:linear-gradient(90deg,var(--blue),var(--orange),var(--green))}
+.cover-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 32px 48px;text-align:center;position:relative;z-index:1}
+.cover-org{font-family:Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
+.cover-series{font-family:Arial,sans-serif;font-size:11px;color:rgba(255,255,255,.45);letter-spacing:1px;margin-bottom:28px}
+.cover-title{font-size:clamp(26px,4vw,46px);font-weight:400;line-height:1.18;max-width:700px;margin-bottom:14px;color:#fff}
+.cover-subtitle{font-size:16px;color:rgba(255,255,255,.6);max-width:560px;margin:0 auto 40px;font-style:italic;line-height:1.5}
+.cover-meta{display:flex;gap:28px;flex-wrap:wrap;justify-content:center}
+.cover-meta-item{text-align:center}
+.cover-meta-label{font-family:Arial,sans-serif;font-size:9px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.35);margin-bottom:4px}
+.cover-meta-val{font-family:Arial,sans-serif;font-size:12px;color:rgba(255,255,255,.8);font-weight:600}
+.cover-footer{background:rgba(0,0,0,.25);padding:14px 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.cover-footer-text{font-family:Arial,sans-serif;font-size:10px;color:rgba(255,255,255,.4)}
+.motto{font-family:Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;color:var(--orange);text-transform:uppercase}
+
+/* ─── CONTENT LAYOUT ─── */
+.page{max-width:860px;margin:0 auto;padding:0 28px 80px}
+
+/* ─── CHAPTER SECTIONS ─── */
+.chapter-section{padding-top:60px}
+.chapter-label{font-family:Arial,sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.chapter-label::after{content:'';flex:1;height:1px;background:var(--rule)}
+.chapter-title{font-size:clamp(22px,3.5vw,34px);font-weight:400;line-height:1.2;color:var(--ink);margin-bottom:6px}
+.chapter-divider{height:2px;background:linear-gradient(90deg,var(--blue),transparent);margin-bottom:24px}
+
+.section-h{font-family:Arial,sans-serif;font-size:13px;font-weight:700;color:var(--ink);margin:28px 0 10px;text-transform:uppercase;letter-spacing:.4px;border-left:3px solid var(--blue);padding-left:10px}
+.prose{color:var(--ink2);margin-bottom:14px;font-size:15px;line-height:1.8}
+.prose strong{color:var(--ink);font-style:normal}
+
+/* ─── SPECIAL TEXT BLOCKS ─── */
+.kq{border-left:3px solid var(--blue);padding:14px 20px;background:var(--blue-l);border-radius:0 8px 8px 0;margin:20px 0;font-style:italic;font-size:17px;color:var(--ink);line-height:1.5}
+.author-note{background:var(--ink);color:#fff;padding:28px 32px;border-radius:10px;margin:24px 0}
+.an-label{font-family:Arial,sans-serif;font-size:9px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
+.an-text{font-size:14px;color:rgba(255,255,255,.85);line-height:1.75}
+.key-insight{background:var(--ink);border-radius:10px;padding:22px 26px;margin:24px 0;display:flex;gap:14px;align-items:flex-start}
+.ki-bar{width:3px;background:var(--orange);border-radius:2px;flex-shrink:0;align-self:stretch}
+.ki-body .ki-label{font-family:Arial,sans-serif;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
+.ki-body .ki-text{font-size:14px;color:rgba(255,255,255,.88);line-height:1.65}
+
+/* ─── VISUAL CARDS ─── */
+.vc{background:#fff;border:1px solid var(--rule);border-radius:12px;padding:22px 24px;margin:24px 0}
+.vc-label{font-family:Arial,sans-serif;font-size:9px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--ink3);margin-bottom:4px}
+.vc-title{font-family:Arial,sans-serif;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:14px}
+.vc-source{font-family:Arial,sans-serif;font-size:10px;color:var(--ink3);margin-top:12px;font-style:italic}
+
+/* ─── TABLES ─── */
+.styled-table{width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:12px;margin-top:4px}
+.styled-table thead tr{background:var(--ink)}
+.styled-table thead th{color:#fff;padding:10px 13px;text-align:left;font-weight:600;font-size:11px;letter-spacing:.3px}
+.styled-table tbody tr:nth-child(even){background:#FAFAF8}
+.styled-table tbody tr:hover{background:var(--blue-l)}
+.styled-table tbody td{padding:9px 13px;border-bottom:1px solid var(--rule);color:var(--ink2);vertical-align:top}
+.styled-table tbody td:first-child{color:var(--ink);font-weight:600}
+
+/* ─── TWO-COL COMPARISON ─── */
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.compare-col{border-radius:10px;padding:18px}
+.compare-col.left{background:var(--blue-l);border:1px solid #BDD4EE}
+.compare-col.right{background:var(--orange-l);border:1px solid #F2C4A8}
+.compare-head{font-family:Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:.5px;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.left .compare-head{color:var(--blue-d)}
+.right .compare-head{color:#8B2D00}
+.compare-item{font-family:Arial,sans-serif;font-size:12px;padding:6px 0;border-bottom:1px solid rgba(0,0,0,.06);color:var(--ink);display:flex;align-items:center;gap:8px}
+.compare-item:last-child{border-bottom:none}
+.ci-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.left .ci-dot{background:var(--blue)}
+.right .ci-dot{background:var(--orange)}
+
+/* ─── FIVE DIMS ─── */
+.dims-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+.dim-card{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:16px;transition:transform .2s,box-shadow .2s;cursor:default}
+.dim-card:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(27,95,168,.12)}
+.dim-num{font-family:Arial,sans-serif;font-size:11px;font-weight:700;margin-bottom:6px}
+.dim-name{font-family:Arial,sans-serif;font-size:11px;font-weight:600;color:var(--ink);margin-bottom:5px}
+.dim-desc{font-family:Arial,sans-serif;font-size:10px;color:var(--ink3);line-height:1.5}
+
+/* ─── CHAIN ─── */
+.chain{display:flex;align-items:center;flex-wrap:wrap;gap:0;margin:12px 0}
+.chain-node{background:#fff;border:1.5px solid var(--blue);border-radius:8px;padding:10px 14px;font-family:Arial,sans-serif;font-size:11px;font-weight:600;color:var(--blue);flex:1;min-width:100px;text-align:center;transition:background .2s}
+.chain-node:hover{background:var(--blue-l)}
+.chain-arr{font-size:16px;color:var(--ink3);padding:0 4px;flex-shrink:0}
+
+/* ─── PYRAMID ─── */
+.pyramid{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 0}
+.pyr-row{display:flex;align-items:center;justify-content:center;cursor:default;transition:transform .15s}
+.pyr-row:hover{transform:scaleX(1.02)}
+.pyr-block{display:flex;align-items:center;justify-content:center;color:#fff;font-family:Arial,sans-serif;font-size:12px;font-weight:600;padding:13px 20px;letter-spacing:.3px;text-align:center}
+.pyr-up{font-size:18px;color:var(--ink3);text-align:center;line-height:1}
+
+/* ─── CASE BOX ─── */
+.case-box{background:#fff;border-radius:10px;border:1px solid var(--rule);border-left:4px solid var(--orange);padding:22px 24px;margin:20px 0}
+.case-eye{font-family:Arial,sans-serif;font-size:9px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
+.case-title{font-size:16px;font-weight:400;color:var(--ink);margin-bottom:12px}
+.case-lesson{background:var(--blue-l);border-radius:6px;padding:11px 16px;margin-top:12px;font-family:Arial,sans-serif;font-size:12px;color:var(--blue-d);font-style:italic;border-left:3px solid var(--blue)}
+
+/* ─── SCORECARD ─── */
+.scorecard{display:flex;flex-direction:column;gap:8px;margin:14px 0}
+.sc-row{display:flex;align-items:center;gap:12px}
+.sc-label{font-family:Arial,sans-serif;font-size:11px;font-weight:600;color:var(--ink);width:200px;flex-shrink:0}
+.sc-bar-wrap{flex:1;background:var(--rule);border-radius:4px;height:20px;overflow:hidden}
+.sc-bar{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:8px;font-family:Arial,sans-serif;font-size:10px;font-weight:700;color:#fff;transition:width .6s}
+.sc-pct{font-family:Arial,sans-serif;font-size:11px;font-weight:600;color:var(--ink);width:36px;text-align:right;flex-shrink:0}
+
+/* ─── ROADMAP ─── */
+.roadmap{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:14px 0}
+.rm-phase{border-radius:10px;padding:18px;background:#fff;border:1px solid var(--rule)}
+.rm-phase-label{font-family:Arial,sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
+.rm-phase-years{font-family:Arial,sans-serif;font-size:12px;font-weight:600;color:var(--ink);margin-bottom:12px}
+.rm-item{font-family:Arial,sans-serif;font-size:11px;color:var(--ink2);padding:4px 0;border-bottom:1px solid var(--rule);display:flex;align-items:flex-start;gap:6px}
+.rm-item:last-child{border-bottom:none}
+.rm-dot{width:5px;height:5px;border-radius:50%;margin-top:5px;flex-shrink:0}
+
+/* ─── COUNTRY CARDS ─── */
+.country-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:14px 0}
+.country-card{background:#fff;border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+.cc-head{padding:14px 16px;color:#fff}
+.cc-country{font-family:Arial,sans-serif;font-size:14px;font-weight:700;margin-bottom:2px}
+.cc-focus{font-family:Arial,sans-serif;font-size:10px;opacity:.8}
+.cc-body{padding:14px 16px}
+.cc-row{font-family:Arial,sans-serif;font-size:11px;color:var(--ink2);padding:4px 0;display:flex;gap:6px}
+.cc-row-label{font-weight:600;color:var(--ink);width:70px;flex-shrink:0}
+.cc-lesson{margin-top:10px;background:var(--blue-l);border-radius:6px;padding:9px 12px;font-family:Arial,sans-serif;font-size:11px;color:var(--blue-d);border-left:2px solid var(--blue)}
+
+/* ─── STAKEHOLDER TABLE ─── */
+.stakeholder-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:14px 0}
+.sh-card{background:#fff;border:1px solid var(--rule);border-radius:8px;padding:12px 14px}
+.sh-role{font-family:Arial,sans-serif;font-size:11px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.sh-resp{font-family:Arial,sans-serif;font-size:10px;color:var(--ink3);line-height:1.5}
+
+/* ─── MATURITY ─── */
+.maturity-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+.maturity-card{border-radius:8px;padding:16px;text-align:center}
+.mat-num{font-family:Arial,sans-serif;font-size:20px;font-weight:700;margin-bottom:4px}
+.mat-name{font-family:Arial,sans-serif;font-size:12px;font-weight:600;margin-bottom:6px}
+.mat-desc{font-family:Arial,sans-serif;font-size:10px;line-height:1.5;opacity:.8}
+
+/* ─── DISER FLOW ─── */
+.diser-flow{display:flex;flex-direction:column;gap:0;margin:14px 0}
+.diser-step{display:flex;gap:16px;align-items:stretch}
+.diser-left{display:flex;flex-direction:column;align-items:center;width:44px;flex-shrink:0}
+.diser-circle{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:Arial,sans-serif;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+.diser-line{flex:1;width:2px;background:var(--rule)}
+.diser-right{flex:1;padding-bottom:16px}
+.diser-letter{font-family:Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:2px}
+.diser-name{font-family:Arial,sans-serif;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:3px}
+.diser-desc{font-family:Arial,sans-serif;font-size:11px;color:var(--ink3);line-height:1.5}
+
+/* ─── KPI GRID ─── */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:14px 0}
+.kpi-card{background:#fff;border:1px solid var(--rule);border-radius:8px;padding:14px}
+.kpi-dim{font-family:Arial,sans-serif;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
+.kpi-item{font-family:Arial,sans-serif;font-size:11px;color:var(--ink2);padding:3px 0;display:flex;gap:5px;align-items:flex-start}
+.kpi-item::before{content:"·";color:var(--ink3);flex-shrink:0}
+
+/* ─── RECOS ─── */
+.reco-list{display:flex;flex-direction:column;gap:14px;margin:14px 0}
+.reco-card{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:20px 22px;border-left:4px solid}
+.reco-num{font-family:Arial,sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.reco-title{font-family:Arial,sans-serif;font-size:14px;font-weight:700;color:var(--ink);margin-bottom:10px}
+.reco-body{font-family:Arial,sans-serif;font-size:12px;color:var(--ink2);line-height:1.65}
+.reco-actions{margin-top:10px;display:flex;flex-direction:column;gap:4px}
+.reco-action{font-family:Arial,sans-serif;font-size:11px;color:var(--ink2);display:flex;gap:6px;align-items:flex-start}
+.reco-action::before{content:"→";color:var(--blue);flex-shrink:0;font-weight:700}
+
+/* ─── CHART ─── */
+.chart-wrap{position:relative;height:240px;margin:14px 0}
+
+/* ─── RISK TABLE ─── */
+.risk-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-family:Arial,sans-serif;font-size:10px;font-weight:600}
+.risk-high{background:#FDDEDE;color:#8B1A1A}
+.risk-med{background:#FDE8D8;color:#7A3300}
+.risk-low{background:#E1F5EE;color:#085041}
+
+/* ─── REFS ─── */
+.ref-section{padding-top:48px}
+.ref-group{margin-bottom:24px}
+.ref-group-label{font-family:Arial,sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--ink3);margin-bottom:10px;padding-bottom:4px;border-bottom:1px solid var(--rule)}
+.ref-item{font-family:Arial,sans-serif;font-size:12px;color:var(--ink2);line-height:1.65;padding-left:24px;text-indent:-24px;margin-bottom:6px}
+
+/* ─── FOOTER ─── */
+.pub-footer{background:var(--ink);color:rgba(255,255,255,.5);padding:32px 28px;margin-top:64px;text-align:center}
+.pf-org{font-family:Arial,sans-serif;font-size:13px;font-weight:700;color:#fff;margin-bottom:6px}
+.pf-motto{font-family:Arial,sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:10px}
+.pf-meta{font-family:Arial,sans-serif;font-size:10px}
+
+/* ─── MISC ─── */
+.three-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}
+.tg-card{border-radius:10px;padding:16px;border-top:3px solid}
+.tg-head{font-family:Arial,sans-serif;font-size:12px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.tg-body{font-family:Arial,sans-serif;font-size:11px;color:var(--ink2);line-height:1.55}
+
+.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:14px 0}
+.about-item{background:var(--blue-l);border-radius:8px;padding:12px;text-align:center;font-family:Arial,sans-serif;font-size:11px;font-weight:600;color:var(--blue-d)}
+
+.exec-finding{background:var(--blue-l);border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:12px 16px;margin:8px 0;font-family:Arial,sans-serif;font-size:13px;color:var(--ink)}
+
+@media(max-width:600px){
+  .compare-grid,.roadmap,.maturity-row,.three-grid{grid-template-columns:1fr}
+  .chain{flex-direction:column}
+  .chain-arr{transform:rotate(90deg)}
+  .dims-grid{grid-template-columns:1fr 1fr}
+  .sc-label{width:140px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="topnav" role="navigation" aria-label="Report navigation">
+  <div class="nav-brand">DPLI · Flagship Report 2026</div>
+  <div class="nav-links">
+    <a href="#cover">Cover</a>
+    <a href="#foreword">Foreword</a>
+    <a href="#exec">Summary</a>
+    <a href="#diser">DISER</a>
+    <a href="#ch1">Ch.1</a>
+    <a href="#ch2">Ch.2</a>
+    <a href="#ch3">Ch.3</a>
+    <a href="#ch4">Ch.4</a>
+    <a href="#ch5">Ch.5</a>
+    <a href="#ch6">Ch.6</a>
+    <a href="#ch7">Ch.7</a>
+    <a href="#recos">Recommendations</a>
+    <a href="#refs">References</a>
+  </div>
+</nav>
+
+<!-- COVER -->
+<div class="cover" id="cover" role="banner">
+  <div class="cover-stripe"></div>
+  <div class="cover-body">
+    <div class="cover-org">Development Policy Lab India (DPLI)</div>
+    <div class="cover-series">India Development Challenge Series &nbsp;|&nbsp; Flagship Report 2026</div>
+    <h1 class="cover-title">Building State Capacity for Development Outcomes in India</h1>
+    <div class="cover-subtitle">An Implementation Framework for Effective Governance in the 21st Century</div>
+    <div class="cover-meta">
+      <div class="cover-meta-item"><div class="cover-meta-label">Author</div><div class="cover-meta-val">Anant Srivastava</div></div>
+      <div class="cover-meta-item"><div class="cover-meta-label">Role</div><div class="cover-meta-val">Founder &amp; Lead Researcher, DPLI</div></div>
+      <div class="cover-meta-item"><div class="cover-meta-label">Published</div><div class="cover-meta-val">June 2026</div></div>
+      <div class="cover-meta-item"><div class="cover-meta-label">Chapters</div><div class="cover-meta-val">7</div></div>
+    </div>
+  </div>
+  <div class="cover-footer">
+    <div class="cover-footer-text">Development Policy Lab India &nbsp;|&nbsp; Building State Capacity for Development Outcomes</div>
+    <div class="motto">Evidence. Policy. Impact.</div>
+  </div>
+</div>
+
+<main class="page" role="main">
+
+<!-- FOREWORD -->
+<section class="chapter-section" id="foreword">
+  <div class="chapter-label">Foreword</div>
+  <h2 class="chapter-title">A Word Before We Begin</h2>
+  <div class="chapter-divider"></div>
+
+  <p class="prose">India's development journey has demonstrated the significant potential of public policy, institutional innovation, and digital governance. Yet as development challenges grow more complex, the effectiveness of implementation systems has emerged as the critical variable that separates ambitious policy from actual outcomes.</p>
+  <p class="prose">This report was developed with a simple purpose: to examine how state capacity shapes development outcomes, and to offer practical pathways for strengthening governance effectiveness in India.</p>
+  <p class="prose">The report argues that India's next development frontier is not about expanding what government promises, but about improving how government delivers. Strengthening administrative systems, investing in public personnel, deploying digital technologies, empowering local institutions, and embedding data-driven decision-making into governance practice are the levers that matter most.</p>
+  <p class="prose">This publication also introduces the DPLI State Capacity Framework and the DISER Methodology, both designed to support evidence-based problem-solving and implementation-oriented reform.</p>
+  <div class="author-note">
+    <div class="an-label">Anant Srivastava, Founder, Development Policy Lab India</div>
+    <div class="an-text">It is hoped that this publication contributes meaningfully to ongoing conversations on governance, development, and institutional effectiveness in India.</div>
+  </div>
+</section>
+
+<!-- AUTHOR'S NOTE -->
+<section class="chapter-section" id="authornote">
+  <div class="chapter-label">Author's Note</div>
+  <h2 class="chapter-title">Why This Report Exists</h2>
+  <div class="chapter-divider"></div>
+
+  <p class="prose">There is a tendency in public policy to focus on what governments should do. We debate new schemes, new programmes, new laws, and new budgets. We discuss policy design, political priorities, and institutional reforms. Yet, in many cases, the difference between success and failure lies elsewhere.</p>
+  <div class="kq">It lies in implementation.</div>
+  <p class="prose">Over the years, through academic study, work in public policy, and engagement with public institutions, I became fascinated by a simple observation: similar policies often produce very different outcomes. Some programmes transform lives. Others struggle to achieve their intended impact despite substantial resources and political commitment.</p>
+  <p class="prose">This observation led to a deeper question: <em>What determines whether good policies actually work?</em></p>
+  <p class="prose">The answer, I believe, lies in the capacity of institutions to deliver. State capacity is often discussed in technical terms, as administration, bureaucracy, staffing, or governance. But fundamentally, it is about people. Whether a child receives quality education. Whether a patient can access healthcare. Whether a welfare benefit reaches its intended recipient. Whether citizens experience the state as responsive, effective, and trustworthy.</p>
+  <p class="prose">State capacity is not an abstract governance concept. It is the bridge between policy ambition and human outcomes.</p>
+  <p class="prose">The idea for the Development Policy Lab India was born from this conviction. DPLI is an independent initiative driven by a desire to understand how institutions solve complex development challenges and how governance systems can be strengthened to improve lives. It is founded on the belief that public policy should not stop at diagnosis.</p>
+
+  <div class="key-insight">
+    <div class="ki-bar"></div>
+    <div class="ki-body">
+      <div class="ki-label">Central Message of This Report</div>
+      <div class="ki-text">Development outcomes are ultimately products of implementation systems. If India is to achieve its ambitions in the decades ahead, strengthening those systems will be among the most important investments it can make.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT DPLI -->
+<section class="chapter-section" id="about">
+  <div class="chapter-label">About the Organisation</div>
+  <h2 class="chapter-title">Development Policy Lab India</h2>
+  <div class="chapter-divider"></div>
+  <p class="prose">The Development Policy Lab India (DPLI) is an independent development policy initiative dedicated to identifying, analysing, and solving public policy challenges through evidence-based research and implementation-oriented solutions.</p>
+  <p class="prose">DPLI operates at the intersection of:</p>
+  <div class="about-grid">
+    <div class="about-item">Governance</div>
+    <div class="about-item">Digital Development</div>
+    <div class="about-item">Human Development</div>
+    <div class="about-item">Social Protection</div>
+    <div class="about-item">Economic Inclusion</div>
+    <div class="about-item">Public Sector Innovation</div>
+  </div>
+  <div class="key-insight">
+    <div class="ki-bar"></div>
+    <div class="ki-body">
+      <div class="ki-label">Core Philosophy</div>
+      <div class="ki-text">Better development outcomes require better implementation systems. &nbsp;|&nbsp; Evidence. Policy. Impact.</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXECUTIVE SUMMARY -->
+<section class="chapter-section" id="exec">
+  <div class="chapter-label">Executive Summary</div>
+  <h2 class="chapter-title">What This Report Finds</h2>
+  <div class="chapter-divider"></div>
+
+  <p class="prose">India's development journey over the past three decades has produced substantial progress in poverty reduction, social development, digital transformation, and public service delivery. Large-scale initiatives such as Aadhaar, Direct Benefit Transfer, Ayushman Bharat, Mission Indradhanush, and the Aspirational Districts Programme demonstrate the state's growing ability to design and implement ambitious reforms at scale.</p>
+  <p class="prose">Despite these achievements, development outcomes continue to vary significantly across states and districts. Similar policies often produce markedly different results, and the difference almost always comes down to institutional capability and implementation quality.</p>
+
+  <div class="exec-finding">This report argues that India's next development frontier is increasingly an implementation challenge rather than a policy design challenge.</div>
+
+  <div class="vc">
+    <div class="vc-label">Figure ES.1</div>
+    <div class="vc-title">Five Dimensions of State Capacity (DPLI Framework)</div>
+    <div class="dims-grid">
+      <div class="dim-card" style="border-top:3px solid var(--blue)"><div class="dim-num" style="color:var(--blue)">01</div><div class="dim-name">Administrative Capacity</div><div class="dim-desc">Improve execution and coordination</div></div>
+      <div class="dim-card" style="border-top:3px solid var(--orange)"><div class="dim-num" style="color:var(--orange)">02</div><div class="dim-name">Human Resource Capacity</div><div class="dim-desc">Strengthen workforce capability</div></div>
+      <div class="dim-card" style="border-top:3px solid var(--green)"><div class="dim-num" style="color:var(--green)">03</div><div class="dim-name">Digital Capacity</div><div class="dim-desc">Enhance efficiency and accessibility</div></div>
+      <div class="dim-card" style="border-top:3px solid var(--purple)"><div class="dim-num" style="color:var(--purple)">04</div><div class="dim-name">Local Governance Capacity</div><div class="dim-desc">Improve last-mile delivery</div></div>
+      <div class="dim-card" style="border-top:3px solid var(--amber)"><div class="dim-num" style="color:var(--amber)">05</div><div class="dim-name">Data Capacity</div><div class="dim-desc">Support evidence-based decisions</div></div>
+    </div>
+    <div class="vc-source">Source: DPLI State Capacity Framework (2026)</div>
+  </div>
+
+  <p class="prose">The report also introduces the <strong>India State Capacity Monitor (ISCM)</strong>, a structured scorecard and dashboard system for assessing institutional performance and tracking reform progress over time, and a phased reform roadmap spanning 2027 to 2035. Full methodology documentation, source mapping, dimension weight rationale, and data verification notes are available in <strong>DPLI Methodology Note 01/2026</strong>, published alongside this report.</p>
+
+  <div class="vc">
+    <div class="vc-label">Table ES.1 · DPLI State Capacity Framework (ISCF) at a Glance</div>
+    <table class="styled-table">
+      <thead><tr><th>Pillar</th><th>Purpose</th><th>Weight</th></tr></thead>
+      <tbody>
+        <tr><td>Administrative Capacity</td><td>Improve execution and coordination</td><td>25%</td></tr>
+        <tr><td>Human Resource Capacity</td><td>Strengthen workforce capability</td><td>20%</td></tr>
+        <tr><td>Digital Capacity</td><td>Enhance efficiency and accessibility</td><td>20%</td></tr>
+        <tr><td>Local Governance Capacity</td><td>Improve last-mile delivery</td><td>20%</td></tr>
+        <tr><td>Data Capacity</td><td>Support evidence-based decision-making</td><td>15%</td></tr>
+      </tbody>
+    </table>
+    <div class="vc-source">Source: DPLI (2026). Weight rationale documented in DPLI Methodology Note 01/2026. Administrative capacity weighted highest as the foundational precondition per Fukuyama (2004) and Andrews et al. (2017).</div>
+  </div>
+</section>
+
+<!-- DISER METHODOLOGY -->
+<section class="chapter-section" id="diser">
+  <div class="chapter-label">DPLI Methodology</div>
+  <h2 class="chapter-title">The DISER Methodology</h2>
+  <div class="chapter-divider"></div>
+  <p class="prose">A common limitation of public policy analysis is its tendency to stop at problem identification. The DISER Methodology addresses this by providing a structured pathway from diagnosis to measurable outcomes.</p>
+
+  <div class="vc">
+    <div class="vc-label">Figure M.1 · The DISER Five-Stage Framework</div>
+    <div class="diser-flow">
+      <div class="diser-step">
+        <div class="diser-left"><div class="diser-circle" style="background:var(--blue)">D</div><div class="diser-line"></div></div>
+        <div class="diser-right"><div class="diser-letter" style="color:var(--blue)">Diagnose</div><div class="diser-name">Define the challenge</div><div class="diser-desc">Identify and understand the nature, scale, and implications of the policy problem.</div></div>
+      </div>
+      <div class="diser-step">
+        <div class="diser-left"><div class="diser-circle" style="background:var(--orange)">I</div><div class="diser-line"></div></div>
+        <div class="diser-right"><div class="diser-letter" style="color:var(--orange)">Investigate</div><div class="diser-name">Examine evidence</div><div class="diser-desc">Identify root causes, review domestic and international experiences, and draw lessons.</div></div>
+      </div>
+      <div class="diser-step">
+        <div class="diser-left"><div class="diser-circle" style="background:var(--green)">S</div><div class="diser-line"></div></div>
+        <div class="diser-right"><div class="diser-letter" style="color:var(--green)">Solve</div><div class="diser-name">Develop solutions</div><div class="diser-desc">Design practical, evidence-based solutions tailored to the specific context.</div></div>
+      </div>
+      <div class="diser-step">
+        <div class="diser-left"><div class="diser-circle" style="background:var(--purple)">E</div><div class="diser-line"></div></div>
+        <div class="diser-right"><div class="diser-letter" style="color:var(--purple)">Execute</div><div class="diser-name">Translate to action</div><div class="diser-desc">Identify actions, timelines, stakeholders, and resource requirements for implementation.</div></div>
+      </div>
+      <div class="diser-step">
+        <div class="diser-left"><div class="diser-circle" style="background:var(--amber)">R</div></div>
+        <div class="diser-right"><div class="diser-letter" style="color:var(--amber)">Review</div><div class="diser-name">Monitor and learn</div><div class="diser-desc">Establish monitoring and evaluation mechanisms to assess progress and support continuous learning.</div></div>
+      </div>
+    </div>
+    <div class="vc-source">Source: DPLI DISER Methodology (2026)</div>
+  </div>
+
+  <div class="vc">
+    <div class="vc-label">Table M.1 · Application of DISER in This Report</div>
+    <table class="styled-table">
+      <thead><tr><th>Stage</th><th>Purpose</th><th>Chapters</th></tr></thead>
+      <tbody>
+        <tr><td>Diagnose</td><td>Define and understand the challenge</td><td>Chapters 1 to 3</td></tr>
+        <tr><td>Investigate</td><td>Learn from evidence and global experience</td><td>Chapter 4</td></tr>
+        <tr><td>Solve</td><td>Develop the DPLI State Capacity Framework</td><td>Chapter 5</td></tr>
+        <tr><td>Execute</td><td>Design an implementation roadmap</td><td>Chapter 6</td></tr>
+        <tr><td>Review</td><td>Establish monitoring systems</td><td>Chapter 7</td></tr>
+      </tbody>
+    </table>
+    <div class="vc-source">Source: DPLI (2026)</div>
+  </div>
+</section>
+
+<!-- CHAPTER 1 -->
+<section class="chapter-section" id="ch1">
+  <div class="chapter-label">Chapter 1</div>
+  <h2 class="chapter-title">Why State Capacity Matters for Development Outcomes</h2>
+  <div class="chapter-divider"></div>
+
+  <div class="section-h">1.1 Introduction</div>
+  <p class="prose">India's development journey over the past three decades represents one of the most significant socioeconomic transformations of the modern era. Sustained economic growth, declining multidimensional poverty, expanded access to healthcare and education, and rapid digital transformation have collectively improved the lives of millions of citizens. The Indian state has simultaneously implemented some of the world's largest public programmes, including Direct Benefit Transfer, Aadhaar-enabled service delivery, Ayushman Bharat, Mission Indradhanush, and the Aspirational Districts Programme.</p>
+  <p class="prose">Yet an important challenge remains. Despite a common constitutional framework and similar national programmes, development outcomes continue to vary significantly across states and districts. Differences in educational attainment, health outcomes, welfare delivery efficiency, and public service quality persist even where national policy frameworks are identical and central resource transfers are substantial, in several cases, capacity-constrained states receive higher per capita central transfers precisely because of their developmental needs, yet deliver weaker outcomes.</p>
+  <div class="kq">"Why do similar policies produce different outcomes across different parts of India?"</div>
+  <p class="prose">A growing body of governance literature suggests the answer frequently lies not in policy design but in the institutional capacity required for effective implementation. State capacity emerges as one of the most important determinants of development performance.</p>
+
+  <div class="vc">
+    <div class="vc-label">Figure 1.1 · Development Outcomes Pyramid</div>
+    <div class="vc-title">From Institutions to Outcomes</div>
+    <div class="pyramid" role="img" aria-label="Pyramid showing institutions at base rising to development outcomes at top">
+      <div class="pyr-row"><div class="pyr-block" style="width:210px;background:var(--orange)">Development Outcomes</div></div>
+      <div class="pyr-up">▲</div>
+      <div class="pyr-row"><div class="pyr-block" style="width:290px;background:var(--green)">Service Delivery</div></div>
+      <div class="pyr-up">▲</div>
+      <div class="pyr-row"><div class="pyr-block" style="width:370px;background:var(--blue)">State Capacity</div></div>
+      <div class="pyr-up">▲</div>
+      <div class="pyr-row"><div class="pyr-block" style="width:450px;background:var(--ink)">Institutions</div></div>
+    </div>
+    <div class="vc-source">Source: Author's Illustration, DPLI (2026)</div>
+  </div>
+
+  <div class="section-h">1.2 India's Emerging Development Challenge</div>
+  <p class="prose">Historically, development debates focused on resource allocation and policy formulation. Governments sought to improve outcomes through increased expenditure, expanded welfare programmes, and new institutional initiatives. While these efforts remain essential, India's challenge is shifting from policy creation to implementation effectiveness.</p>
+  <p class="prose">The country now possesses an extensive network of public programmes spanning health, education, social protection, financial inclusion, agriculture, infrastructure, and digital governance. The existence of these programmes does not automatically guarantee positive outcomes. How effectively they are implemented often determines whether citizens experience their intended benefits. This is what may be called India's implementation paradox.</p>
+
+  <div class="vc">
+    <div class="vc-label">Figure 1.2 · India's Implementation Paradox</div>
+    <div class="compare-grid">
+      <div class="compare-col left">
+        <div class="compare-head">Expanding Inputs</div>
+        <div class="compare-item"><div class="ci-dot"></div>Increased public expenditure</div>
+        <div class="compare-item"><div class="ci-dot"></div>Expanded welfare programmes</div>
+        <div class="compare-item"><div class="ci-dot"></div>Growing digital infrastructure</div>
+        <div class="compare-item"><div class="ci-dot"></div>Stronger policy frameworks</div>
+      </div>
+      <div class="compare-col right">
+        <div class="compare-head">Persistent Challenges</div>
+        <div class="compare-item"><div class="ci-dot"></div>Uneven outcomes across states</div>
+        <div class="compare-item"><div class="ci-dot"></div>Last-mile delivery gaps</div>
+        <div class="compare-item"><div class="ci-dot"></div>Entrenched regional disparities</div>
+        <div class="compare-item"><div class="ci-dot"></div>Implementation deficits</div>
+      </div>
+    </div>
+    <div class="vc-source">Source: Author's Compilation, DPLI (2026)</div>
+  </div>
+
+  <div class="case-box">
+    <div class="case-eye">Case Study</div>
+    <h3 class="case-title">Aspirational Districts Programme: Implementation as a Development Strategy</h3>
+    <p class="prose" style="font-size:14px">Launched in January 2018, the Aspirational Districts Programme sought to accelerate outcomes in India's most underserved districts through real-time monitoring, data-driven governance, competitive benchmarking, and district-level leadership (NITI Aayog, 2024). Critically, the programme relied less on creating new schemes and more on improving implementation performance across existing ones.</p>
+    <div class="case-lesson">Key lesson: Better development outcomes often result from stronger implementation systems rather than entirely new policy interventions.</div>
+  </div>
+
+  <div class="section-h">1.3 State Capacity as a Development Issue</div>
+  <p class="prose">State capacity is frequently viewed through a narrow administrative lens, associated with bureaucracy, staffing, or procedural efficiency. Its implications, however, extend much further. In essence, state capacity refers to the ability of public institutions to formulate, implement, coordinate, monitor, and adapt policies in pursuit of public objectives.</p>
+
+  <div class="vc">
+    <div class="vc-label">Figure 1.3 · The State Capacity Delivery Chain</div>
+    <div class="chain">
+      <div class="chain-node">State Capacity</div><div class="chain-arr">→</div>
+      <div class="chain-node">Policy Implementation</div><div class="chain-arr">→</div>
+      <div class="chain-node">Service Delivery</div><div class="chain-arr">→</div>
+      <div class="chain-node">Citizen Experience</div><div class="chain-arr">→</div>
+      <div class="chain-node">Development Outcomes</div>
+    </div>
+    <div class="vc-source">Source: Author's Illustration, DPLI (2026)</div>
+  </div>
+
+  <div class="vc">
+    <div class="vc-label">Table 1.1 · State Capacity and Development Outcomes by Sector</div>
+    <table class="styled-table">
+      <thead><tr><th>Sector</th><th style="color:#FFB3A0">Weak Capacity Consequences</th><th style="color:#90DFBA">Strong Capacity Benefits</th></tr></thead>
+      <tbody>
+        <tr><td>Health</td><td>Staff shortages; fragmented service delivery</td><td>Improved maternal and child health outcomes</td></tr>
+        <tr><td>Education</td><td>Weak monitoring; high dropout rates</td><td>Better learning outcomes; teacher accountability</td></tr>
+        <tr><td>Social Protection</td><td>Exclusion errors; benefit leakage</td><td>Improved targeting; near-universal coverage</td></tr>
+        <tr><td>Employment</td><td>Poor programme implementation</td><td>Better labour market outcomes</td></tr>
+        <tr><td>Governance</td><td>Administrative delays; low responsiveness</td><td>Transparent, citizen-centric services</td></tr>
+      </tbody>
+    </table>
+    <div class="vc-source">Source: Adapted from World Bank WDR 2017, Andrews et al. (2017), and DPLI analysis (2026). Health row informed by MoHFW Health Dynamics of India 2022-23; Education row informed by UDISE+ 2023–24 and ASER Centre (2024).</div>
+  </div>
+
+  <div class="section-h">1.4 Why State Capacity Matters for India's Future</div>
+  <div class="three-grid">
+    <div class="tg-card" style="background:var(--blue-l);border-color:var(--blue)"><div class="tg-head">Increasing Complexity</div><div class="tg-body">Healthcare, urban governance, climate resilience, and digital inclusion require sophisticated coordination across institutions and levels of government.</div></div>
+    <div class="tg-card" style="background:var(--orange-l);border-color:var(--orange)"><div class="tg-head">Rising Expectations</div><div class="tg-body">Citizens demand more efficient, transparent, and responsive public services, raising the bar for institutional performance.</div></div>
+    <div class="tg-card" style="background:var(--green-l);border-color:var(--green)"><div class="tg-head">Digital Infrastructure</div><div class="tg-body">Digital Public Infrastructure creates unprecedented service delivery opportunities, but also requires new capacities in data governance and digital inclusion.</div></div>
+  </div>
+
+  <div class="key-insight">
+    <div class="ki-bar"></div>
+    <div class="ki-body">
+      <div class="ki-label">Chapter 1 Key Insight</div>
+      <div class="ki-text">India's next development frontier is not policy expansion. It is implementation excellence. The question is no longer what to do, but how to build systems that can do it consistently, at scale, and for everyone.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 2 -->
+<section class="chapter-section" id="ch2">
+  <div class="chapter-label">Chapter 2</div>
+  <h2 class="chapter-title">State Capacity and Development Outcomes</h2>
+  <div class="chapter-divider"></div>
+
+  <div class="section-h">2.1 Understanding State Capacity</div>
+  <p class="prose">Although scholars have defined state capacity in different ways, there is broad agreement that it refers to the ability of public institutions to achieve collective objectives effectively. Francis Fukuyama (2004) describes it as the ability of governments to formulate and implement policies and enforce rules. The World Bank emphasises the role of capable institutions in translating policy commitments into tangible outcomes.</p>
+  <p class="prose">For this report, state capacity is defined as: <strong>the ability of public institutions to design, implement, coordinate, monitor, and adapt policies in pursuit of public objectives.</strong></p>
+
+  <div class="vc">
+    <div class="vc-label">Table 2.1 · Competing Perspectives on State Capacity</div>
+    <table class="styled-table">
+      <thead><tr><th>Perspective</th><th>Core Focus</th></tr></thead>
+      <tbody>
+        <tr><td>Administrative</td><td>Bureaucratic capability and implementation</td></tr>
+        <tr><td>Institutional</td><td>Rules, norms, and organisational structures</td></tr>
+        <tr><td>Developmental</td><td>Ability to achieve development objectives</td></tr>
+        <tr><td>Digital</td><td>Use of technology and data for governance</td></tr>
+        <tr><td>Local Governance</td><td>Last-mile delivery and citizen interface</td></tr>
+      </tbody>
+    </table>
+    <div class="vc-source">Source: Adapted from governance literature, DPLI (2026). Administrative perspective: Weber (1978), Fukuyama (2004); Institutional: North (1990), Ostrom (1990); Developmental: Evans (1995); Digital: World Bank GovTech Maturity Index (2022); Local Governance: DPLI framework.</div>
+  </div>
+
+  <div class="section-h">2.2 Why State Capacity Matters</div>
+  <p class="prose">Strong state capacity influences development outcomes through several interconnected pathways. It improves implementation effectiveness, enhances coordination across departments and levels of administration, improves crisis responsiveness, enables data-driven decision-making, and strengthens citizen trust through better service quality.</p>
+
+  <div class="vc">
+    <div class="vc-label">Table 2.2 · State Capacity and Human Development</div>
+    <table class="styled-table">
+      <thead><tr><th>Capacity Dimension</th><th>Human Development Impact</th></tr></thead>
+      <tbody>
+        <tr><td>Administrative Capacity</td><td>Better programme implementation</td></tr>
+        <tr><td>Human Resource Capacity</td><td>Improved service quality</td></tr>
+        <tr><td>Digital Capacity</td><td>Faster and more efficient delivery</td></tr>
+        <tr><td>Data Capacity</td><td>Better monitoring and accountability</td></tr>
+        <tr><td>Local Governance Capacity</td><td>Improved last-mile service delivery</td></tr>
+      </tbody>
+    </table>
+    <div class="vc-source">Source: Author's Analysis, DPLI (2026)</div>
+  </div>
+
+  <div class="case-box">
+    <div class="case-eye">Case Study</div>
+    <h3 class="case-title">Mission Indradhanush: Implementation Capacity in Practice</h3>
+    <p class="prose" style="font-size:14px">Mission Indradhanush illustrates how implementation capacity shapes outcomes. The programme focused on strengthening outreach mechanisms, monitoring systems, and local-level coordination to improve immunisation coverage. Its success demonstrated that health outcomes depend not only on policy intent but on effective delivery systems.</p>
+    <div class="case-lesson">Key lesson: Infrastructure alone is not enough. Capable institutions determine whether resources translate into results.</div>
+  </div>
+
+  <div class="section-h">2.3 State Capacity in the Digital Era</div>
+  <p class="prose">Digital transformation is reshaping what state capacity means. Historically, discussions focused on bureaucracy and administrative structures. Today, governments must also manage digital infrastructure, govern data systems, ensure cybersecurity, and deliver services through digital platforms. India's experience with Aadhaar, UPI, CoWIN, and Direct Benefit Transfer demonstrates the growing importance of digital capacity in governance. Yet technology cannot substitute for institutional capability. Digital tools are most effective when combined with strong administrative systems, capable personnel, and strong accountability mechanisms.</p>
+
+  <div class="vc">
+    <div class="vc-label">Table 2.3 · Traditional vs Contemporary Views of State Capacity</div>
+    <table class="styled-table">
+      <thead><tr><th>Traditional View</th><th>Contemporary View</th></tr></thead>
+      <tbody>
+        <tr><td>Bureaucracy</td><td>Whole-of-government capability</td></tr>
+        <tr><td>Procedures</td><td>Outcomes</td></tr>
+        <tr><td>Staffing</td><td>Systems and institutions</td></tr>
+        <tr><td>Compliance</td><td>Performance and adaptability</td></tr>
+        <tr><td>Administration</td><td>Development effectiveness</td></tr>
+      </tbody>
+    </table>
+    <div class="vc-source">Source: Author's Analysis, DPLI (2026)</div>
+  </div>
+</section>
+
+<!-- CHAPTER 3 -->
+<section class="chapter-section" id="ch3">
+  <div class="chapter-label">Chapter 3</div>
+  <h2 class="chapter-title">India's State Capacity Challenge</h2>
+  <div class="chapter-divider"></div>
+
+  <p class="prose">India's development ambitions have expanded considerably. From universal healthcare coverage to digital governance, public institutions are expected to deliver increasingly complex services to a population of over 1.4 billion people (World Bank, 2024). While significant progress has been made in building institutions and adopting digital technologies, important capacity constraints continue to limit implementation effectiveness. These challenges do not reflect the absence of capable institutions, but rather their uneven distribution across sectors, states, and levels of government.</p>
+
+  <div class="vc">
+    <div class="vc-label">Figure 3.1 · India's Implementation Gap</div>
+    <div class="chain" style="flex-direction:column;align-items:flex-start;gap:0">
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--blue-l);border-radius:6px;margin-bottom:4px;width:100%"><span style="font-family:Arial,sans-serif;font-size:12px;font-weight:600;color:var(--blue)">Policy Design</span></div>
+      <div style="text-align:center;width:30px;font-size:16px;color:var(--ink3);margin-left:14px">↓</div>
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--blue-l);border-radius:6px;margin-bottom:4px;width:100%"><span style="font-family:Arial,sans-serif;font-size:12px;font-weight:600;color:var(--blue)">Resource Allocation</span></div>
+      <div style="text-align:center;width:30px;font-size:16px;color:var(--orange);margin-left:14px">↓</div>
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--orange-l);border:1px dashed var(--orange);border-radius:6px;margin-bottom:4px;width:100%"><span style="font-family:Arial,sans-serif;font-size:12px;font-weight:600;color:var(--orange)">Administrative Systems ← Bottlenecks often occur here</span></div>
+      <div style="text-align:center;width:30px;font-size:16px;color:var(--orange);margin-left:14px">↓</div>
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--orange-l);border:1px dashed var(--orange);border-radius:6px;margin-bottom:4px;width:100%"><span style="font-family:Arial,sans-serif;font-size:12px;font-weight:600;color:var(--orange)">Programme Delivery ← And here</span></div>
+      <div style="text-align:center;width:30px;font-size:16px;color:var(--green);margin-left:14px">↓</div>
+      <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--green-l);border-radius:6px;width:100%"><span style="font-family:Arial,sans-serif;font-size:12px;font-weight:600;color:var(--green)">Development Outcomes</span></div>
+    </div>
+    <div class="vc-source">Source: Author's Illustration, DPLI (2026)</div>
+  </div>
+
+  <div class="vc">
+    <div class="vc-label">Table 3.1 · India's State Capacity Diagnostic Summary</div>
+    <table class="styled-table">
+      <thead><tr><th>Dimension</th><th>Key Challenge</th><th>Diagnostic Question</th></tr></thead>
+      <tbody>
+        <tr><td>Administrative</td><td>Implementation bottlenecks</td><td>Can institutions execute effectively?</td></tr>
+        <tr><td>Human Resources</td><td>Workforce shortages and skill gaps</td><td>Do institutions have the right people?</td></tr>
+        <tr><td>Local Governance</td><td>Capacity constraints at local level</td><td>Can programmes reach the last mile?</td></tr>
+        <tr><td>Digital and Data</td><td>Fragmentation and siloed systems</td><td>Can technology improve decisions?</td></tr>
+        <tr><td>Coordination</td><td>Institutional silos</td><td>Can institutions work together?</td></tr>
+      </tbody>
+    </table>
+    <div class="vc-source">Source: DPLI analysis (2026) based on DARPG Good Governance Index 2021, MoHFW Health Dynamics of India 2022-23, Ministry of Panchayati Raj Annual Report 2023–24, MeitY Annual Report 2023–24, and NITI Aayog Data Management &amp; Governance Quality Index 2021.</div>
+  </div>
+
+  <div class="case-box">
+    <div class="case-eye">Case Study</div>
+    <h3 class="case-title">CoWIN and Digital Capacity</h3>
+    <p class="prose" style="font-size:14px">The CoWIN platform demonstrated how digital systems can support large-scale public service delivery. By integrating registration, scheduling, monitoring, and certification, the platform enabled efficient vaccine management during the COVID-19 pandemic, facilitating over two billion vaccine doses across India by 2022. While active vaccination registration has since concluded with the end of the pandemic emergency, the platform's data architecture and design principles continue to inform India's broader digital health infrastructure strategy. The experience illustrates the potential of digital state capacity when technology is aligned with institutional capability.</p>
+    <div class="case-lesson">Key lesson: Digital capacity produces results when technology is matched with strong administrative systems and capable personnel.</div>
+  </div>
+</section>
+
+<!-- CHAPTER 4 -->
+<section class="chapter-section" id="ch4">
+  <div class="chapter-label">Chapter 4</div>
+  <h2 class="chapter-title">International Lessons for Strengthening State Capacity</h2>
+  <div class="chapter-divider"></div>
+
+  <p class="prose">The challenges of strengthening state capacity are not unique to India. Across the world, governments have sought to improve administrative effectiveness, strengthen public institutions, and improve development outcomes through institutional reform. This chapter examines three illustrative examples: Estonia's digital state model, Singapore's administrative excellence model, and Rwanda's local implementation model. The objective is not to replicate these but to identify practical lessons for India.</p>
+
+  <div class="country-grid">
+    <div class="country-card">
+      <div class="cc-head" style="background:var(--blue)"><div class="cc-country">Estonia</div><div class="cc-focus">Digital Governance</div></div>
+      <div class="cc-body">
+        <div class="cc-row"><div class="cc-row-label">Challenge</div>Limited administrative resources post-independence</div>
+        <div class="cc-row"><div class="cc-row-label">Response</div>Digital-first governance with integrated identity systems</div>
+        <div class="cc-row"><div class="cc-row-label">Outcome</div>Highly integrated public services and improved efficiency</div>
+        <div class="cc-lesson">Digital transformation works best with institutional integration and strong governance systems, not technology alone.</div>
+      </div>
+    </div>
+    <div class="country-card">
+      <div class="cc-head" style="background:var(--orange)"><div class="cc-country">Singapore</div><div class="cc-focus">Administrative Excellence</div></div>
+      <div class="cc-body">
+        <div class="cc-row"><div class="cc-row-label">Challenge</div>Limited natural resources; need for competitiveness</div>
+        <div class="cc-row"><div class="cc-row-label">Response</div>Merit-based public service; continuous capacity building</div>
+        <div class="cc-row"><div class="cc-row-label">Outcome</div>World-class governance and long-term economic growth</div>
+        <div class="cc-lesson">Public sector effectiveness depends as much on people and incentives as on policies and resources.</div>
+      </div>
+    </div>
+    <div class="country-card">
+      <div class="cc-head" style="background:var(--green)"><div class="cc-country">Rwanda</div><div class="cc-focus">Local Delivery</div></div>
+      <div class="cc-body">
+        <div class="cc-row"><div class="cc-row-label">Challenge</div>Post-conflict reconstruction and institutional rebuild</div>
+        <div class="cc-row"><div class="cc-row-label">Response</div>Performance contracts; local government strengthening</div>
+        <div class="cc-row"><div class="cc-row-label">Outcome</div>Significant gains in health, education, and service delivery</div>
+        <div class="cc-lesson">Strong local institutions are essential for effective last-mile service delivery in large, diverse countries.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vc">
+    <div class="vc-label">Table 4.1 · Comparative Lessons for India</div>
+    <table class="styled-table">
+      <thead><tr><th>Country</th><th>Core Strength</th><th>Key Lesson for India</th></tr></thead>
+      <tbody>
+        <tr><td>Estonia</td><td>Digital Governance</td><td>Integrate systems and data across government</td></tr>
+        <tr><td>Singapore</td><td>Administrative Excellence</td><td>Invest seriously in public sector capability</td></tr>
+        <tr><td>Rwanda</td><td>Local Implementation</td><td>Strengthen institutions closest to citizens</td></tr>
+      </tbody>
+    </table>
+    <div class="vc-source">Source: Author's Analysis, DPLI (2026)</div>
+  </div>
+
+  <div class="key-insight">
+    <div class="ki-bar"></div>
+    <div class="ki-body">
+      <div class="ki-label">Overarching Lesson from International Evidence</div>
+      <div class="ki-text">Development outcomes improve when governments invest systematically in implementation capability. There is no single pathway. But every country that has achieved sustained development gains has done so by making its institutions work better.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 5 -->
+<section class="chapter-section" id="ch5">
+  <div class="chapter-label">Chapter 5</div>
+  <h2 class="chapter-title">The DPLI State Capacity Framework</h2>
+  <div class="chapter-divider"></div>
+
+  <p class="prose">The previous chapters established that development outcomes are strongly shaped by state capacity, that India's challenge is increasingly one of implementation, and that international experience confirms improvements in institutional capability can generate substantial gains. This chapter introduces the <strong>DPLI State Capacity Framework (ISCF)</strong>, a structured approach for understanding and strengthening the institutional capabilities required for effective governance.</p>
+
+  <div class="vc">
+    <div class="vc-label">Figure 5.1 · The DPLI State Capacity Framework</div>
+    <div class="pyramid" style="margin-bottom:12px">
+      <div class="pyr-row"><div class="pyr-block" style="width:210px;background:var(--orange)">Development Outcomes</div></div>
+      <div class="pyr-up">▲</div>
+      <div class="pyr-row"><div class="pyr-block" style="width:290px;background:var(--green)">Service Delivery</div></div>
+      <div class="pyr-up">▲</div>
+      <div class="pyr-row"><div class="pyr-block" style="width:370px;background:var(--blue)">State Capacity</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:4px">
+      <div style="background:var(--blue);color:#fff;font-family:Arial,sans-serif;font-size:10px;font-weight:600;padding:8px;text-align:center;border-radius:4px">Administrative</div>
+      <div style="background:var(--orange);color:#fff;font-family:Arial,sans-serif;font-size:10px;font-weight:600;padding:8px;text-align:center;border-radius:4px">Human Resource</div>
+      <div style="background:var(--green);color:#fff;font-family:Arial,sans-serif;font-size:10px;font-weight:600;padding:8px;text-align:center;border-radius:4px">Digital</div>
+      <div style="background:var(--purple);color:#fff;font-family:Arial,sans-serif;font-size:10px;font-weight:600;padding:8px;text-align:center;border-radius:4px">Local Governance</div>
+      <div style="background:var(--amber);color:#fff;font-family:Arial,sans-serif;font-size:10px;font-weight:600;padding:8px;text-align:center;border-radius:4px">Data</div>
+    </div>
+    <div class="vc-source">Source: DPLI (2026)</div>
+  </div>
+
+  <div class="section-h">5.2 The Five Pillars</div>
+  <div class="dims-grid">
+    <div class="dim-card" style="border-top:3px solid var(--blue)">
+      <div class="dim-num" style="color:var(--blue)">01 Administrative</div>
+      <div class="dim-name">Execution and Coordination</div>
+      <div class="dim-desc">Vacancy reduction, process simplification, performance management, grievance redress.</div>
+    </div>
+    <div class="dim-card" style="border-top:3px solid var(--orange)">
+      <div class="dim-num" style="color:var(--orange)">02 Human Resource</div>
+      <div class="dim-name">Workforce and Skills</div>
+      <div class="dim-desc">Workforce planning, capacity building, leadership development, rural retention strategies.</div>
+    </div>
+    <div class="dim-card" style="border-top:3px solid var(--green)">
+      <div class="dim-num" style="color:var(--green)">03 Digital</div>
+      <div class="dim-name">Technology and Data</div>
+      <div class="dim-desc">System integration, digital literacy, cybersecurity, service digitisation.</div>
+    </div>
+    <div class="dim-card" style="border-top:3px solid var(--purple)">
+      <div class="dim-num" style="color:var(--purple)">04 Local Governance</div>
+      <div class="dim-name">Last-Mile Delivery</div>
+      <div class="dim-desc">Technical support systems, decentralised planning, financial management, citizen engagement.</div>
+    </div>
+    <div class="dim-card" style="border-top:3px solid var(--amber)">
+      <div class="dim-num" style="color:var(--amber)">05 Data</div>
+      <div class="dim-name">Evidence and Learning</div>
+      <div class="dim-desc">Real-time monitoring, data quality, analytics capability, evidence-based reviews.</div>
+    </div>
+  </div>
+
+  <div class="section-h">5.3 State Capacity Scorecard</div>
+  <div class="vc">
+    <div class="vc-label">Figure 5.2 · DPLI State Capacity Scorecard</div>
+    <div class="scorecard">
+      <div class="sc-row"><div class="sc-label">Administrative Capacity</div><div class="sc-bar-wrap"><div class="sc-bar" style="width:25%;background:var(--blue)">25%</div></div><div class="sc-pct">25%</div></div>
+      <div class="sc-row"><div class="sc-label">Human Resource Capacity</div><div class="sc-bar-wrap"><div class="sc-bar" style="width:20%;background:var(--orange)">20%</div></div><div class="sc-pct">20%</div></div>
+      <div class="sc-row"><div class="sc-label">Digital Capacity</div><div class="sc-bar-wrap"><div class="sc-bar" style="width:20%;background:var(--green)">20%</div></div><div class="sc-pct">20%</div></div>
+      <div class="sc-row"><div class="sc-label">Local Governance Capacity</div><div class="sc-bar-wrap"><div class="sc-bar" style="width:20%;background:var(--purple)">20%</div></div><div class="sc-pct">20%</div></div>
+      <div class="sc-row"><div class="sc-label">Data Capacity</div><div class="sc-bar-wrap"><div class="sc-bar" style="width:15%;background:var(--amber)">15%</div></div><div class="sc-pct">15%</div></div>
+    </div>
+    <div class="vc-source">Source: DPLI (2026)</div>
+  </div>
+
+  <div class="section-h">5.4 State Capacity Maturity Model</div>
+  <div class="maturity-row">
+    <div class="maturity-card" style="background:#FAFAF8;border:1px solid var(--rule)"><div class="mat-num" style="color:var(--ink3)">1</div><div class="mat-name">Basic</div><div class="mat-desc">Reactive systems; limited coordination</div></div>
+    <div class="maturity-card" style="background:var(--blue-l);border:1px solid #BDD4EE"><div class="mat-num" style="color:var(--blue)">2</div><div class="mat-name">Emerging</div><div class="mat-desc">Structured processes; basic monitoring</div></div>
+    <div class="maturity-card" style="background:var(--green-l);border:1px solid #90DFBA"><div class="mat-num" style="color:var(--green)">3</div><div class="mat-name">Advanced</div><div class="mat-desc">Integrated systems; performance orientation</div></div>
+    <div class="maturity-card" style="background:#F3E8FE;border:1px solid #D4AAEE"><div class="mat-num" style="color:var(--purple)">4</div><div class="mat-name">Transformational</div><div class="mat-desc">Data-driven, adaptive, citizen-centric</div></div>
+  </div>
+</section>
+
+<!-- CHAPTER 6 -->
+<section class="chapter-section" id="ch6">
+  <div class="chapter-label">Chapter 6</div>
+  <h2 class="chapter-title">Implementing the DPLI State Capacity Framework</h2>
+  <div class="chapter-divider"></div>
+
+  <p class="prose">The effectiveness of any reform agenda ultimately depends on implementation. The DPLI State Capacity Framework is designed not merely as a diagnostic tool but as a practical reform instrument, helping governments move from institutional constraints to measurable improvements in capability and development outcomes.</p>
+  <p class="prose">This chapter presents a phased implementation roadmap for strengthening state capacity in India between 2027 and 2035, adopting a sequenced approach that prioritises foundational reforms in the short term while enabling deeper institutional transformation over time. The roadmap begins in 2027, treating 2026 as a preparatory baseline year for ISCM establishment, state diagnostic assessments, and reform design.</p>
+
+  <div class="vc">
+    <div class="vc-label">Figure 6.1 · Reform Roadmap 2027 to 2035</div>
+    <div class="roadmap">
+      <div class="rm-phase" style="border-top:3px solid var(--blue)">
+        <div class="rm-phase-label" style="color:var(--blue)">Phase 1</div>
+        <div class="rm-phase-years">2027 to 2029: Build Capacity</div>
+        <div class="rm-item"><div class="rm-dot" style="background:var(--blue)"></div>Vacancy reduction in frontline sectors</div>
+        <div class="rm-item"><div class="rm-dot" style="background:var(--blue)"></div>Expand Mission Karmayogi training</div>
+        <div class="rm-item"><div class="rm-dot" style="background:var(--blue)"></div>Service digitisation expansion</div>
+        <div class="rm-item"><div class="rm-dot" style="background:var(--blue)"></div>Improve reporting systems</div>
+      </div>
+      <div class="rm-phase" style="border-top:3px solid var(--orange)">
+        <div class="rm-phase-label" style="color:var(--orange)">Phase 2</div>
+        <div class="rm-phase-years">2030 to 2032: Integrate Systems</div>
+        <div class="rm-item"><div class="rm-dot" style="background:var(--orange)"></div>Integrated performance management</div>
+        <div class="rm-item"><div class="rm-dot" style="background:var(--orange)"></div>Competency-based workforce planning</div>
+        <div class="rm-item"><div class="rm-dot" style="background:var(--orange)"></div>Unified citizen service portals</div>
+        <div class="rm-item"><div class="rm-dot" style="background:var(--orange)"></div>District governance strengthening</div>
+      </div>
+      <div class="rm-phase" style="border-top:3px solid var(--green)">
+        <div class="rm-phase-label" style="color:var(--green)">Phase 3</div>
+        <div class="rm-phase-years">2033 to 2035: Adaptive Governance</div>
+        <div class="rm-item"><div class="rm-dot" style="background:var(--green)"></div>Outcome-oriented governance</div>
+        <div class="rm-item"><div class="rm-dot" style="background:var(--green)"></div>Leadership pipelines established</div>
+        <div class="rm-item"><div class="rm-dot" style="background:var(--green)"></div>Predictive analytics in governance</div>
+        <div class="rm-item"><div class="rm-dot" style="background:var(--green)"></div>Citizen co-production models</div>
+      </div>
+    </div>
+    <div class="vc-source">Source: DPLI (2026)</div>
+  </div>
+
+  <div class="vc">
+    <div class="vc-label">Table 6.1 · Stakeholder Matrix</div>
+    <div class="stakeholder-grid">
+      <div class="sh-card"><div class="sh-role">Union Government</div><div class="sh-resp">Policy direction and funding</div></div>
+      <div class="sh-card"><div class="sh-role">State Governments</div><div class="sh-resp">Reform implementation</div></div>
+      <div class="sh-card"><div class="sh-role">District Administrations</div><div class="sh-resp">Service delivery</div></div>
+      <div class="sh-card"><div class="sh-role">Local Governments</div><div class="sh-resp">Citizen engagement</div></div>
+      <div class="sh-card"><div class="sh-role">Civil Society</div><div class="sh-resp">Feedback and accountability</div></div>
+      <div class="sh-card"><div class="sh-role">Citizens</div><div class="sh-resp">Participation and oversight</div></div>
+    </div>
+    <div class="vc-source">Source: DPLI (2026)</div>
+  </div>
+</section>
+
+<!-- CHAPTER 7 -->
+<section class="chapter-section" id="ch7">
+  <div class="chapter-label">Chapter 7</div>
+  <h2 class="chapter-title">Monitoring, Evaluation and the India State Capacity Monitor</h2>
+  <div class="chapter-divider"></div>
+
+  <p class="prose">The success of governance reforms depends not only on implementation but on the ability to measure progress, identify bottlenecks, and adapt policies based on evidence. Without effective monitoring, governments risk investing significant resources without a clear understanding of whether intended outcomes are being achieved. This chapter introduces the <strong>India State Capacity Monitor (ISCM)</strong>, a structured scorecard and dashboard system for tracking institutional performance.</p>
+
+  <div class="vc">
+    <div class="vc-label">Figure 7.1 · Results Chain for State Capacity Reforms</div>
+    <div class="chain">
+      <div class="chain-node">Inputs</div><div class="chain-arr">→</div>
+      <div class="chain-node">Outputs</div><div class="chain-arr">→</div>
+      <div class="chain-node">Outcomes</div><div class="chain-arr">→</div>
+      <div class="chain-node">Impact</div>
+    </div>
+    <div class="vc-source">Source: Adapted from Results-Based Management frameworks, DPLI (2026)</div>
+  </div>
+
+  <div class="section-h">7.2 Key Performance Indicators</div>
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-dim" style="color:var(--blue)">Administrative</div><div class="kpi-item">Vacancy rates</div><div class="kpi-item">Service timelines</div><div class="kpi-item">Grievance resolution</div><div class="kpi-item">Programme completion</div></div>
+    <div class="kpi-card"><div class="kpi-dim" style="color:var(--orange)">Human Resource</div><div class="kpi-item">Training coverage</div><div class="kpi-item">Retention rates</div><div class="kpi-item">Leadership participation</div><div class="kpi-item">Workforce adequacy</div></div>
+    <div class="kpi-card"><div class="kpi-dim" style="color:var(--green)">Digital</div><div class="kpi-item">Digital service coverage</div><div class="kpi-item">Online transaction rates</div><div class="kpi-item">System interoperability</div><div class="kpi-item">Citizen satisfaction</div></div>
+    <div class="kpi-card"><div class="kpi-dim" style="color:var(--purple)">Local Governance</div><div class="kpi-item">Staffing adequacy</div><div class="kpi-item">Local planning effectiveness</div><div class="kpi-item">Service performance</div><div class="kpi-item">Citizen participation</div></div>
+    <div class="kpi-card"><div class="kpi-dim" style="color:var(--amber)">Data</div><div class="kpi-item">Data timeliness</div><div class="kpi-item">Reporting accuracy</div><div class="kpi-item">Dashboard utilisation</div><div class="kpi-item">Evidence-based reviews</div></div>
+  </div>
+
+  <div class="vc">
+    <div class="vc-label">Table 7.1 · Reform Risk Matrix</div>
+    <table class="styled-table">
+      <thead><tr><th>Risk</th><th>Probability</th><th>Impact</th></tr></thead>
+      <tbody>
+        <tr><td>Political Resistance</td><td><span class="risk-badge risk-med">Medium</span></td><td><span class="risk-badge risk-high">High</span></td></tr>
+        <tr><td>Resource Constraints</td><td><span class="risk-badge risk-med">Medium</span></td><td><span class="risk-badge risk-med">Medium</span></td></tr>
+        <tr><td>Workforce Gaps</td><td><span class="risk-badge risk-high">High</span></td><td><span class="risk-badge risk-high">High</span></td></tr>
+        <tr><td>Technology Failures</td><td><span class="risk-badge risk-med">Medium</span></td><td><span class="risk-badge risk-med">Medium</span></td></tr>
+        <tr><td>Data Quality Issues</td><td><span class="risk-badge risk-med">Medium</span></td><td><span class="risk-badge risk-high">High</span></td></tr>
+      </tbody>
+    </table>
+    <div class="vc-source">Source: DPLI (2026)</div>
+  </div>
+
+  <div class="vc">
+    <div class="vc-label">Figure 7.2 · Adaptive Governance Cycle</div>
+    <div class="chain">
+      <div class="chain-node">Monitor</div><div class="chain-arr">→</div>
+      <div class="chain-node">Evaluate</div><div class="chain-arr">→</div>
+      <div class="chain-node">Learn</div><div class="chain-arr">→</div>
+      <div class="chain-node">Adapt</div><div class="chain-arr">→</div>
+      <div class="chain-node">Improve</div>
+    </div>
+    <div class="vc-source">Source: DPLI (2026)</div>
+  </div>
+</section>
+
+<!-- RECOMMENDATIONS -->
+<section class="chapter-section" id="recos">
+  <div class="chapter-label">Policy Recommendations</div>
+  <h2 class="chapter-title">From Institutional Constraints to Implementation Excellence</h2>
+  <div class="chapter-divider"></div>
+  <p class="prose">Drawing on the DPLI State Capacity Framework, this report proposes six strategic recommendations for strengthening implementation capability in India.</p>
+
+  <div class="reco-list">
+    <div class="reco-card" style="border-color:var(--blue)">
+      <div class="reco-num" style="color:var(--blue)">Recommendation 1</div>
+      <div class="reco-title">Strengthen Administrative Capacity Through Public Sector Modernisation</div>
+      <div class="reco-body">Administrative effectiveness is the foundation of state capacity. Governments should prioritise reforms that improve execution, coordination, and responsiveness across all levels.</div>
+      <div class="reco-actions">
+        <div class="reco-action">Reduce critical vacancies in frontline service delivery sectors</div>
+        <div class="reco-action">Simplify administrative procedures and reduce process complexity</div>
+        <div class="reco-action">Introduce outcome-oriented performance management systems</div>
+        <div class="reco-action">Expand citizen-centric grievance redress mechanisms</div>
+      </div>
+    </div>
+    <div class="reco-card" style="border-color:var(--orange)">
+      <div class="reco-num" style="color:var(--orange)">Recommendation 2</div>
+      <div class="reco-title">Invest in Public Sector Human Capital</div>
+      <div class="reco-body">The quality of institutions depends fundamentally on the people operating them. India should adopt a long-term approach to public sector workforce development.</div>
+      <div class="reco-actions">
+        <div class="reco-action">Expand Mission Karmayogi and competency-based training programmes</div>
+        <div class="reco-action">Develop leadership pipelines across government institutions</div>
+        <div class="reco-action">Improve incentives for service in underserved regions</div>
+      </div>
+    </div>
+    <div class="reco-card" style="border-color:var(--green)">
+      <div class="reco-num" style="color:var(--green)">Recommendation 3</div>
+      <div class="reco-title">Build the Next Generation of Digital State Capacity</div>
+      <div class="reco-body">The next phase of digital governance should focus on integration, interoperability, and institutional capability rather than technology adoption alone.</div>
+      <div class="reco-actions">
+        <div class="reco-action">Strengthen interoperability across government platforms</div>
+        <div class="reco-action">Improve digital inclusion and accessibility</div>
+        <div class="reco-action">Strengthen cybersecurity and data protection frameworks</div>
+      </div>
+    </div>
+    <div class="reco-card" style="border-color:var(--purple)">
+      <div class="reco-num" style="color:var(--purple)">Recommendation 4</div>
+      <div class="reco-title">Empower Districts and Local Governments</div>
+      <div class="reco-body">Development outcomes are ultimately delivered at the local level. Strengthening district administrations, municipalities, and panchayats should be a central component of India's development strategy.</div>
+      <div class="reco-actions">
+        <div class="reco-action">Expand technical support systems for local governments</div>
+        <div class="reco-action">Strengthen financial management systems</div>
+        <div class="reco-action">Promote citizen participation and local accountability</div>
+      </div>
+    </div>
+    <div class="reco-card" style="border-color:var(--amber)">
+      <div class="reco-num" style="color:var(--amber)">Recommendation 5</div>
+      <div class="reco-title">Institutionalise Data-Driven Governance</div>
+      <div class="reco-body">Effective governance increasingly depends on the ability to collect, analyse, and act on data. Evidence-based decision-making should become standard practice across all tiers of government.</div>
+      <div class="reco-actions">
+        <div class="reco-action">Develop integrated data platforms across sectors</div>
+        <div class="reco-action">Strengthen real-time monitoring systems</div>
+        <div class="reco-action">Expand the use of dashboards and performance scorecards</div>
+      </div>
+    </div>
+    <div class="reco-card" style="border-color:var(--ink)">
+      <div class="reco-num" style="color:var(--ink)">Recommendation 6</div>
+      <div class="reco-title">Establish the India State Capacity Monitor</div>
+      <div class="reco-body">India currently lacks a structured framework for measuring and tracking institutional capability across jurisdictions. The proposed India State Capacity Monitor should serve as a national benchmarking mechanism.</div>
+      <div class="reco-actions">
+        <div class="reco-action">Develop a State Capacity Index based on the five DPLI pillars</div>
+        <div class="reco-action">Create state and district-level scorecards</div>
+        <div class="reco-action">Publish periodic performance assessments</div>
+        <div class="reco-action">Encourage peer learning and competitive federalism</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONCLUSION -->
+<section class="chapter-section" id="conclusion">
+  <div class="chapter-label">Conclusion</div>
+  <h2 class="chapter-title">Building the Foundations of Development</h2>
+  <div class="chapter-divider"></div>
+
+  <p class="prose">India's development story is one of remarkable achievement. Over the past three decades, the country has expanded access to healthcare, education, social protection, financial inclusion, and digital services while lifting millions out of poverty. Yet the next phase of development presents a different kind of challenge.</p>
+  <p class="prose">The question facing policymakers is increasingly not whether new policies can be designed, but whether existing policies can be implemented effectively and consistently across a vast and diverse country.</p>
+  <p class="prose">This report has argued that state capacity is one of the most important determinants of development outcomes. The ability of institutions to execute policies, manage resources, coordinate actors, use technology effectively, and respond to citizen needs ultimately shapes the effectiveness of public action.</p>
+  <p class="prose">India's state capacity challenge is not one of institutional absence but of uneven capability. Significant progress has been made in digital governance, public service delivery, and institutional innovation. Substantial opportunities remain to strengthen implementation systems, improve coordination, empower local institutions, and embed data-driven decision-making.</p>
+
+  <div class="key-insight">
+    <div class="ki-bar"></div>
+    <div class="ki-body">
+      <div class="ki-label">The Broader Lesson</div>
+      <div class="ki-text">Development outcomes are ultimately products of implementation systems. Policies matter. Resources matter. Leadership matters. But without capable institutions, even the most ambitious reforms struggle to achieve their intended impact. India's next frontier is not policy expansion. It is implementation excellence. And that is worth every investment it takes.</div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section class="ref-section" id="refs">
+  <div class="chapter-label">References</div>
+  <h2 class="chapter-title">Sources and Bibliography</h2>
+  <div class="chapter-divider"></div>
+
+  <div class="ref-group">
+    <div class="ref-group-label">Academic Sources</div>
+    <div class="ref-item">Acemoglu, D., and Robinson, J. A. (2012). <em>Why nations fail: The origins of power, prosperity, and poverty.</em> Crown Business.</div>
+    <div class="ref-item">Andrews, M., Pritchett, L., and Woolcock, M. (2017). <em>Building state capability: Evidence, analysis, action.</em> Oxford University Press.</div>
+    <div class="ref-item">Evans, P. (1995). <em>Embedded autonomy: States and industrial transformation.</em> Princeton University Press.</div>
+    <div class="ref-item">Fukuyama, F. (2004). <em>State-building: Governance and world order in the twenty-first century.</em> Cornell University Press.</div>
+    <div class="ref-item">North, D. C. (1990). <em>Institutions, institutional change and economic performance.</em> Cambridge University Press.</div>
+    <div class="ref-item">Ostrom, E. (1990). <em>Governing the commons: The evolution of institutions for collective action.</em> Cambridge University Press.</div>
+    <div class="ref-item">Sen, A. (1999). <em>Development as freedom.</em> Oxford University Press.</div>
+    <div class="ref-item">Weber, M. (1978). <em>Economy and society</em> (G. Roth and C. Wittich, Eds.). University of California Press.</div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-label">World Bank Publications</div>
+    <div class="ref-item">World Bank. (2017). <em>World development report 2017: Governance and the law.</em> World Bank.</div>
+    <div class="ref-item">World Bank. (2021). <em>World development report 2021: Data for better lives.</em> World Bank.</div>
+    <div class="ref-item">World Bank. (2022). <em>GovTech maturity index: The state of public sector digital transformation.</em> World Bank.</div>
+    <div class="ref-item">World Bank. (2024). <em>Worldwide governance indicators.</em> World Bank.</div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-label">OECD Publications</div>
+    <div class="ref-item">OECD. (2021). <em>Government at a glance 2021.</em> OECD Publishing.</div>
+    <div class="ref-item">OECD. (2022). <em>Digital government review: Building digital capacity for public value.</em> OECD Publishing.</div>
+    <div class="ref-item">OECD. (2023). <em>Government at a glance 2023.</em> OECD Publishing.</div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-label">United Nations and International Organisations</div>
+    <div class="ref-item">United Nations Development Programme. (2023). <em>Human development report 2023/24.</em> UNDP.</div>
+    <div class="ref-item">United Nations Educational, Scientific and Cultural Organization. (2023). <em>Global education monitoring report.</em> UNESCO.</div>
+    <div class="ref-item">World Health Organization. (2021). <em>Health systems strengthening framework.</em> WHO.</div>
+    <div class="ref-item">World Health Organization. (2023). <em>Global health workforce statistics.</em> WHO.</div>
+    <div class="ref-item">United Nations. (2024). <em>The sustainable development goals report 2024.</em> United Nations.</div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-label">Government of India Sources</div>
+    <div class="ref-item">Capacity Building Commission. (2023). <em>Mission Karmayogi annual report.</em> Government of India.</div>
+    <div class="ref-item">Department of Administrative Reforms and Public Grievances. (2021). <em>Good Governance Index 2021.</em> Government of India. Published 25 December 2021. [Note: GGI 2023 edition was cancelled by the Government of India; next edition expected December 2025.] Available at: darpg.gov.in</div>
+    <div class="ref-item">Government of India. (2024). <em>Economic survey 2023 to 24.</em> Ministry of Finance.</div>
+    <div class="ref-item">Ministry of Education. (2024). <em>UDISE+ report 2023 to 24.</em> Government of India.</div>
+    <div class="ref-item">Ministry of Health and Family Welfare. (2024). <em>Health Dynamics of India: Infrastructure and Human Resources 2022–23.</em> Government of India. Published September 2024. [Formerly published as Rural Health Statistics.] Available at: mohfw.gov.in</div>
+    <div class="ref-item">NITI Aayog. (2021). <em>Data management and governance quality index.</em> Government of India.</div>
+    <div class="ref-item">NITI Aayog. (2024). <em>SDG India Index and Dashboard 2023–24.</em> Government of India. Published 12 July 2024. Available at: sdgindiaindex.niti.gov.in</div>
+    <div class="ref-item">NITI Aayog. (2024). <em>Aspirational districts programme: Best practices compendium.</em> Government of India.</div>
+  </div>
+
+  <div class="ref-group">
+    <div class="ref-group-label">India-Specific Evidence Sources</div>
+    <div class="ref-item">ASER Centre. (2024). <em>Annual status of education report 2024.</em> ASER Centre.</div>
+    <div class="ref-item">Centre for Policy Research. (2023). <em>State capacity and governance in India.</em> Centre for Policy Research.</div>
+    <div class="ref-item">India Justice Report. (2024). <em>India justice report 2024.</em> Tata Trusts.</div>
+    <div class="ref-item">Observer Research Foundation. (2024). <em>Governance and public service delivery in India.</em> ORF.</div>
+    <div class="ref-item">PRS Legislative Research. (2024). <em>State of governance in India.</em> PRS Legislative Research.</div>
+  </div>
+</section>
+
+</main>
+
+<footer class="pub-footer" role="contentinfo">
+  <div class="pf-org">Development Policy Lab India (DPLI)</div>
+  <div class="pf-motto">Evidence. Policy. Impact.</div>
+  <div class="pf-meta">India Development Challenge Series &nbsp;|&nbsp; Flagship Report 2026 &nbsp;|&nbsp; Author: Anant Srivastava &nbsp;|&nbsp; Version 2.0, June 2026</div>
+  <div style="max-width:800px;margin:16px auto 0;padding:14px 20px;background:rgba(255,255,255,.06);border-radius:8px;border:1px solid rgba(255,255,255,.1);font-size:10px;line-height:1.7;color:rgba(255,255,255,.45);text-align:left">
+    <strong style="color:rgba(255,255,255,.7)">Methodology note:</strong> The DPLI State Capacity Framework scores and India State Capacity Monitor (ISCM) are constructed indices based on publicly available government data sources including DARPG Good Governance Index 2021, MoHFW Health Dynamics of India 2022-23, UDISE+ 2023–24, Ministry of Panchayati Raj Annual Report 2023–24, and NITI Aayog SDG India Index 2023–24. SDG scores are sourced directly from NITI Aayog SDG India Index 2023–24 (published 12 July 2024). Full source mapping and methodology documentation available in DPLI Methodology Note 01/2026.
+  </div>
+</footer>
+
+<script>
+// Active nav on scroll
+const sections = document.querySelectorAll('[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

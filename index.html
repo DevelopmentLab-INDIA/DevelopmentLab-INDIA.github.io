@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Development Policy Lab India (DPLI), independent research on governance, state capacity, and development effectiveness in India. Evidence. Policy. Impact.">
+<title>Development Policy Lab India | DPLI | dpli.net</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ─────────────────────────────────────────── */
+:root {
+  --ink:       #0E1016;
+  --ink2:      #2C3040;
+  --ink3:      #636578;
+  --rule:      #E4E2DC;
+  --bg:        #F8F7F3;
+  --white:     #FFFFFF;
+  --accent:    #1546A0;   /* deep institutional blue */
+  --accent-l:  #EAF0FD;
+  --accent-m:  #2F62C7;
+  --warm:      #C95A28;   /* terracotta, used sparingly */
+  --warm-l:    #FBF0EB;
+  --green:     #196B45;
+  --green-l:   #E5F4EE;
+}
+
+/* ── RESET ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ── LAYOUT ─────────────────────────────────────────── */
+.container { max-width: 1040px; margin: 0 auto; padding: 0 28px; }
+.container--narrow { max-width: 720px; margin: 0 auto; padding: 0 28px; }
+
+/* ── NAV ─────────────────────────────────────────────── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--ink);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.nav-inner {
+  max-width: 1040px; margin: 0 auto; padding: 0 28px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+}
+.nav-logo-mark {
+  width: 28px; height: 28px; border-radius: 6px;
+  background: var(--accent-m);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Inter', sans-serif; font-size: 11px;
+  font-weight: 600; color: #fff; letter-spacing: .5px;
+}
+.nav-logo-text {
+  font-family: 'Inter', sans-serif; font-size: 12px;
+  font-weight: 500; color: rgba(255,255,255,.9); letter-spacing: .4px;
+}
+.nav-links {
+  display: flex; gap: 4px; list-style: none;
+}
+.nav-links a {
+  font-size: 12px; color: rgba(255,255,255,.55);
+  padding: 5px 10px; border-radius: 5px;
+  transition: color .15s, background .15s;
+}
+.nav-links a:hover { color: #fff; background: rgba(255,255,255,.08); }
+.nav-cta {
+  font-size: 12px; font-weight: 500;
+  color: #fff; background: var(--accent-m);
+  padding: 6px 14px; border-radius: 6px;
+  transition: opacity .15s;
+}
+.nav-cta:hover { opacity: .88; }
+
+/* ── HERO ─────────────────────────────────────────────── */
+.hero {
+  background: var(--ink);
+  padding: 88px 28px 80px;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse 600px 400px at 80% 40%, rgba(21,70,160,.18) 0%, transparent 70%),
+    radial-gradient(ellipse 400px 300px at 15% 70%, rgba(201,90,40,.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hero-inner {
+  max-width: 1040px; margin: 0 auto;
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr 340px; gap: 64px; align-items: center;
+}
+.hero-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--warm);
+  letter-spacing: 1.4px; margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.hero-eyebrow::before {
+  content: ''; width: 24px; height: 1px; background: var(--warm);
+}
+.hero-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(34px, 5vw, 54px);
+  font-weight: 400; line-height: 1.12;
+  color: #fff; margin-bottom: 22px;
+}
+.hero-title em {
+  font-style: italic; color: rgba(255,255,255,.65);
+}
+.hero-body {
+  font-size: 15px; color: rgba(255,255,255,.55);
+  line-height: 1.75; max-width: 480px; margin-bottom: 36px;
+}
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-primary {
+  font-size: 13px; font-weight: 500; color: #fff;
+  background: var(--accent-m); padding: 10px 20px;
+  border-radius: 7px; transition: opacity .15s;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.btn-primary:hover { opacity: .88; }
+.btn-outline {
+  font-size: 13px; font-weight: 400; color: rgba(255,255,255,.7);
+  border: 1px solid rgba(255,255,255,.18); padding: 10px 20px;
+  border-radius: 7px; transition: all .15s;
+}
+.btn-outline:hover { color: #fff; border-color: rgba(255,255,255,.38); }
+
+/* HERO STAT CARD */
+.hero-stat-card {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px; padding: 28px;
+}
+.hero-stat-card-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: rgba(255,255,255,.35);
+  letter-spacing: 1.2px; margin-bottom: 20px;
+}
+.stat-row { display: flex; flex-direction: column; gap: 18px; }
+.stat-item {}
+.stat-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 36px; line-height: 1; color: #fff; margin-bottom: 4px;
+}
+.stat-desc { font-size: 12px; color: rgba(255,255,255,.45); }
+.stat-divider { height: 1px; background: rgba(255,255,255,.08); }
+.stat-themes {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px;
+}
+.stat-theme {
+  font-size: 10px; padding: 3px 9px; border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.5);
+}
+
+/* ── STRIP ───────────────────────────────────────────── */
+.strip {
+  background: var(--accent);
+  padding: 14px 28px;
+}
+.strip-inner {
+  max-width: 1040px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+}
+.strip-text {
+  font-size: 13px; color: rgba(255,255,255,.8); line-height: 1.5;
+}
+.strip-text strong { color: #fff; }
+.strip-link {
+  font-size: 12px; font-weight: 500; color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,.4);
+  white-space: nowrap;
+}
+
+/* ── SECTION LABELS ─────────────────────────────────── */
+.section { padding: 80px 0; }
+.section--alt { background: var(--white); }
+.section--dark { background: var(--ink); }
+.section-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: var(--accent-m);
+  letter-spacing: 1.4px; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.section-eyebrow::before {
+  content: ''; width: 18px; height: 1px; background: var(--accent-m);
+}
+.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(26px, 3.5vw, 38px);
+  font-weight: 400; line-height: 1.18; color: var(--ink);
+  margin-bottom: 10px;
+}
+.section-title--light { color: #fff; }
+.section-sub {
+  font-size: 15px; color: var(--ink3); line-height: 1.7;
+  max-width: 520px; margin-bottom: 40px;
+}
+.section-sub--light { color: rgba(255,255,255,.55); }
+
+/* ── ABOUT ───────────────────────────────────────────── */
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
+}
+.about-prose { color: var(--ink2); font-size: 15px; line-height: 1.8; }
+.about-prose p { margin-bottom: 16px; }
+.about-prose strong { color: var(--ink); }
+.about-pillars { display: flex; flex-direction: column; gap: 10px; }
+.pillar {
+  display: flex; align-items: flex-start; gap: 14px;
+  background: var(--bg); border-radius: 10px; padding: 14px 16px;
+  border: 1px solid var(--rule);
+  transition: border-color .2s, box-shadow .2s;
+}
+.pillar:hover { border-color: #BFCCE8; box-shadow: 0 2px 12px rgba(21,70,160,.08); }
+.pillar-icon {
+  width: 34px; height: 34px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; flex-shrink: 0;
+}
+.pillar-name { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+.pillar-desc { font-size: 12px; color: var(--ink3); line-height: 1.5; }
+
+/* ── FOUNDER ─────────────────────────────────────────── */
+.founder-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px; padding: 32px;
+  display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: start;
+  margin-top: 40px;
+}
+.founder-avatar {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: var(--accent-m);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Serif Display', serif;
+  font-size: 28px; color: #fff; flex-shrink: 0;
+}
+.founder-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px; color: #fff; margin-bottom: 4px;
+}
+.founder-role { font-size: 13px; color: rgba(255,255,255,.45); margin-bottom: 14px; }
+.founder-bio { font-size: 14px; color: rgba(255,255,255,.65); line-height: 1.75; }
+.founder-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 16px; }
+.founder-tag {
+  font-size: 11px; padding: 3px 10px; border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.14); color: rgba(255,255,255,.5);
+}
+
+/* ── RESEARCH THEMES ─────────────────────────────────── */
+.themes-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 14px;
+}
+.theme-card {
+  background: var(--white); border: 1px solid var(--rule);
+  border-radius: 12px; padding: 20px;
+  transition: transform .2s, box-shadow .2s;
+  cursor: default;
+}
+.theme-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(14,16,22,.08);
+}
+.theme-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: var(--ink3); margin-bottom: 12px;
+}
+.theme-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px; line-height: 1.25; color: var(--ink); margin-bottom: 8px;
+}
+.theme-desc { font-size: 12px; color: var(--ink3); line-height: 1.6; }
+.theme-card:nth-child(1) { border-top: 3px solid var(--accent-m); }
+.theme-card:nth-child(2) { border-top: 3px solid var(--warm); }
+.theme-card:nth-child(3) { border-top: 3px solid var(--green); }
+.theme-card:nth-child(4) { border-top: 3px solid #7B3FA8; }
+.theme-card:nth-child(5) { border-top: 3px solid #B07A00; }
+
+/* ── PUBLICATIONS ────────────────────────────────────── */
+.pub-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;
+}
+.pub-card {
+  background: var(--white); border: 1px solid var(--rule);
+  border-radius: 12px; padding: 22px 24px;
+  display: flex; flex-direction: column; gap: 14px;
+  transition: box-shadow .2s, transform .2s;
+}
+.pub-card:hover {
+  box-shadow: 0 8px 28px rgba(14,16,22,.08);
+  transform: translateY(-2px);
+}
+.pub-card--featured {
+  border-color: #BFCCE8; background: var(--accent-l);
+  grid-column: 1 / -1;
+  flex-direction: row; align-items: flex-start; gap: 28px;
+}
+.pub-type {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 1px; color: var(--ink3);
+}
+.pub-type--flagship { color: var(--accent); }
+.pub-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px; line-height: 1.28; color: var(--ink);
+}
+.pub-card--featured .pub-title { font-size: 22px; }
+.pub-meta { font-size: 12px; color: var(--ink3); }
+.pub-abstract { font-size: 13px; color: var(--ink2); line-height: 1.7; flex: 1; }
+.pub-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 12px; border-top: 1px solid var(--rule);
+}
+.pub-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.pub-tag {
+  font-size: 10px; padding: 2px 8px; border-radius: 10px;
+  background: var(--bg); color: var(--ink3); border: 1px solid var(--rule);
+}
+.pub-link {
+  font-size: 12px; font-weight: 500; color: var(--accent-m);
+  display: flex; align-items: center; gap: 4px;
+  white-space: nowrap; flex-shrink: 0;
+}
+.pub-link:hover { opacity: .75; }
+.pub-card--featured .pub-body { flex: 1; }
+.pub-card--featured .pub-badge {
+  background: var(--accent-m); color: #fff;
+  font-size: 10px; font-weight: 600; letter-spacing: .5px;
+  padding: 3px 10px; border-radius: 20px; white-space: nowrap;
+  align-self: flex-start; flex-shrink: 0;
+}
+
+/* ── DASHBOARD SECTION ───────────────────────────────── */
+.dashboard-preview {
+  background: var(--ink); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px; overflow: hidden;
+}
+.dashboard-preview-bar {
+  background: rgba(255,255,255,.05); border-bottom: 1px solid rgba(255,255,255,.08);
+  padding: 10px 16px; display: flex; align-items: center; gap: 8px;
+}
+.db-dot {
+  width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+}
+.db-url {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: rgba(255,255,255,.3); margin-left: 8px;
+}
+.dashboard-preview-body { padding: 24px; }
+.db-kpi-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 18px; }
+.db-kpi {
+  background: rgba(255,255,255,.06); border-radius: 8px;
+  padding: 12px 14px; border: 1px solid rgba(255,255,255,.08);
+}
+.db-kpi-label { font-size: 10px; color: rgba(255,255,255,.35); margin-bottom: 4px; }
+.db-kpi-val { font-size: 20px; font-weight: 300; color: #fff; }
+.db-kpi-sub { font-size: 10px; color: rgba(255,255,255,.3); margin-top: 2px; }
+.db-charts { display: grid; grid-template-columns: 2fr 1fr; gap: 12px; }
+.db-chart-card {
+  background: rgba(255,255,255,.04); border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.07); padding: 14px;
+}
+.db-chart-title { font-size: 11px; color: rgba(255,255,255,.5); margin-bottom: 12px; }
+.db-bars { display: flex; align-items: flex-end; gap: 6px; height: 80px; padding-bottom: 4px; }
+.db-bar { border-radius: 3px 3px 0 0; flex: 1; min-width: 10px; }
+.db-radar-wrap { display: flex; align-items: center; justify-content: center; padding: 10px; }
+
+/* ── METHODOLOGY ─────────────────────────────────────── */
+.method-flow { display: flex; flex-direction: column; gap: 0; }
+.method-step {
+  display: flex; gap: 20px; align-items: stretch;
+}
+.method-left {
+  display: flex; flex-direction: column; align-items: center; width: 48px; flex-shrink: 0;
+}
+.method-circle {
+  width: 38px; height: 38px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Serif Display', serif; font-size: 14px;
+  font-weight: 400; color: #fff; flex-shrink: 0;
+}
+.method-line { flex: 1; width: 2px; background: var(--rule); margin: 4px 0; }
+.method-right { flex: 1; padding-bottom: 24px; }
+.method-letter {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 1px; margin-bottom: 4px; font-weight: 400;
+}
+.method-name { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+.method-desc { font-size: 13px; color: var(--ink3); line-height: 1.6; }
+
+/* ── FRAMEWORK ───────────────────────────────────────── */
+.framework-dims { display: grid; grid-template-columns: repeat(5,1fr); gap: 10px; margin-top: 24px; }
+.fw-dim {
+  border-radius: 10px; padding: 16px 14px;
+  text-align: center; border: 1px solid var(--rule);
+  background: var(--white);
+}
+.fw-dim-num { font-size: 22px; font-weight: 300; margin-bottom: 8px; }
+.fw-dim-name { font-size: 11px; font-weight: 500; color: var(--ink); margin-bottom: 4px; line-height: 1.3; }
+.fw-dim-pct { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--ink3); }
+
+/* ── SDG ALIGNMENT ───────────────────────────────────── */
+.sdg-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.sdg-pill {
+  display: flex; align-items: center; gap: 8px;
+  border: 1px solid var(--rule); border-radius: 8px;
+  padding: 10px 16px; background: var(--white);
+  font-size: 12px; color: var(--ink2);
+}
+.sdg-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; font-weight: 400;
+  width: 32px; height: 32px; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; flex-shrink: 0; font-size: 11px; font-weight: 600;
+}
+
+/* ── CONTACT ─────────────────────────────────────────── */
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;
+}
+.contact-links { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
+.contact-link {
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 9px; padding: 13px 16px;
+  color: rgba(255,255,255,.8); font-size: 13px;
+  transition: background .15s, border-color .15s;
+}
+.contact-link:hover { background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.2); }
+.contact-link-icon {
+  width: 32px; height: 32px; border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; flex-shrink: 0;
+}
+.contact-label { font-size: 10px; color: rgba(255,255,255,.35); display: block; margin-bottom: 1px; }
+.contact-right {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 12px; padding: 26px;
+}
+.contact-right-head {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px; color: #fff; margin-bottom: 12px;
+}
+.contact-right-body { font-size: 13px; color: rgba(255,255,255,.55); line-height: 1.75; }
+.motto-block {
+  margin-top: 24px; padding: 16px 20px;
+  border: 1px solid rgba(201,90,40,.3);
+  border-radius: 8px; background: rgba(201,90,40,.07);
+}
+.motto-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; color: var(--warm); letter-spacing: 1px;
+}
+
+/* ── FOOTER ──────────────────────────────────────────── */
+.footer {
+  background: var(--ink); border-top: 1px solid rgba(255,255,255,.06);
+  padding: 32px 28px;
+}
+.footer-inner {
+  max-width: 1040px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-brand { font-size: 12px; color: rgba(255,255,255,.4); }
+.footer-brand strong { color: rgba(255,255,255,.8); }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a { font-size: 11px; color: rgba(255,255,255,.35); transition: color .15s; }
+.footer-links a:hover { color: rgba(255,255,255,.7); }
+
+/* ── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width: 720px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-stat-card { display: none; }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; }
+  .pub-grid { grid-template-columns: 1fr; }
+  .pub-card--featured { flex-direction: column; }
+  .framework-dims { grid-template-columns: repeat(3,1fr); }
+  .db-kpi-row { grid-template-columns: 1fr 1fr; }
+  .db-charts { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .themes-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .container, .container--narrow { padding: 0 16px; }
+  .themes-grid { grid-template-columns: 1fr; }
+  .framework-dims { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Site navigation">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" aria-label="DPLI home">
+      <div class="nav-logo-mark" aria-hidden="true">D</div>
+      <span class="nav-logo-text">Development Policy Lab India</span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#dashboard">Dashboard</a></li>
+      <li><a href="#framework">Framework</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#publications" class="nav-cta">View publications</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" role="banner">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow" aria-hidden="true">DPLI · New Delhi · Est. 2026</div>
+      <h1 class="hero-title">
+        Policy research for<br>
+        <em>India's implementation</em><br>
+        challenge
+      </h1>
+      <p class="hero-body">
+        Development Policy Lab India is an independent research initiative producing evidence-based analysis on governance, state capacity, and public institutions, with a focus on what actually determines whether good policy delivers results on the ground.
+      </p>
+      <div class="hero-actions">
+        <a href="#publications" class="btn-primary">Read our research ↓</a>
+        <a href="#dashboard" class="btn-outline">Explore live dashboard</a>
+      </div>
+    </div>
+    <div class="hero-stat-card" aria-label="DPLI at a glance">
+      <div class="hero-stat-card-label">DPLI AT A GLANCE</div>
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="stat-num">7</div>
+          <div class="stat-desc">Chapters in flagship report</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num">18</div>
+          <div class="stat-desc">Indian states in live dashboard</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num">5</div>
+          <div class="stat-desc">Capacity dimensions tracked</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-themes">
+          <span class="stat-theme">Governance</span>
+          <span class="stat-theme">Institutions</span>
+          <span class="stat-theme">Digital DPI</span>
+          <span class="stat-theme">SDGs</span>
+          <span class="stat-theme">South Asia</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip" role="complementary">
+  <div class="strip-inner">
+    <p class="strip-text"><strong>New publication:</strong> Flagship Report 2026: Building State Capacity for Development Outcomes in India is now available.</p>
+    <a href="#publications" class="strip-link">Read the report →</a>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section section--alt" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <div class="section-eyebrow">About DPLI</div>
+        <h2 class="section-title">Evidence that stops at diagnosis is not enough</h2>
+        <div class="about-prose">
+          <p>The Development Policy Lab India was founded on a simple conviction: most policy analysis tells you what is wrong. Very little of it tells you how to fix it. DPLI exists to close that gap.</p>
+          <p>We produce original research on governance and institutions, with a particular focus on <strong>implementation systems</strong>: the administrative capacity, human resources, digital infrastructure, and local governance mechanisms that determine whether public policy actually delivers results.</p>
+          <p>Our work is grounded in Indian realities but draws on international evidence. We apply rigorous analytical frameworks, build accessible public tools, and communicate findings in ways that are useful to policymakers, researchers, and development practitioners.</p>
+          <p><strong>Evidence. Policy. Impact.</strong></p>
+        </div>
+      </div>
+      <div class="about-pillars" role="list">
+        <div class="pillar" role="listitem">
+          <div class="pillar-icon" style="background:#EAF0FD" aria-hidden="true">🏛</div>
+          <div>
+            <div class="pillar-name">Governance research</div>
+            <div class="pillar-desc">State capacity, institutional quality, and public sector effectiveness in India and South Asia</div>
+          </div>
+        </div>
+        <div class="pillar" role="listitem">
+          <div class="pillar-icon" style="background:#FBF0EB" aria-hidden="true">📊</div>
+          <div>
+            <div class="pillar-name">Data analytics</div>
+            <div class="pillar-desc">Live dashboards and quantitative tools using government and international datasets</div>
+          </div>
+        </div>
+        <div class="pillar" role="listitem">
+          <div class="pillar-icon" style="background:#E5F4EE" aria-hidden="true">💻</div>
+          <div>
+            <div class="pillar-name">Digital governance</div>
+            <div class="pillar-desc">Digital Public Infrastructure, inclusion, and the governance of digital systems at scale</div>
+          </div>
+        </div>
+        <div class="pillar" role="listitem">
+          <div class="pillar-icon" style="background:#F5EFF9" aria-hidden="true">🎯</div>
+          <div>
+            <div class="pillar-name">Implementation frameworks</div>
+            <div class="pillar-desc">Practical reform tools including the DISER methodology and the DPLI State Capacity Framework</div>
+          </div>
+        </div>
+        <div class="pillar" role="listitem">
+          <div class="pillar-icon" style="background:#FEF7E5" aria-hidden="true">🌐</div>
+          <div>
+            <div class="pillar-name">SDG alignment</div>
+            <div class="pillar-desc">Research anchored to the 2030 Agenda, with particular focus on SDGs 5, 8, 10, and 16</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="section section--dark" id="founder">
+  <div class="container--narrow">
+    <div class="section-eyebrow" style="color:rgba(255,255,255,.4)">Founder</div>
+    <h2 class="section-title section-title--light">The person behind the work</h2>
+    <p class="section-sub section-sub--light">DPLI is an independent initiative led by a researcher committed to closing the gap between policy analysis and policy action.</p>
+
+    <div class="founder-card">
+      <div class="founder-avatar" aria-hidden="true">A</div>
+      <div>
+        <div class="founder-name">Anant Srivastava</div>
+        <div class="founder-role">Founder and Lead Policy Analyst, Development Policy Lab India</div>
+        <div class="founder-bio">
+          I work on one question: why do similar policies produce different outcomes across different institutions? The answer, I keep finding, is not in the policy. It is in the institution behind it. Across seven years of political consulting, civil society engagement, and independent research, that question has shaped everything I do. At DPLI, I build the analytical tools and produce the research to help answer it. My work spans governance diagnostics, live data analytics, and implementation-oriented policy frameworks grounded in evidence from India and South Asia and aligned with World Bank operational priorities on governance, institutions, and sustainable development.
+        </div>
+        <div class="founder-tags">
+          <span class="founder-tag">State capacity</span>
+          <span class="founder-tag">Digital governance</span>
+          <span class="founder-tag">Health systems</span>
+          <span class="founder-tag">Development economics</span>
+          <span class="founder-tag">South Asia</span>
+          <span class="founder-tag">SDG research</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH THEMES -->
+<section class="section" id="research">
+  <div class="container">
+    <div class="section-eyebrow">Research themes</div>
+    <h2 class="section-title">Five questions we are working to answer</h2>
+    <p class="section-sub">Our research is organised around the governance questions that most directly shape development outcomes in India and comparable contexts.</p>
+
+    <div class="themes-grid" role="list">
+      <div class="theme-card" role="listitem">
+        <div class="theme-num">01 / 05</div>
+        <div class="theme-name">State Capacity and Development</div>
+        <div class="theme-desc">What determines whether good policies actually produce results? How does institutional capability shape the quality and reach of public service delivery?</div>
+      </div>
+      <div class="theme-card" role="listitem">
+        <div class="theme-num">02 / 05</div>
+        <div class="theme-name">Digital Public Infrastructure</div>
+        <div class="theme-desc">How does DPI reshape the relationship between citizens and the state? What are the governance conditions under which digital systems generate genuine inclusion?</div>
+      </div>
+      <div class="theme-card" role="listitem">
+        <div class="theme-num">03 / 05</div>
+        <div class="theme-name">Health Systems as Economic Infrastructure</div>
+        <div class="theme-desc">How do health system investments generate employment multipliers and macroeconomic returns beyond their direct health impact?</div>
+      </div>
+      <div class="theme-card" role="listitem">
+        <div class="theme-num">04 / 05</div>
+        <div class="theme-name">Women's Institutional Inclusion</div>
+        <div class="theme-desc">Through what governance mechanisms do digital and administrative systems expand or constrain women's effective participation in economic and public life?</div>
+      </div>
+      <div class="theme-card" role="listitem">
+        <div class="theme-num">05 / 05</div>
+        <div class="theme-name">Implementation and Governance Reform</div>
+        <div class="theme-desc">What practical frameworks help governments move from institutional diagnosis to measurable improvements in policy delivery and development outcomes?</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section class="section section--alt" id="publications">
+  <div class="container">
+    <div class="section-eyebrow">Publications</div>
+    <h2 class="section-title">Research output</h2>
+    <p class="section-sub">Working papers, reports, and policy briefs produced by DPLI. All publications are open access.</p>
+
+    <div class="pub-grid" style="grid-template-columns:1fr 1fr;">
+      <!-- FEATURED -->
+      <div class="pub-card pub-card--featured">
+        <div class="pub-card--featured pub-badge">Flagship Report</div>
+        <div class="pub-body">
+          <div class="pub-type pub-type--flagship">DPLI · India Development Challenge Series · June 2026</div>
+          <div class="pub-title">Building State Capacity for Development Outcomes in India</div>
+          <div class="pub-meta">Anant Srivastava &nbsp;·&nbsp; 7 chapters &nbsp;·&nbsp; DPLI State Capacity Framework</div>
+          <div class="pub-abstract">A policy report examining how state capacity shapes development outcomes across 18 Indian states. Introduces the DPLI State Capacity Framework and the DISER methodology, with a phased reform roadmap spanning 2027 to 2035 and a chapter-by-chapter analysis of administrative, human resource, digital, local governance, and data capacity.</div>
+          <div class="pub-footer">
+            <div class="pub-tags">
+              <span class="pub-tag">State capacity</span>
+              <span class="pub-tag">Governance</span>
+              <span class="pub-tag">India</span>
+              <span class="pub-tag">SDGs</span>
+            </div>
+            <a href="DPLI_Flagship_Report_2026_v2.html" class="pub-link">Read report →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- WORKING PAPER 1 -->
+      <div class="pub-card" style="opacity:.85">
+        <div class="pub-type">Working Paper · Submitted June 2026</div>
+        <div class="pub-title">Digital Public Infrastructure, Institutional Confidence, and Women's Inclusion in India</div>
+        <div class="pub-meta">Anant Srivastava &nbsp;·&nbsp; DPLI Working Paper 1</div>
+        <div class="pub-abstract">Develops the Governance Pathways Framework to explain how DPI contributes to women's inclusion through institutional accessibility, reliability, and confidence rather than through technology adoption alone.</div>
+        <div class="pub-footer">
+          <div class="pub-tags">
+            <span class="pub-tag">DPI</span>
+            <span class="pub-tag">Gender</span>
+            <span class="pub-tag">Inclusion</span>
+            <span class="pub-tag" style="background:#FAEEDA;color:#633806;border-color:#FAC775">Under peer review</span>
+          </div>
+          <span class="pub-link" style="color:var(--ink3);cursor:default">Forthcoming</span>
+        </div>
+      </div>
+
+      <!-- WORKING PAPER 2 -->
+      <div class="pub-card" style="opacity:.85">
+        <div class="pub-type">Working Paper · Submitted June 2026</div>
+        <div class="pub-title">Health System Strengthening as an Economic Driver: Quantifying the Job Multiplier Effect</div>
+        <div class="pub-meta">Anant Srivastava &nbsp;·&nbsp; DPLI Working Paper 2</div>
+        <div class="pub-abstract">Examines healthcare infrastructure as productive economic investment across seven countries, documenting direct, indirect, and induced employment multiplier effects and structural conditions that determine their scale.</div>
+        <div class="pub-footer">
+          <div class="pub-tags">
+            <span class="pub-tag">Health economics</span>
+            <span class="pub-tag">Employment</span>
+            <span class="pub-tag">Development</span>
+            <span class="pub-tag" style="background:#FAEEDA;color:#633806;border-color:#FAC775">Under peer review</span>
+          </div>
+          <span class="pub-link" style="color:var(--ink3);cursor:default">Forthcoming</span>
+        </div>
+      </div>
+
+      <!-- WORKING PAPER 3 -->
+      <div class="pub-card" style="opacity:.85">
+        <div class="pub-type">Working Paper · Submitted June 2026</div>
+        <div class="pub-title">Justice as Economic Infrastructure: Judicial Modernisation, Digital Courts, and Economic Growth in Developing Economies</div>
+        <div class="pub-meta">Anant Srivastava &nbsp;·&nbsp; DPLI Working Paper 3</div>
+        <div class="pub-abstract">Argues that judicial systems should be understood as economic infrastructure. Through comparative analysis of digital court reforms in India, Brazil, and Kenya, the paper examines how judicial modernisation reduces transaction costs, strengthens contract enforcement, and supports investment and economic activity.</div>
+        <div class="pub-footer">
+          <div class="pub-tags">
+            <span class="pub-tag">Judicial reform</span>
+            <span class="pub-tag">Digital courts</span>
+            <span class="pub-tag">Economic growth</span>
+            <span class="pub-tag">India</span>
+            <span class="pub-tag" style="background:#FAEEDA;color:#633806;border-color:#FAC775">Under peer review</span>
+          </div>
+          <span class="pub-link" style="color:var(--ink3);cursor:default">Forthcoming</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARD -->
+<section class="section section--dark" id="dashboard">
+  <div class="container">
+    <div class="section-eyebrow" style="color:rgba(255,255,255,.4)">Live analytics</div>
+    <h2 class="section-title section-title--light">India State Capacity Monitor</h2>
+    <p class="section-sub section-sub--light">An interactive dashboard tracking governance and implementation performance across 18 Indian states on five dimensions of the DPLI State Capacity Framework.</p>
+
+    <!-- PREVIEW MOCKUP -->
+    <div class="dashboard-preview" role="img" aria-label="Preview of the DPLI State Capacity Dashboard">
+      <div class="dashboard-preview-bar">
+        <div class="db-dot" style="background:#E24B4A"></div>
+        <div class="db-dot" style="background:#EF9F27"></div>
+        <div class="db-dot" style="background:#1D9E75"></div>
+        <span class="db-url">dpli.net/dashboard · India State Capacity Monitor · 2026</span>
+      </div>
+      <div class="dashboard-preview-body">
+        <div class="db-kpi-row">
+          <div class="db-kpi"><div class="db-kpi-label">AVG SCORE</div><div class="db-kpi-val">57</div><div class="db-kpi-sub">out of 100</div></div>
+          <div class="db-kpi"><div class="db-kpi-label">TOP PERFORMER</div><div class="db-kpi-val" style="font-size:14px;padding-top:3px">Kerala</div><div class="db-kpi-sub">80 / 100</div></div>
+          <div class="db-kpi"><div class="db-kpi-label">CAPACITY GAP</div><div class="db-kpi-val">46</div><div class="db-kpi-sub">pts, top vs bottom</div></div>
+          <div class="db-kpi"><div class="db-kpi-label">HIGH PERFORMERS</div><div class="db-kpi-val">33%</div><div class="db-kpi-sub">6 of 18 states</div></div>
+        </div>
+        <div class="db-charts">
+          <div class="db-chart-card">
+            <div class="db-chart-title">State capacity scores, composite</div>
+            <div class="db-bars" aria-hidden="true">
+              <div class="db-bar" style="height:80%;background:#1D9E75" title="Kerala, composite 80"></div>
+              <div class="db-bar" style="height:76%;background:#1D9E75" title="Tamil Nadu, composite 76"></div>
+              <div class="db-bar" style="height:73%;background:#1D9E75" title="Himachal Pradesh, composite 73"></div>
+              <div class="db-bar" style="height:69%;background:#1D9E75" title="Maharashtra, composite 69"></div>
+              <div class="db-bar" style="height:67%;background:#1D9E75" title="Karnataka, composite 67"></div>
+              <div class="db-bar" style="height:65%;background:#1D9E75" title="Gujarat, composite 65"></div>
+              <div class="db-bar" style="height:63%;background:#EF9F27" title="Telangana, composite 63"></div>
+              <div class="db-bar" style="height:60%;background:#EF9F27" title="Andhra Pradesh, composite 60"></div>
+              <div class="db-bar" style="height:58%;background:#EF9F27" title="Punjab, composite 58"></div>
+              <div class="db-bar" style="height:56%;background:#EF9F27" title="Haryana, composite 56"></div>
+              <div class="db-bar" style="height:51%;background:#EF9F27" title="Assam, composite 51"></div>
+              <div class="db-bar" style="height:49%;background:#EF9F27" title="Odisha, composite 49"></div>
+              <div class="db-bar" style="height:45%;background:#E24B4A" title="Madhya Pradesh, composite 45"></div>
+              <div class="db-bar" style="height:43%;background:#E24B4A" title="Rajasthan, composite 43"></div>
+              <div class="db-bar" style="height:41%;background:#E24B4A" title="Uttar Pradesh, composite 41"></div>
+              <div class="db-bar" style="height:37%;background:#E24B4A" title="Jharkhand, composite 37"></div>
+              <div class="db-bar" style="height:39%;background:#E24B4A" title="Chhattisgarh, composite 39"></div>
+              <div class="db-bar" style="height:33%;background:#E24B4A" title="Bihar, composite 33"></div>
+            </div>
+          </div>
+          <div class="db-chart-card">
+            <div class="db-chart-title">Dimension breakdown, Kerala</div>
+            <div class="db-radar-wrap">
+              <svg width="130" height="120" viewBox="0 0 130 120" aria-hidden="true">
+                <polygon points="65,8 113,40 97,95 33,95 17,40" fill="rgba(21,95,168,.12)" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+                <polygon points="65,22 100,48 88,84 42,84 30,48" fill="rgba(21,95,168,.12)" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+                <polygon points="65,36 87,56 79,73 51,73 43,56" fill="rgba(21,95,168,.12)" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+                <line x1="65" y1="8" x2="65" y2="95" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                <line x1="113" y1="40" x2="17" y2="40" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                <line x1="97" y1="95" x2="33" y2="27" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                <line x1="33" y1="95" x2="97" y2="27" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                <polygon points="65,14 108,43 93,90 37,90 22,43" fill="rgba(27,95,168,.25)" stroke="#378ADD" stroke-width="1.5"/>
+                <text x="65" y="5" text-anchor="middle" font-size="8" fill="rgba(255,255,255,.4)">Admin</text>
+                <text x="118" y="42" text-anchor="start" font-size="8" fill="rgba(255,255,255,.4)">HR</text>
+                <text x="100" y="100" text-anchor="middle" font-size="8" fill="rgba(255,255,255,.4)">Digital</text>
+                <text x="30" y="100" text-anchor="middle" font-size="8" fill="rgba(255,255,255,.4)">Local</text>
+                <text x="4" y="42" text-anchor="start" font-size="8" fill="rgba(255,255,255,.4)">Data</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;text-align:center">
+      <a href="DPLI_State_Capacity_Dashboard.html" class="btn-primary" style="display:inline-flex">Open live dashboard →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FRAMEWORK -->
+<section class="section" id="framework">
+  <div class="container">
+    <div class="section-eyebrow">DPLI Framework</div>
+    <h2 class="section-title">The DPLI State Capacity Framework</h2>
+    <p class="section-sub">A structured approach for understanding and strengthening the institutional capabilities required for effective governance and development outcomes.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start">
+      <div>
+        <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:16px">The DISER methodology</div>
+        <div class="method-flow">
+          <div class="method-step">
+            <div class="method-left">
+              <div class="method-circle" style="background:#1546A0">D</div>
+              <div class="method-line"></div>
+            </div>
+            <div class="method-right">
+              <div class="method-letter" style="color:#1546A0">DIAGNOSE</div>
+              <div class="method-name">Define the challenge</div>
+              <div class="method-desc">Identify the nature, scale, and implications of the policy problem before proposing any solutions.</div>
+            </div>
+          </div>
+          <div class="method-step">
+            <div class="method-left">
+              <div class="method-circle" style="background:#C95A28">I</div>
+              <div class="method-line"></div>
+            </div>
+            <div class="method-right">
+              <div class="method-letter" style="color:#C95A28">INVESTIGATE</div>
+              <div class="method-name">Examine evidence</div>
+              <div class="method-desc">Identify root causes, review domestic and international experience, and draw actionable lessons.</div>
+            </div>
+          </div>
+          <div class="method-step">
+            <div class="method-left">
+              <div class="method-circle" style="background:#196B45">S</div>
+              <div class="method-line"></div>
+            </div>
+            <div class="method-right">
+              <div class="method-letter" style="color:#196B45">SOLVE</div>
+              <div class="method-name">Develop solutions</div>
+              <div class="method-desc">Design practical, evidence-based solutions tailored to the specific institutional context.</div>
+            </div>
+          </div>
+          <div class="method-step">
+            <div class="method-left">
+              <div class="method-circle" style="background:#7B3FA8">E</div>
+              <div class="method-line"></div>
+            </div>
+            <div class="method-right">
+              <div class="method-letter" style="color:#7B3FA8">EXECUTE</div>
+              <div class="method-name">Translate to action</div>
+              <div class="method-desc">Identify actions, timelines, stakeholders, and resource requirements for implementation.</div>
+            </div>
+          </div>
+          <div class="method-step">
+            <div class="method-left">
+              <div class="method-circle" style="background:#B07A00">R</div>
+            </div>
+            <div class="method-right">
+              <div class="method-letter" style="color:#B07A00">REVIEW</div>
+              <div class="method-name">Monitor and learn</div>
+              <div class="method-desc">Establish monitoring and evaluation mechanisms to assess progress and support continuous adaptation.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:16px">Five dimensions of state capacity</div>
+        <div class="framework-dims">
+          <div class="fw-dim" style="border-top:3px solid #1546A0">
+            <div class="fw-dim-num" style="color:#1546A0">25%</div>
+            <div class="fw-dim-name">Administrative Capacity</div>
+            <div class="fw-dim-pct">Weight</div>
+          </div>
+          <div class="fw-dim" style="border-top:3px solid #C95A28">
+            <div class="fw-dim-num" style="color:#C95A28">20%</div>
+            <div class="fw-dim-name">Human Resource Capacity</div>
+            <div class="fw-dim-pct">Weight</div>
+          </div>
+          <div class="fw-dim" style="border-top:3px solid #196B45">
+            <div class="fw-dim-num" style="color:#196B45">20%</div>
+            <div class="fw-dim-name">Digital Capacity</div>
+            <div class="fw-dim-pct">Weight</div>
+          </div>
+          <div class="fw-dim" style="border-top:3px solid #7B3FA8">
+            <div class="fw-dim-num" style="color:#7B3FA8">20%</div>
+            <div class="fw-dim-name">Local Governance Capacity</div>
+            <div class="fw-dim-pct">Weight</div>
+          </div>
+          <div class="fw-dim" style="border-top:3px solid #B07A00">
+            <div class="fw-dim-num" style="color:#B07A00">15%</div>
+            <div class="fw-dim-name">Data Capacity</div>
+            <div class="fw-dim-pct">Weight</div>
+          </div>
+        </div>
+
+        <div style="margin-top:28px">
+          <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:14px">SDG alignment</div>
+          <div class="sdg-row">
+            <div class="sdg-pill">
+              <div class="sdg-num" style="background:#19486A">3</div>
+              Good health and well-being
+            </div>
+            <div class="sdg-pill">
+              <div class="sdg-num" style="background:#A21942">5</div>
+              Gender equality
+            </div>
+            <div class="sdg-pill">
+              <div class="sdg-num" style="background:#FD9D24">8</div>
+              Decent work and growth
+            </div>
+            <div class="sdg-pill">
+              <div class="sdg-num" style="background:#DD1367">10</div>
+              Reduced inequalities
+            </div>
+            <div class="sdg-pill">
+              <div class="sdg-num" style="background:#00689D">16</div>
+              Peace, justice, institutions
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section section--dark" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <div class="section-eyebrow" style="color:rgba(255,255,255,.35)">Get in touch</div>
+        <h2 class="section-title section-title--light">Connect with DPLI</h2>
+        <p class="section-sub section-sub--light">For research inquiries, collaboration proposals, or feedback on our publications.</p>
+
+        <div class="contact-links">
+          <a href="mailto:contact.DPLI@dpli.net" class="contact-link">
+            <div class="contact-link-icon" style="background:rgba(21,70,160,.3)">✉</div>
+            <div>
+              <span class="contact-label">Email</span>
+              contact.DPLI@dpli.net
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/anantsrivastava" class="contact-link" target="_blank" rel="noopener noreferrer">
+            <div class="contact-link-icon" style="background:rgba(0,119,181,.3)">in</div>
+            <div>
+              <span class="contact-label">LinkedIn</span>
+              Anant Srivastava, DPLI Founder
+            </div>
+          </a>
+          <a href="https://ssrn.com/author=dpli" class="contact-link" target="_blank" rel="noopener noreferrer">
+            <div class="contact-link-icon" style="background:rgba(201,90,40,.3)">S</div>
+            <div>
+              <span class="contact-label">SSRN</span>
+              Working papers, forthcoming on acceptance
+            </div>
+          </a>
+          <a href="https://github.com/DevelopmentLab-INDIA" class="contact-link" target="_blank" rel="noopener noreferrer">
+            <div class="contact-link-icon" style="background:rgba(255,255,255,.1)">⌥</div>
+            <div>
+              <span class="contact-label">GitHub</span>
+              DevelopmentLab-INDIA, dashboards and open tools
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-right">
+        <div class="contact-right-head">About this initiative</div>
+        <div class="contact-right-body">
+          <p style="margin-bottom:12px">DPLI is an independent, unfunded research initiative. All publications are produced independently and are freely available.</p>
+          <p style="margin-bottom:12px">Research is aligned with the Sustainable Development Goals and draws on frameworks developed by the World Bank, OECD, UNDP, and peer-reviewed governance literature.</p>
+          <p>If you are a researcher, policymaker, or development professional working in related areas and would like to discuss the work, please reach out via email or LinkedIn.</p>
+        </div>
+        <div class="motto-block">
+          <div class="motto-text">EVIDENCE · POLICY · IMPACT</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <strong>Development Policy Lab India (DPLI)</strong><br>
+      Independent governance and development research · New Delhi · 2026
+    </div>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#publications">Publications</a>
+      <a href="DPLI_State_Capacity_Dashboard.html">Dashboard</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const links = document.querySelectorAll('.nav-links a');
+const sections = document.querySelectorAll('section[id], div[id]');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      links.forEach(l => l.classList.remove('active'));
+      const a = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+      if(a) a.classList.add('active');
+    }
+  });
+}, {rootMargin:'-40% 0px -55% 0px'});
+sections.forEach(s => obs.observe(s));
+</script>
+
+</body>
+</html>
