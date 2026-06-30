@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPLI Policy Brief No. 01 — The Implementation Gap</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --orange:   #C95A28;
+  --blue:     #1546A0;
+  --green:    #1D9E75;
+  --navy:     #0D1117;
+  --navy2:    #1A2332;
+  --gold:     #C9A84C;
+  --red:      #E24B4A;
+  --cream:    #F8F6F1;
+  --cream2:   #F0EDE6;
+  --white:    #FFFFFF;
+  --text:     #1A1A2E;
+  --text2:    #3A4A5A;
+  --text3:    #6A7A8A;
+  --border:   #DDD8CE;
+  --border2:  #C8C2B8;
+  --blue-bg:  #EEF4FC;
+  --font-h:   'Playfair Display', Georgia, serif;
+  --font-b:   'Lato', Arial, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+@media print {
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .no-print { display: none; }
+}
+
+body {
+  font-family: var(--font-b);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--white);
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* ── TOP STRIPE ─────────────────────────────── */
+.top-stripe {
+  height: 5px;
+  background: linear-gradient(90deg, var(--orange) 0%, var(--blue) 55%, var(--green) 100%);
+}
+
+/* ── COVER / MASTHEAD ───────────────────────── */
+.cover {
+  background: var(--navy);
+  padding: 36px 56px 32px;
+  position: relative;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 28px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding-bottom: 20px;
+}
+.brand-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand-d {
+  width: 28px; height: 28px;
+  background: var(--blue);
+  color: var(--white);
+  font-family: var(--font-h);
+  font-size: 16px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 5px;
+  flex-shrink: 0;
+}
+.brand-name {
+  font-family: var(--font-b);
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 0.5px;
+}
+.brand-sub {
+  font-size: 10px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 2px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.brief-badge {
+  text-align: right;
+}
+.brief-badge-num {
+  font-family: var(--font-b);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--orange);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.brief-badge-date {
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  margin-top: 3px;
+}
+
+.cover-title-block { }
+.cover-eyebrow {
+  font-family: var(--font-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cover-eyebrow::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.1);
+}
+.cover-h1 {
+  font-family: var(--font-h);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.15;
+  letter-spacing: -0.3px;
+  margin-bottom: 8px;
+}
+.cover-h1-sub {
+  font-family: var(--font-h);
+  font-size: 26px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--orange);
+  line-height: 1.25;
+  margin-bottom: 20px;
+}
+.cover-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.7;
+  max-width: 600px;
+  margin-bottom: 20px;
+}
+.cover-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.cover-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.5);
+}
+.cover-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.cover-author {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+}
+.cover-author strong {
+  color: rgba(255,255,255,0.75);
+  font-weight: 700;
+}
+.evidence-pill {
+  font-family: var(--font-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--orange);
+  text-transform: uppercase;
+}
+
+/* ── MAIN CONTENT ────────────────────────────── */
+.main {
+  background: var(--cream);
+  padding: 40px 56px;
+}
+
+/* ── KEY FINDINGS ────────────────────────────── */
+.findings {
+  background: var(--blue-bg);
+  border-left: 4px solid var(--blue);
+  border-radius: 0 6px 6px 0;
+  padding: 18px 20px;
+  margin-bottom: 36px;
+}
+.findings-ey {
+  font-family: var(--font-b);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 12px;
+}
+.findings-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.findings-list li {
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.6;
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+}
+.findings-list li::before {
+  content: '—';
+  color: var(--blue);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.findings-list li strong { color: var(--orange); font-weight: 700; }
+
+/* ── SECTION ──────────────────────────────────── */
+.section { margin-bottom: 36px; }
+
+.section-eyebrow {
+  font-family: var(--font-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-eyebrow::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.section-h2 {
+  font-family: var(--font-h);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 4px;
+  line-height: 1.25;
+  border-bottom: 2px solid var(--blue);
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+}
+
+.section p {
+  font-size: 13.5px;
+  color: var(--text);
+  line-height: 1.75;
+  margin-bottom: 12px;
+}
+.section p strong { font-weight: 700; color: var(--navy); }
+
+/* ── FIGURE BOX ──────────────────────────────── */
+.figure-box {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+.figure-label {
+  background: var(--cream2);
+  padding: 8px 16px;
+  font-family: var(--font-b);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  border-bottom: 1px solid var(--border);
+}
+.figure-inner { padding: 16px; }
+
+/* ── STAT ROW ─────────────────────────────────── */
+.stat-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin: 16px 0;
+}
+.stat-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px 14px;
+  text-align: center;
+}
+.stat-n {
+  font-family: var(--font-h);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-l {
+  font-size: 11px;
+  color: var(--text3);
+  line-height: 1.4;
+}
+
+/* ── TABLE ────────────────────────────────────── */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.data-table th {
+  background: var(--navy);
+  color: var(--white);
+  font-family: var(--font-b);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 9px 14px;
+  text-align: left;
+  letter-spacing: 0.5px;
+}
+.data-table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  background: var(--white);
+}
+.data-table tr:nth-child(even) td { background: var(--cream); }
+.data-table tr.gap-row td {
+  background: #FFF5F0;
+  font-weight: 700;
+  border-bottom: 2px solid var(--border2);
+}
+.val-green { color: var(--green); font-weight: 700; }
+.val-red   { color: var(--red);   font-weight: 700; }
+.val-blue  { color: var(--blue);  font-weight: 700; }
+.src-note {
+  font-size: 11px;
+  color: var(--text3);
+  font-style: italic;
+  margin-top: 6px;
+}
+
+/* ── CASE STUDY ──────────────────────────────── */
+.case-study {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+.case-study-label {
+  background: var(--cream2);
+  padding: 7px 16px;
+  font-family: var(--font-b);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--orange);
+  border-bottom: 1px solid var(--border);
+}
+.case-study-title {
+  font-family: var(--font-h);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--navy);
+  padding: 12px 16px 0;
+}
+.case-study-body {
+  padding: 8px 16px 14px;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.7;
+}
+.case-study-body p { margin-bottom: 8px; }
+.case-study-key {
+  margin-top: 8px;
+  background: var(--blue-bg);
+  border-left: 3px solid var(--blue);
+  padding: 8px 12px;
+  font-size: 12.5px;
+  color: var(--text2);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* ── STEPS ────────────────────────────────────── */
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 16px;
+}
+.step-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.55;
+}
+.step-dot {
+  width: 22px; height: 22px;
+  background: var(--green);
+  color: var(--white);
+  font-family: var(--font-b);
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.step-row strong { color: var(--navy); }
+
+/* ── QUOTE ────────────────────────────────────── */
+.quote {
+  border-left: 3px solid var(--gold);
+  padding: 12px 18px;
+  background: var(--white);
+  margin: 20px 0;
+  border-radius: 0 6px 6px 0;
+}
+.quote-text {
+  font-family: var(--font-h);
+  font-size: 14px;
+  font-style: italic;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.quote-attr {
+  font-size: 11px;
+  color: var(--text3);
+  margin-top: 7px;
+}
+
+/* ── SUB SECTION TITLE ──────────────────────── */
+.sub-title {
+  font-family: var(--font-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin: 20px 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── RECOMMENDATIONS ─────────────────────────── */
+.rec-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+}
+.rec {
+  display: flex;
+  gap: 14px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 16px;
+  align-items: flex-start;
+}
+.rec-num {
+  width: 30px; height: 30px;
+  background: var(--blue);
+  color: var(--white);
+  font-family: var(--font-h);
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.rec-body { flex: 1; }
+.rec-title {
+  font-family: var(--font-h);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 7px;
+}
+.rec-points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.rec-points li {
+  font-size: 12.5px;
+  color: var(--text2);
+  line-height: 1.55;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.rec-points li::before {
+  content: '→';
+  color: var(--blue);
+  font-weight: 700;
+  font-size: 11px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ── DIVIDER ─────────────────────────────────── */
+.div { height: 1px; background: var(--border); margin: 28px 0; }
+.div-orange { height: 2px; background: var(--orange); margin: 28px 0; }
+
+/* ── SOURCES ──────────────────────────────────── */
+.sources {
+  background: var(--cream2);
+  padding: 24px 56px;
+  border-top: 1px solid var(--border);
+}
+.sources-ey {
+  font-family: var(--font-b);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 12px;
+}
+.source-item {
+  font-size: 11.5px;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-bottom: 5px;
+  padding-left: 16px;
+  position: relative;
+}
+.source-item::before {
+  content: '·';
+  position: absolute;
+  left: 4px;
+  color: var(--orange);
+  font-size: 14px;
+}
+
+/* ── ABOUT ────────────────────────────────────── */
+.about {
+  background: var(--navy);
+  padding: 24px 56px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.about-ey {
+  font-family: var(--font-b);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 8px;
+}
+.about-body {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.65;
+}
+.about-link {
+  font-size: 11px;
+  color: var(--blue);
+  margin-top: 6px;
+}
+.about-name {
+  font-family: var(--font-h);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.about-role {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.5;
+}
+
+/* ── BOTTOM STRIPE ───────────────────────────── */
+.bottom-stripe {
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue), var(--orange));
+}
+</style>
+</head>
+<body>
+
+<div class="top-stripe"></div>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-top">
+    <div>
+      <div class="brand-row">
+        <div class="brand-d">D</div>
+        <div>
+          <div class="brand-name">Development Policy Lab India</div>
+          <div class="brand-sub">Policy Brief Series &nbsp;·&nbsp; Open Access</div>
+        </div>
+      </div>
+    </div>
+    <div class="brief-badge">
+      <div class="brief-badge-num">Policy Brief No. 01</div>
+      <div class="brief-badge-date">July 2026 &nbsp;·&nbsp; developmentlab-india.github.io</div>
+    </div>
+  </div>
+
+  <div class="cover-title-block">
+    <div class="cover-eyebrow">Implementation Governance &nbsp;·&nbsp; Centrally Sponsored Schemes &nbsp;·&nbsp; State Capacity</div>
+    <div class="cover-h1">The Implementation Gap:</div>
+    <div class="cover-h1-sub">Why Centrally Sponsored Schemes Underdeliver</div>
+    <div class="cover-desc">India runs approximately 75 Centrally Sponsored Schemes with a combined FY25 budget of Rs 5 trillion. Implementation quality — not scheme design or funding level — determines whether these schemes reach their intended beneficiaries. This brief examines the structural causes of India's implementation gap and recommends five institutional reforms to close it.</div>
+    <div class="cover-tags">
+      <span class="cover-tag">State Capacity</span>
+      <span class="cover-tag">Governance</span>
+      <span class="cover-tag">SDGs</span>
+      <span class="cover-tag">Public Finance</span>
+      <span class="cover-tag">DPLI Flagship Report 2026</span>
+    </div>
+  </div>
+
+  <div class="cover-footer">
+    <div class="cover-author">
+      <strong>Anant Srivastava</strong> &nbsp;·&nbsp; Founder and Lead Policy Analyst, Development Policy Lab India
+    </div>
+    <div class="evidence-pill">Evidence. Policy. Impact.</div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- KEY FINDINGS -->
+  <div class="findings">
+    <div class="findings-ey">Key Findings</div>
+    <ul class="findings-list">
+      <li>India runs approximately 75 Centrally Sponsored Schemes with a combined FY25 budget of Rs 5 trillion — 10.4% of the total Union Budget. A further 740 Central Sector Schemes run concurrently.</li>
+      <li>Kerala scores 79 and Bihar scores 57 on the NITI Aayog SDG India Index 2023-24 — despite Bihar receiving higher per capita central transfers. Same schemes, same constitutional framework, 22-point gap.</li>
+      <li>The Aspirational Districts Programme reached 250 million people across 112 districts without creating new schemes — by improving implementation of existing ones.</li>
+      <li>The gap is driven by three institutional failures: political incentives that favour announcement over delivery, centre-state coordination failures, and measurement systems that reward inputs rather than outcomes.</li>
+      <li><strong>The implementation gap is not a funding problem. It is an institutional capacity problem.</strong></li>
+    </ul>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="section">
+    <div class="section-eyebrow">Section 1</div>
+    <div class="section-h2">The Problem</div>
+    <p>India possesses one of the most extensive public programme architectures in the developing world. Over three decades, successive governments have expanded welfare schemes, increased expenditure, and directed proportionally higher per capita transfers to its most transfer-dependent states. The inputs are substantial. The outcomes are not converging.</p>
+    <p>Between the policy announcement and the citizen experience, something breaks down. The gap is consistent, measurable, and well-documented. Yet it persists. This brief argues the reason is structural: India has invested heavily in scheme design and financial transfers while systematically underinvesting in the institutional systems required to make those schemes work.</p>
+    <p>The result is what the DPLI Flagship Report 2026 calls the implementation paradox: a country where expanding inputs coexist with persistent delivery gaps across health, education, social protection, and financial inclusion.</p>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section">
+    <div class="section-eyebrow">Section 2</div>
+    <div class="section-h2">The Evidence</div>
+
+    <div class="sub-title">Scale of the scheme architecture</div>
+    <p>India currently runs approximately 75 Centrally Sponsored Schemes with a combined FY25 budget of Rs 5 trillion, representing 10.4% of the Union Budget. A further 740 Central Sector Schemes operate concurrently. The scheme count was rationalised from 131 CSSs in 2021 — but implementation quality has not improved commensurately.</p>
+
+    <div class="figure-box">
+      <div class="figure-label">Figure 1 &nbsp;·&nbsp; Scale of the implementation challenge</div>
+      <div class="figure-inner">
+        <div class="stat-row">
+          <div class="stat-card">
+            <div class="stat-n" style="color:var(--blue)">~75</div>
+            <div class="stat-l">Active Centrally Sponsored Schemes · FY25 budget Rs 5 trillion · 10.4% of Union Budget</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-n" style="color:var(--text2)">740+</div>
+            <div class="stat-l">Central Sector Schemes running concurrently alongside CSS</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-n" style="color:var(--red)">22 pts</div>
+            <div class="stat-l">SDG score gap between Kerala and Bihar on the same national index</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-title">The outcome divergence</div>
+    <div class="figure-box">
+      <div class="figure-label">Table 1 &nbsp;·&nbsp; State capacity and SDG performance · NITI Aayog SDG India Index 2023-24</div>
+      <div class="figure-inner" style="padding:0;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>State</th>
+              <th>SDG Score 2023-24</th>
+              <th>Transfer Dependency</th>
+              <th>DPLI Capacity Tier</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong class="val-green">Kerala</strong></td>
+              <td><strong class="val-green">79 / 100</strong></td>
+              <td>Low</td>
+              <td class="val-green">High capacity</td>
+            </tr>
+            <tr>
+              <td><strong class="val-red">Bihar</strong></td>
+              <td><strong class="val-red">57 / 100</strong></td>
+              <td>High</td>
+              <td class="val-red">Capacity-constrained</td>
+            </tr>
+            <tr class="gap-row">
+              <td>Gap</td>
+              <td class="val-red">22 points</td>
+              <td colspan="2" style="color:var(--text3);font-style:italic;font-size:12px;font-weight:400;">Bihar receives higher per capita central transfers than Kerala</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="src-note" style="padding:8px 14px;">Source: NITI Aayog SDG India Index 2023-24. Transfer dependency ranking: PRS State of State Finances 2023-24 and RBI State Finances data.</div>
+      </div>
+    </div>
+
+    <div class="sub-title">The Aspirational Districts Programme — proof of concept</div>
+    <div class="case-study">
+      <div class="case-study-label">Case Study &nbsp;·&nbsp; Aspirational Districts Programme &nbsp;·&nbsp; NITI Aayog 2018–Present</div>
+      <div class="case-study-title">Implementation as a Development Strategy</div>
+      <div class="case-study-body">
+        <p>Launched in January 2018, the Aspirational Districts Programme targeted India's 112 most underserved districts across 27 states. The programme did not create new schemes. It improved the implementation of existing ones through three mechanisms:</p>
+        <div class="steps">
+          <div class="step-row">
+            <div class="step-dot">1</div>
+            <span><strong>Real-time monitoring</strong> across 49 KPIs in five sectors — health, education, agriculture, financial inclusion, and infrastructure.</span>
+          </div>
+          <div class="step-row">
+            <div class="step-dot">2</div>
+            <span><strong>Competitive benchmarking</strong> that ranked 112 districts monthly on incremental progress, pushing decision-making closer to delivery.</span>
+          </div>
+          <div class="step-row">
+            <div class="step-dot">3</div>
+            <span><strong>District-level accountability</strong> that made local administrators directly responsible for outcome improvements, not just expenditure.</span>
+          </div>
+        </div>
+        <div class="case-study-key">Key lesson: Better development outcomes result from stronger implementation systems — not new schemes, not new money. UNDP has lauded ADP as the world's largest results-based governance initiative, reaching 250 million people. (NITI Aayog, 2024; UNDP, 2024)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section">
+    <div class="section-eyebrow">Section 3</div>
+    <div class="section-h2">The Institutional Explanation</div>
+    <p>Why does scheme proliferation persist despite declining marginal returns? Three mechanisms operate simultaneously.</p>
+    <p><strong>First, political incentives favour announcement over implementation.</strong> Announcing a new scheme generates visibility and credit-claiming at the national level. Investing in district administration's capacity to deliver an existing scheme does not. This creates a structural bias toward expansion and away from consolidation.</p>
+    <p><strong>Second, centre-state coordination failures compound the problem.</strong> Centrally Sponsored Schemes are designed at the Union level and implemented by state governments under funding-sharing arrangements. The implementation variable — state institutional capacity — is not a criterion in scheme design. States with weak administrative systems receive schemes they cannot operationalise at the same quality as states with stronger institutions.</p>
+    <p><strong>Third, measurement systems reward inputs rather than outcomes.</strong> Annual budget allocations, expenditure tracking, and scheme compliance audits measure what governments spend — not what citizens receive. The institutional investment required to bridge this gap remains systematically underfunded because it does not produce measurable outputs the current accountability system rewards.</p>
+
+    <div class="quote">
+      <div class="quote-text">"India's next development frontier is not about expanding what government promises, but about improving how government delivers. Strengthening administrative systems, investing in public personnel, deploying digital technologies, and empowering local institutions are the levers that matter most."</div>
+      <div class="quote-attr">DPLI Flagship Report 2026, Foreword — Anant Srivastava, Founder, Development Policy Lab India</div>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section">
+    <div class="section-eyebrow">Section 4</div>
+    <div class="section-h2">Policy Recommendations</div>
+    <p>The following recommendations are drawn from DPLI analysis of the Aspirational Districts Programme, the NITI Aayog SDG India Index, and international evidence on scheme rationalisation and implementation reform.</p>
+
+    <div class="rec-list">
+      <div class="rec">
+        <div class="rec-num">1</div>
+        <div class="rec-body">
+          <div class="rec-title">Extend the ADP model to all CSS delivery</div>
+          <ul class="rec-points">
+            <li>Apply real-time monitoring, competitive benchmarking, and district accountability to all major Centrally Sponsored Schemes — not only the 112 aspirational districts.</li>
+            <li>Establish a Champions of Change equivalent for CSS delivery tracking across all 765 districts.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="rec">
+        <div class="rec-num">2</div>
+        <div class="rec-body">
+          <div class="rec-title">Invest in state implementation capacity as a precondition for scheme allocation</div>
+          <ul class="rec-points">
+            <li>Introduce a State Implementation Readiness Assessment before new CSS allocations. States below a minimum institutional capacity threshold should receive capacity-building support first.</li>
+            <li>The 16th Finance Commission should consider administrative capacity as a criterion in the devolution formula.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="rec">
+        <div class="rec-num">3</div>
+        <div class="rec-body">
+          <div class="rec-title">Shift measurement from expenditure to outcomes</div>
+          <ul class="rec-points">
+            <li>Replace input-based compliance audits with outcome-linked performance reviews for all CSS.</li>
+            <li>Publish state-level implementation quality scorecards annually, disaggregated by scheme and district.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="rec">
+        <div class="rec-num">4</div>
+        <div class="rec-body">
+          <div class="rec-title">Continue rationalisation — fewer schemes, stronger implementation</div>
+          <ul class="rec-points">
+            <li>The rationalisation from 131 to 75 CSSs should continue. Evidence consistently shows fewer, better-implemented programmes outperform more poorly-run ones.</li>
+            <li>Consolidate overlapping schemes into umbrella programmes with flexible state implementation frameworks.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="rec">
+        <div class="rec-num">5</div>
+        <div class="rec-body">
+          <div class="rec-title">Build a National Implementation Monitoring Architecture</div>
+          <ul class="rec-points">
+            <li>Establish a dedicated implementation monitoring function within NITI Aayog, drawing on the DPLI India State Governance Data Monitor model.</li>
+            <li>Track administrative capacity, frontline vacancy rates, grievance resolution times, and delivery quality alongside financial expenditure for all major CSS.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end main -->
+
+<!-- SOURCES -->
+<div class="sources">
+  <div class="sources-ey">Sources and References</div>
+  <div class="source-item">NITI Aayog. (2024). SDG India Index and Dashboard 2023-24. Government of India.</div>
+  <div class="source-item">NITI Aayog. (2024). Aspirational Districts Programme: Best Practices Compendium. Government of India.</div>
+  <div class="source-item">Union Budget 2024-25, Statement 4A: Centrally Sponsored Schemes. Ministry of Finance, Government of India.</div>
+  <div class="source-item">PRS Legislative Research. (2024). State of State Finances 2023-24. PRS India.</div>
+  <div class="source-item">Reserve Bank of India. (2024). State Finances: A Study of Budgets 2023-24. RBI.</div>
+  <div class="source-item">UNDP. (2024). Aspirational Districts Programme. United Nations Development Programme SDG Knowledge Hub.</div>
+  <div class="source-item">IDinsight. (2024). Strengthening Administrative Data Quality and Use in India's Aspirational Districts.</div>
+  <div class="source-item">Andrews, M., Pritchett, L., and Woolcock, M. (2017). Building State Capability. Oxford University Press.</div>
+  <div class="source-item">World Bank. (2017). World Development Report 2017: Governance and the Law. World Bank.</div>
+  <div class="source-item">Srivastava, A. (2026). Building State Capacity for Development Outcomes in India. DPLI Flagship Report 2026.</div>
+</div>
+
+<!-- ABOUT -->
+<div class="about">
+  <div>
+    <div class="about-ey">About DPLI</div>
+    <div class="about-body">Development Policy Lab India (DPLI) is an independent governance research initiative producing evidence-based analysis on state capacity and development effectiveness across India's 28 states and 8 union territories. All publications are open access.</div>
+    <div class="about-link">developmentlab-india.github.io &nbsp;·&nbsp; contact.DPLI@dpli.net</div>
+  </div>
+  <div style="text-align:right;">
+    <div class="about-ey">Author</div>
+    <div class="about-name">Anant Srivastava</div>
+    <div class="about-role">Founder and Lead Policy Analyst<br>Development Policy Lab India</div>
+  </div>
+</div>
+
+<div class="bottom-stripe"></div>
+
+</body>
+</html>
