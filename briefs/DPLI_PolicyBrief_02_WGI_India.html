@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPLI Policy Brief No. 02: State Capacity and the World Bank Governance Indicators</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --orange:   #C95A28;
+  --blue:     #1546A0;
+  --green:    #1D9E75;
+  --navy:     #0D1117;
+  --navy2:    #1A2332;
+  --gold:     #C9A84C;
+  --red:      #E24B4A;
+  --cream:    #F8F6F1;
+  --cream2:   #F0EDE6;
+  --white:    #FFFFFF;
+  --text:     #1A1A2E;
+  --text2:    #3A4A5A;
+  --text3:    #6A7A8A;
+  --border:   #DDD8CE;
+  --border2:  #C8C2B8;
+  --blue-bg:  #EEF4FC;
+  --font-h:   'Playfair Display', Georgia, serif;
+  --font-b:   'Lato', Arial, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+@media print {
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .no-print { display: none; }
+}
+
+body {
+  font-family: var(--font-b);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--white);
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* TOP STRIPE */
+.top-stripe {
+  height: 5px;
+  background: linear-gradient(90deg, var(--orange) 0%, var(--blue) 55%, var(--green) 100%);
+}
+
+/* COVER */
+.cover {
+  background: var(--navy);
+  padding: 36px 56px 32px;
+  position: relative;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 28px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding-bottom: 20px;
+}
+.brand-row { display: flex; align-items: center; gap: 10px; }
+.brand-d {
+  width: 28px; height: 28px;
+  background: var(--blue);
+  color: var(--white);
+  font-family: var(--font-h);
+  font-size: 16px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 5px; flex-shrink: 0;
+}
+.brand-name { font-family: var(--font-b); font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.9); letter-spacing: 0.5px; }
+.brand-sub  { font-size: 10px; color: rgba(255,255,255,0.4); margin-top: 2px; letter-spacing: 1px; text-transform: uppercase; }
+.brief-badge { text-align: right; }
+.brief-badge-num  { font-family: var(--font-b); font-size: 11px; font-weight: 700; color: var(--orange); letter-spacing: 2px; text-transform: uppercase; }
+.brief-badge-date { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 3px; }
+
+.cover-eyebrow {
+  font-family: var(--font-b); font-size: 10px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase; color: var(--orange);
+  margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+}
+.cover-eyebrow::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.1); }
+.cover-h1 { font-family: var(--font-h); font-size: 36px; font-weight: 700; color: var(--white); line-height: 1.15; letter-spacing: -0.3px; margin-bottom: 8px; }
+.cover-h1-sub { font-family: var(--font-h); font-size: 26px; font-weight: 400; font-style: italic; color: var(--orange); line-height: 1.25; margin-bottom: 20px; }
+.cover-desc { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.7; max-width: 600px; margin-bottom: 20px; }
+.cover-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.cover-tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.5); }
+.cover-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.08); }
+.cover-author { font-size: 11px; color: rgba(255,255,255,0.4); }
+.cover-author strong { color: rgba(255,255,255,0.75); font-weight: 700; }
+.evidence-pill { font-family: var(--font-b); font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--orange); text-transform: uppercase; }
+
+/* MAIN */
+.main { background: var(--cream); padding: 40px 56px; }
+
+/* KEY FINDINGS */
+.findings { background: var(--blue-bg); border-left: 4px solid var(--blue); border-radius: 0 6px 6px 0; padding: 18px 20px; margin-bottom: 36px; }
+.findings-ey { font-family: var(--font-b); font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+.findings-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.findings-list li { font-size: 13px; color: var(--text); line-height: 1.6; display: flex; gap: 9px; align-items: flex-start; }
+.findings-list li::before { content: '\2014'; color: var(--blue); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.findings-list li strong { color: var(--orange); font-weight: 700; }
+
+/* CORRECTION NOTICE */
+.correction-notice {
+  background: #FFF8E6;
+  border-left: 4px solid var(--gold);
+  border-radius: 0 6px 6px 0;
+  padding: 12px 16px;
+  margin-bottom: 28px;
+  font-size: 12px;
+  color: var(--text2);
+  line-height: 1.6;
+}
+.correction-notice strong { color: var(--navy); }
+
+/* SECTION */
+.section { margin-bottom: 36px; }
+.section-eyebrow { font-family: var(--font-b); font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--orange); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+.section-eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.section-h2 { font-family: var(--font-h); font-size: 24px; font-weight: 700; color: var(--navy); line-height: 1.25; border-bottom: 2px solid var(--blue); padding-bottom: 8px; margin-bottom: 16px; }
+.section p { font-size: 13.5px; color: var(--text); line-height: 1.75; margin-bottom: 12px; }
+.section p strong { font-weight: 700; color: var(--navy); }
+
+/* FIGURE BOX */
+.figure-box { background: var(--white); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; margin: 20px 0; }
+.figure-label { background: var(--cream2); padding: 8px 16px; font-family: var(--font-b); font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text3); border-bottom: 1px solid var(--border); }
+.figure-inner { padding: 16px; }
+
+/* STAT ROW */
+.stat-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 16px 0; }
+.stat-card { background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 16px 14px; text-align: center; }
+.stat-n { font-family: var(--font-h); font-size: 32px; font-weight: 700; line-height: 1; margin-bottom: 6px; }
+.stat-l { font-size: 11px; color: var(--text3); line-height: 1.4; }
+
+/* TABLE */
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.data-table th { background: var(--navy); color: var(--white); font-family: var(--font-b); font-size: 11px; font-weight: 700; padding: 9px 14px; text-align: left; letter-spacing: 0.5px; }
+.data-table td { padding: 9px 14px; border-bottom: 1px solid var(--border); color: var(--text); background: var(--white); }
+.data-table tr:nth-child(even) td { background: var(--cream); }
+.val-green { color: var(--green); font-weight: 700; }
+.val-red   { color: var(--red);   font-weight: 700; }
+.val-blue  { color: var(--blue);  font-weight: 700; }
+.val-amber { color: var(--gold);  font-weight: 700; }
+.src-note { font-size: 11px; color: var(--text3); font-style: italic; margin-top: 6px; }
+
+/* SUB SECTION TITLE */
+.sub-title { font-family: var(--font-b); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--blue); margin: 20px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+
+/* QUOTE */
+.quote { border-left: 3px solid var(--gold); padding: 12px 18px; background: var(--white); margin: 20px 0; border-radius: 0 6px 6px 0; }
+.quote-text { font-family: var(--font-h); font-size: 14px; font-style: italic; color: var(--text2); line-height: 1.7; }
+.quote-attr { font-size: 11px; color: var(--text3); margin-top: 7px; }
+
+/* CASE STUDY */
+.case-study { background: var(--white); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; margin: 20px 0; }
+.case-study-label { background: var(--cream2); padding: 7px 16px; font-family: var(--font-b); font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); border-bottom: 1px solid var(--border); }
+.case-study-title { font-family: var(--font-h); font-size: 15px; font-weight: 600; color: var(--navy); padding: 12px 16px 0; }
+.case-study-body { padding: 8px 16px 14px; font-size: 13px; color: var(--text); line-height: 1.7; }
+.case-study-body p { margin-bottom: 8px; }
+.case-study-key { margin-top: 8px; background: var(--blue-bg); border-left: 3px solid var(--blue); padding: 8px 12px; font-size: 12.5px; color: var(--text2); font-style: italic; line-height: 1.6; }
+
+/* RECOMMENDATIONS */
+.rec-list { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; }
+.rec { display: flex; gap: 14px; background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px; align-items: flex-start; }
+.rec-num { width: 30px; height: 30px; background: var(--blue); color: var(--white); font-family: var(--font-h); font-size: 14px; font-weight: 700; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.rec-body { flex: 1; }
+.rec-title { font-family: var(--font-h); font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 7px; }
+.rec-points { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+.rec-points li { font-size: 12.5px; color: var(--text2); line-height: 1.55; display: flex; gap: 8px; align-items: flex-start; }
+.rec-points li::before { content: '\2192'; color: var(--blue); font-weight: 700; font-size: 11px; flex-shrink: 0; margin-top: 2px; }
+
+/* DIVIDERS */
+.div { height: 1px; background: var(--border); margin: 28px 0; }
+.div-orange { height: 2px; background: var(--orange); margin: 28px 0; }
+
+/* SOURCES */
+.sources { background: var(--cream2); padding: 24px 56px; border-top: 1px solid var(--border); }
+.sources-ey { font-family: var(--font-b); font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--text3); margin-bottom: 12px; }
+.source-item { font-size: 11.5px; color: var(--text3); line-height: 1.7; margin-bottom: 5px; padding-left: 16px; position: relative; }
+.source-item::before { content: '\00B7'; position: absolute; left: 4px; color: var(--orange); font-size: 14px; }
+
+/* ABOUT */
+.about { background: var(--navy); padding: 24px 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.about-ey { font-family: var(--font-b); font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 8px; }
+.about-body { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.65; }
+.about-link { font-size: 11px; color: var(--blue); margin-top: 6px; }
+.about-name { font-family: var(--font-h); font-size: 16px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+.about-role { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.5; }
+
+/* BOTTOM STRIPE */
+.bottom-stripe { height: 3px; background: linear-gradient(90deg, var(--blue), var(--orange)); }
+</style>
+</head>
+<body>
+
+<div class="top-stripe"></div>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-top">
+    <div>
+      <div class="brand-row">
+        <div class="brand-d">D</div>
+        <div>
+          <div class="brand-name">Development Policy Lab India</div>
+          <div class="brand-sub">Policy Brief Series &nbsp;·&nbsp; Open Access</div>
+        </div>
+      </div>
+    </div>
+    <div class="brief-badge">
+      <div class="brief-badge-num">Policy Brief No. 02</div>
+      <div class="brief-badge-date">July 2026 &nbsp;·&nbsp; developmentlab-india.github.io</div>
+    </div>
+  </div>
+
+  <div class="cover-title-block">
+    <div class="cover-eyebrow">State Capacity &nbsp;·&nbsp; Governance Indicators &nbsp;·&nbsp; World Bank WGI</div>
+    <div class="cover-h1">State Capacity and the</div>
+    <div class="cover-h1-sub">World Bank Governance Indicators: Where Does India Stand?</div>
+    <div class="cover-desc">India has a governance data problem. Not a shortage of data. The problem is the distance between what the numbers say and what actually happens on the ground. This brief examines what the World Bank's Worldwide Governance Indicators say about India in 2023, what they get right, and where they fall short.</div>
+    <div class="cover-tags">
+      <span class="cover-tag">State Capacity</span>
+      <span class="cover-tag">Governance</span>
+      <span class="cover-tag">WGI</span>
+      <span class="cover-tag">World Bank</span>
+      <span class="cover-tag">Sub-National Governance</span>
+    </div>
+  </div>
+
+  <div class="cover-footer">
+    <div class="cover-author">
+      <strong>Anant Srivastava</strong> &nbsp;·&nbsp; Founder and Lead Policy Analyst, Development Policy Lab India
+    </div>
+    <div class="evidence-pill">Evidence. Policy. Impact.</div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- FACT-CHECK CORRECTION NOTICE -->
+  <div class="correction-notice">
+    <strong>Data correction from source document:</strong> The original brief cited institutional delivery rates of 99.8% for Goa and 67.5% for Meghalaya. NFHS-5 (2019-21) records Goa at 100% and Meghalaya at 58.1%. Both figures have been corrected below.
+  </div>
+
+  <!-- KEY FINDINGS -->
+  <div class="findings">
+    <div class="findings-ey">Key Findings</div>
+    <ul class="findings-list">
+      <li>India's Government Effectiveness score rose from 59.0 in 2019 to 67.9 in 2023, reflecting real gains from digital payment systems, direct benefit transfers and infrastructure coordination under PM GatiShakti.</li>
+      <li>Voice and Accountability fell from 56.0 to 51.5. Control of Corruption declined from 44.8 to 41.5. Both declines are consistent across multiple independent sources, making them harder to dismiss.</li>
+      <li>Political Stability sits at 21.3, India's lowest WGI score by a wide margin. It has barely moved since 2019.</li>
+      <li>A national Government Effectiveness score of 67.9 cannot capture the difference between Tamil Nadu's public health system and Uttar Pradesh's. NFHS-5 shows institutional delivery ranging from 100% in Goa to 58.1% in Meghalaya. That is not a small variation.</li>
+      <li><strong>The gap between what WGI shows and what citizens experience remains wide. That gap is where governance actually matters.</strong></li>
+    </ul>
+  </div>
+
+  <!-- SECTION 1: THE PROBLEM -->
+  <div class="section">
+    <div class="section-eyebrow">Section 1</div>
+    <div class="section-h2">The Governance Data Problem</div>
+    <p>India has a governance data problem. Not a shortage of data. The problem is the distance between what the numbers say and what actually happens on the ground. In districts like Behraich in Uttar Pradesh, that distance is visible every day. Government schemes exist on paper. Delivery is another matter.</p>
+    <p>The World Bank's Worldwide Governance Indicators, known as the WGI, are one of the most widely used tools for measuring this kind of gap. They cover 214 countries and have been published annually since 1996. This brief looks at what those indicators say about India in 2023, what they get right, and where they fall short.</p>
+  </div>
+
+  <!-- SECTION 2: WHAT WGI MEASURES -->
+  <div class="section">
+    <div class="section-eyebrow">Section 2</div>
+    <div class="section-h2">What the WGI Measures</div>
+    <p>The WGI tracks six dimensions: Voice and Accountability, Political Stability, Government Effectiveness, Regulatory Quality, Rule of Law, and Control of Corruption. Each is built from dozens of data sources, including surveys, expert assessments, and ratings from international organisations. Scores run from 0 to 100. A higher score means better governance.</p>
+    <p>India's 2023 scores, verified from the World Bank WGI dataset and cross-checked against Trading Economics and Business Standard's September 2025 analysis, are set out in the table below.</p>
+
+    <div class="figure-box">
+      <div class="figure-label">Table 1 &nbsp;·&nbsp; India's WGI Scores 2019 and 2023 &nbsp;·&nbsp; World Bank Dataset</div>
+      <div class="figure-inner" style="padding:0;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>WGI Dimension</th>
+              <th>2019 Score</th>
+              <th>2023 Score</th>
+              <th>Direction</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Government Effectiveness</strong></td>
+              <td>59.0</td>
+              <td class="val-green">67.9</td>
+              <td class="val-green">Improving</td>
+            </tr>
+            <tr>
+              <td><strong>Voice and Accountability</strong></td>
+              <td>56.0</td>
+              <td class="val-red">51.5</td>
+              <td class="val-red">Declining</td>
+            </tr>
+            <tr>
+              <td><strong>Control of Corruption</strong></td>
+              <td>44.8</td>
+              <td class="val-red">41.5</td>
+              <td class="val-red">Declining</td>
+            </tr>
+            <tr>
+              <td><strong>Regulatory Quality</strong></td>
+              <td>N/A</td>
+              <td class="val-amber">47.2</td>
+              <td class="val-amber">Stable</td>
+            </tr>
+            <tr>
+              <td><strong>Rule of Law</strong></td>
+              <td>N/A</td>
+              <td class="val-green">~56-58</td>
+              <td class="val-green">Improving</td>
+            </tr>
+            <tr>
+              <td><strong>Political Stability</strong></td>
+              <td>19.3</td>
+              <td class="val-red">21.3</td>
+              <td class="val-red">Bottom Quartile</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="src-note" style="padding:8px 14px;">Source: World Bank WGI Dataset 2023. Scores on 0-100 percentile rank scale. Rule of Law estimated from index value of 0.19 (World Bank, 2023). Verified via Trading Economics and Business Standard analysis, September 2025.</div>
+      </div>
+    </div>
+
+    <p>These are not bad scores for a country of India's size and diversity. Government Effectiveness at 67.9 is a real achievement. But they are national averages. They say nothing about the difference between Kerala and Bihar. Or why two districts in the same state can have completely different outcomes on the same welfare scheme. That gap is where governance actually matters.</p>
+  </div>
+
+  <!-- SECTION 3: WHAT CHANGED -->
+  <div class="section">
+    <div class="section-eyebrow">Section 3</div>
+    <div class="section-h2">What Changed Between 2019 and 2023</div>
+    <p>Looking at movement over time is more useful than looking at a single year.</p>
+
+    <div class="figure-box">
+      <div class="figure-label">Figure 1 &nbsp;·&nbsp; Key WGI Movements 2019 to 2023</div>
+      <div class="figure-inner">
+        <div class="stat-row">
+          <div class="stat-card">
+            <div class="stat-n" style="color:var(--green)">+8.9</div>
+            <div class="stat-l">Government Effectiveness gain (59.0 to 67.9). Driven by digital payments, DBT and PM GatiShakti.</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-n" style="color:var(--red)">-4.5</div>
+            <div class="stat-l">Voice and Accountability decline (56.0 to 51.5). Consistent across Freedom House, EIU, and RSF.</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-n" style="color:var(--red)">-3.3</div>
+            <div class="stat-l">Control of Corruption decline (44.8 to 41.5). Fell despite the Prevention of Corruption Act strengthening.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-title">Government Effectiveness</div>
+    <p>The gain from 59.0 to 67.9 is nine points in four years. The most likely drivers are investments in digital payment systems, direct benefit transfers through Jan Dhan and Aadhaar, and the expansion of infrastructure coordination under PM GatiShakti. The improvement is real.</p>
+
+    <div class="sub-title">Voice and Accountability</div>
+    <p>This dimension fell from 56.0 to 51.5. It draws on sources including Freedom House, the Economist Intelligence Unit, and Reporters Without Borders, all of which flagged concerns about press freedom and civic space during this period. You can question their methods. But the drop is consistent across multiple independent sources, which makes it harder to dismiss.</p>
+
+    <div class="sub-title">Control of Corruption</div>
+    <p>This fell from 44.8 to 41.5. India put significant resources into anti-corruption work during this period. The Prevention of Corruption Act was strengthened. Enforcement agencies were active. And yet the perception of corruption went down, not up. Laws alone do not change how people behave. If officials act corruptly because they expect their colleagues to do the same, changing the law does not break that cycle. Changing the norm does. This is something behavioural research on governance has shown repeatedly, including in the World Bank's own work on public administration.</p>
+
+    <div class="quote">
+      <div class="quote-text">"Corruption is partly a coordination problem. The intervention point is social norms, not criminal penalties alone. Legal reform moves this WGI dimension slowly; what shifts it is a combination of transparency, functioning grievance systems that people actually use, and changes in what officials expect of each other."</div>
+      <div class="quote-attr">Anant Srivastava, Development Policy Lab India, 2026</div>
+    </div>
+
+    <div class="sub-title">Political Stability</div>
+    <p>This sits at 21.3. It has barely moved. It reflects perceptions of internal conflict, insurgency, and politically motivated violence. These are real issues and not easy to fix through administrative reform alone.</p>
+  </div>
+
+  <!-- SECTION 4: WHY NATIONAL NUMBERS MISS THE POINT -->
+  <div class="section">
+    <div class="section-eyebrow">Section 4</div>
+    <div class="section-h2">Why National Numbers Miss the Point</div>
+    <p>India is not one governance system. It is 28 state systems and 8 union territories, covering around 766 districts. These operate under a constitutional framework that splits responsibility between the centre and the states across three lists.</p>
+    <p>A national Government Effectiveness score of 67.9 cannot tell you that Tamil Nadu's public health system and Uttar Pradesh's public health system are operating at fundamentally different levels. NFHS-5 data from 2019-21 shows this plainly.</p>
+
+    <div class="figure-box">
+      <div class="figure-label">Table 2 &nbsp;·&nbsp; Institutional Delivery Rate by State &nbsp;·&nbsp; NFHS-5 (2019-21)</div>
+      <div class="figure-inner" style="padding:0;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>State</th>
+              <th>Institutional Delivery Rate</th>
+              <th>Regional Context</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong class="val-green">Goa</strong></td>
+              <td class="val-green">100%</td>
+              <td>Highest in country (rural areas)</td>
+            </tr>
+            <tr>
+              <td><strong class="val-green">Kerala</strong></td>
+              <td class="val-green">99.8%</td>
+              <td>Marginal decline from 99.9% in NFHS-4</td>
+            </tr>
+            <tr>
+              <td>National Average</td>
+              <td class="val-blue">88.6%</td>
+              <td>Up from 78.9% in NFHS-4</td>
+            </tr>
+            <tr>
+              <td><strong class="val-amber">Bihar</strong></td>
+              <td class="val-amber">76.2%</td>
+              <td>Below national average</td>
+            </tr>
+            <tr>
+              <td><strong class="val-red">Meghalaya</strong></td>
+              <td class="val-red">58.1%</td>
+              <td>Among lowest in country</td>
+            </tr>
+            <tr>
+              <td><strong class="val-red">Nagaland</strong></td>
+              <td class="val-red">45.7%</td>
+              <td>Lowest recorded in NFHS-5</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="src-note" style="padding:8px 14px;">Source: NFHS-5 (2019-21), International Institute for Population Sciences (IIPS) and ICF, 2021. National report and state-level factsheets.</div>
+      </div>
+    </div>
+
+    <p>That is not a small variation. It is a structural gap. A 41.9 percentage-point spread between Goa and Meghalaya exists within one constitutional framework, one set of national health schemes, and one Union Budget allocation for reproductive and child health. The WGI was not designed to capture this. But the gap is real and it matters more for actual governance than any national average.</p>
+
+    <div class="case-study">
+      <div class="case-study-label">DPLI Analysis &nbsp;·&nbsp; Sub-National Governance Monitor</div>
+      <div class="case-study-title">The Sub-National Gap India's WGI Score Cannot Show</div>
+      <div class="case-study-body">
+        <p>DPLI's India State Governance Data Monitor builds state-level governance profiles using official data from NITI Aayog's SDG India Index, DARPG, MoHFW, and World Bank IBRD datasets. The spread between India's best and worst-performing states on sub-national governance indicators is wider than the spread between India and several comparable middle-income countries on the same WGI dimension.</p>
+        <div class="case-study-key">The WGI was not designed to capture this. Used alone, a national score of 67.9 on Government Effectiveness obscures more than it reveals. Used alongside India's own administrative data, it is a useful starting point. The right use of a governance indicator is to ask better questions, not to produce a ranking.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: THREE REFORM IMPLICATIONS -->
+  <div class="section">
+    <div class="section-eyebrow">Section 5</div>
+    <div class="section-h2">Three Things This Means for Reform</div>
+
+    <div class="rec-list">
+      <div class="rec">
+        <div class="rec-num">1</div>
+        <div class="rec-body">
+          <div class="rec-title">Track scheme penetration at district and block level, not just enrolment figures</div>
+          <ul class="rec-points">
+            <li>The Government Effectiveness gain is concentrated in digital systems. Those systems have their own last-mile problem. A citizen without a working Aadhaar link, or with a dormant bank account, or in an area with poor connectivity, does not benefit from national-level efficiency gains.</li>
+            <li>NITI Aayog's Aspirational Districts Programme does exactly this across 112 districts on 49 indicators. That kind of monitoring is how you connect national data to local reality.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rec">
+        <div class="rec-num">2</div>
+        <div class="rec-body">
+          <div class="rec-title">Take a different approach to corruption control</div>
+          <ul class="rec-points">
+            <li>Legal frameworks move this WGI dimension slowly. What shifts it is transparency, functioning grievance systems that people use, and changes in what officials expect of each other.</li>
+            <li>If corruption is partly a coordination problem, the intervention point is social norms rather than criminal penalties. The World Bank's own research on behavioural public administration supports this.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rec">
+        <div class="rec-num">3</div>
+        <div class="rec-body">
+          <div class="rec-title">Give the Voice and Accountability decline honest attention</div>
+          <ul class="rec-points">
+            <li>The institutions that feed into this dimension are not perfect. Their methods can be questioned. But when multiple independent sources point in the same direction consistently, that signal is worth taking seriously.</li>
+            <li>Accountability mechanisms, press freedom, and civic engagement are not separate from governance effectiveness. They are part of the foundation the other dimensions rest on.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: LIMITATIONS -->
+  <div class="section">
+    <div class="section-eyebrow">Section 6</div>
+    <div class="section-h2">Limitations of the WGI</div>
+    <p>The WGI has real weaknesses worth naming directly.</p>
+    <p>Several of its source datasets rely on expert and business surveys. These reflect how governance looks to firms and professionals, not necessarily to ordinary citizens. The Control of Corruption dimension uses 24 different source combinations that vary by country, which makes direct cross-country comparison complicated. The World Bank itself flags wide margins of error on individual country scores. Small year-on-year changes often fall within those margins.</p>
+    <p>This brief uses the WGI as one tool, not a final verdict. Used alongside India's own administrative data, including DARPG's CPGRAMS grievance data, the NITI Aayog SDG Index, ASER education data, and NFHS health data, the WGI provides a useful international reference point. The right use of a governance indicator is not to produce a ranking. It is to ask better questions about where things are improving, where they are not, and why the gap between what the data shows and what citizens experience remains so wide.</p>
+  </div>
+
+</div>
+
+<!-- SOURCES -->
+<div class="sources">
+  <div class="sources-ey">Data Sources and References</div>
+  <div class="source-item">World Bank WGI Dataset (2023). Worldwide Governance Indicators. Washington, D.C.: World Bank Group. Accessed via data.worldbank.org and Trading Economics.</div>
+  <div class="source-item">Kaufmann, D. and Kraay, A. (2024). The Worldwide Governance Indicators: Methodology and 2024 Update. World Bank Policy Research Working Paper. Washington, D.C.: World Bank Group.</div>
+  <div class="source-item">Business Standard Number Wise. (September 2025). Governance gaps weigh on India's sovereign ratings. businessstandard.substack.com</div>
+  <div class="source-item">NFHS-5 (2019-21). National Family Health Survey, India, 2019-21. International Institute for Population Sciences (IIPS) and ICF, Mumbai. National report and state-level factsheets.</div>
+  <div class="source-item">NITI Aayog. (2023-24). SDG India Index and Dashboard 2023-24. New Delhi: NITI Aayog.</div>
+  <div class="source-item">NITI Aayog. (2024). Aspirational Districts Programme: Progress Report. New Delhi: NITI Aayog.</div>
+  <div class="source-item">UNDP. (2024). Aspirational Districts Programme recognition. New York: UNDP.</div>
+  <div class="source-item">TheGlobalEconomy.com. WGI India data (2023). theglobaleconomy.com</div>
+</div>
+
+<!-- ABOUT -->
+<div class="about">
+  <div>
+    <div class="about-ey">About DPLI</div>
+    <div class="about-body">Development Policy Lab India is an independent governance research initiative based in New Delhi. DPLI produces policy briefs, working papers and data-driven analysis on state capacity, institutional effectiveness and development governance across India's states.</div>
+    <div class="about-link">developmentlab-india.github.io</div>
+  </div>
+  <div>
+    <div class="about-ey">About the Author</div>
+    <div class="about-name">Anant Srivastava</div>
+    <div class="about-role">Founder and Lead Policy Analyst, Development Policy Lab India (DPLI). Field experience across rural Uttar Pradesh including Behraich Aspirational District (49 KPIs, NITI Aayog ADP). Views expressed are those of the author.</div>
+  </div>
+</div>
+
+<div class="bottom-stripe"></div>
+
+</body>
+</html>
