@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DPLI Policy Note: Everyone Compares India to Sri Lanka on HDI</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --orange:   #C95A28;
+  --blue:     #1546A0;
+  --green:    #1D9E75;
+  --navy:     #0D1117;
+  --navy2:    #1A2332;
+  --gold:     #C9A84C;
+  --red:      #E24B4A;
+  --cream:    #F8F6F1;
+  --cream2:   #F0EDE6;
+  --white:    #FFFFFF;
+  --text:     #1A1A2E;
+  --text2:    #3A4A5A;
+  --text3:    #6A7A8A;
+  --border:   #DDD8CE;
+  --border2:  #C8C2B8;
+  --blue-bg:  #EEF4FC;
+  --font-h:   'Playfair Display', Georgia, serif;
+  --font-b:   'Lato', Arial, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+@media print {
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .no-print { display: none; }
+}
+
+body {
+  font-family: var(--font-b);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--white);
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* ── TOP STRIPE ─────────────────────────────── */
+.top-stripe {
+  height: 5px;
+  background: linear-gradient(90deg, var(--orange) 0%, var(--blue) 55%, var(--green) 100%);
+}
+
+/* ── COVER / MASTHEAD ───────────────────────── */
+.cover {
+  background: var(--navy);
+  padding: 36px 56px 32px;
+  position: relative;
+}
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 28px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding-bottom: 20px;
+}
+.brand-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand-d {
+  width: 28px; height: 28px;
+  background: var(--blue);
+  color: var(--white);
+  font-family: var(--font-h);
+  font-size: 16px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 5px;
+  flex-shrink: 0;
+}
+.brand-name {
+  font-family: var(--font-b);
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 0.5px;
+}
+.brand-sub {
+  font-size: 10px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 2px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.brief-badge {
+  text-align: right;
+}
+.brief-badge-num {
+  font-family: var(--font-b);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--orange);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.brief-badge-date {
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  margin-top: 3px;
+}
+
+.cover-title-block { }
+.cover-eyebrow {
+  font-family: var(--font-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cover-eyebrow::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.1);
+}
+.cover-h1 {
+  font-family: var(--font-h);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.15;
+  letter-spacing: -0.3px;
+  margin-bottom: 8px;
+}
+.cover-h1-sub {
+  font-family: var(--font-h);
+  font-size: 26px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--orange);
+  line-height: 1.25;
+  margin-bottom: 20px;
+}
+.cover-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.7;
+  max-width: 600px;
+  margin-bottom: 20px;
+}
+.cover-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.cover-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.5);
+}
+.cover-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.cover-author {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+}
+.cover-author strong {
+  color: rgba(255,255,255,0.75);
+  font-weight: 700;
+}
+.evidence-pill {
+  font-family: var(--font-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--orange);
+  text-transform: uppercase;
+}
+
+/* ── MAIN CONTENT ────────────────────────────── */
+.main {
+  background: var(--cream);
+  padding: 40px 56px;
+}
+
+/* ── KEY FINDINGS ────────────────────────────── */
+.findings {
+  background: var(--blue-bg);
+  border-left: 4px solid var(--blue);
+  border-radius: 0 6px 6px 0;
+  padding: 18px 20px;
+  margin-bottom: 36px;
+}
+.findings-ey {
+  font-family: var(--font-b);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 12px;
+}
+.findings-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.findings-list li {
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.6;
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+}
+.findings-list li::before {
+  content: '—';
+  color: var(--blue);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.findings-list li strong { color: var(--orange); font-weight: 700; }
+
+/* ── SECTION ──────────────────────────────────── */
+.section { margin-bottom: 36px; }
+
+.section-eyebrow {
+  font-family: var(--font-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-eyebrow::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.section-h2 {
+  font-family: var(--font-h);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 4px;
+  line-height: 1.25;
+  border-bottom: 2px solid var(--blue);
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+}
+
+.section p {
+  font-size: 13.5px;
+  color: var(--text);
+  line-height: 1.75;
+  margin-bottom: 12px;
+}
+.section p strong { font-weight: 700; color: var(--navy); }
+
+/* ── FIGURE BOX ──────────────────────────────── */
+.figure-box {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+.figure-label {
+  background: var(--cream2);
+  padding: 8px 16px;
+  font-family: var(--font-b);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  border-bottom: 1px solid var(--border);
+}
+.figure-inner { padding: 16px; }
+
+/* ── STAT ROW ─────────────────────────────────── */
+.stat-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin: 16px 0;
+}
+.stat-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px 14px;
+  text-align: center;
+}
+.stat-n {
+  font-family: var(--font-h);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-l {
+  font-size: 11px;
+  color: var(--text3);
+  line-height: 1.4;
+}
+
+/* ── TABLE ────────────────────────────────────── */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.data-table th {
+  background: var(--navy);
+  color: var(--white);
+  font-family: var(--font-b);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 9px 14px;
+  text-align: left;
+  letter-spacing: 0.5px;
+}
+.data-table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  background: var(--white);
+}
+.data-table tr:nth-child(even) td { background: var(--cream); }
+.data-table tr.gap-row td {
+  background: #FFF5F0;
+  font-weight: 700;
+  border-bottom: 2px solid var(--border2);
+}
+.val-green { color: var(--green); font-weight: 700; }
+.val-red   { color: var(--red);   font-weight: 700; }
+.val-blue  { color: var(--blue);  font-weight: 700; }
+.src-note {
+  font-size: 11px;
+  color: var(--text3);
+  font-style: italic;
+  margin-top: 6px;
+}
+
+/* ── CASE STUDY ──────────────────────────────── */
+.case-study {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+.case-study-label {
+  background: var(--cream2);
+  padding: 7px 16px;
+  font-family: var(--font-b);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--orange);
+  border-bottom: 1px solid var(--border);
+}
+.case-study-title {
+  font-family: var(--font-h);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--navy);
+  padding: 12px 16px 0;
+}
+.case-study-body {
+  padding: 8px 16px 14px;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.7;
+}
+.case-study-body p { margin-bottom: 8px; }
+.case-study-key {
+  margin-top: 8px;
+  background: var(--blue-bg);
+  border-left: 3px solid var(--blue);
+  padding: 8px 12px;
+  font-size: 12.5px;
+  color: var(--text2);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* ── STEPS ────────────────────────────────────── */
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 16px;
+}
+.step-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.55;
+}
+.step-dot {
+  width: 22px; height: 22px;
+  background: var(--green);
+  color: var(--white);
+  font-family: var(--font-b);
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.step-row strong { color: var(--navy); }
+
+/* ── QUOTE ────────────────────────────────────── */
+.quote {
+  border-left: 3px solid var(--gold);
+  padding: 12px 18px;
+  background: var(--white);
+  margin: 20px 0;
+  border-radius: 0 6px 6px 0;
+}
+.quote-text {
+  font-family: var(--font-h);
+  font-size: 14px;
+  font-style: italic;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.quote-attr {
+  font-size: 11px;
+  color: var(--text3);
+  margin-top: 7px;
+}
+
+/* ── SUB SECTION TITLE ──────────────────────── */
+.sub-title {
+  font-family: var(--font-b);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin: 20px 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── RECOMMENDATIONS ─────────────────────────── */
+.rec-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+}
+.rec {
+  display: flex;
+  gap: 14px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 16px;
+  align-items: flex-start;
+}
+.rec-num {
+  width: 30px; height: 30px;
+  background: var(--blue);
+  color: var(--white);
+  font-family: var(--font-h);
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.rec-body { flex: 1; }
+.rec-title {
+  font-family: var(--font-h);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 7px;
+}
+.rec-points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.rec-points li {
+  font-size: 12.5px;
+  color: var(--text2);
+  line-height: 1.55;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.rec-points li::before {
+  content: '→';
+  color: var(--blue);
+  font-weight: 700;
+  font-size: 11px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ── DIVIDER ─────────────────────────────────── */
+.div { height: 1px; background: var(--border); margin: 28px 0; }
+.div-orange { height: 2px; background: var(--orange); margin: 28px 0; }
+
+/* ── SOURCES ──────────────────────────────────── */
+.sources {
+  background: var(--cream2);
+  padding: 24px 56px;
+  border-top: 1px solid var(--border);
+}
+.sources-ey {
+  font-family: var(--font-b);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 12px;
+}
+.source-item {
+  font-size: 11.5px;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-bottom: 5px;
+  padding-left: 16px;
+  position: relative;
+}
+.source-item::before {
+  content: '·';
+  position: absolute;
+  left: 4px;
+  color: var(--orange);
+  font-size: 14px;
+}
+
+/* ── ABOUT ────────────────────────────────────── */
+.about {
+  background: var(--navy);
+  padding: 24px 56px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.about-ey {
+  font-family: var(--font-b);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 8px;
+}
+.about-body {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.65;
+}
+.about-link {
+  font-size: 11px;
+  color: var(--blue);
+  margin-top: 6px;
+}
+.about-name {
+  font-family: var(--font-h);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.about-role {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.5;
+}
+
+/* ── BOTTOM STRIPE ───────────────────────────── */
+.bottom-stripe {
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue), var(--orange));
+}
+</style>
+</head>
+<body>
+
+<div class="top-stripe"></div>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-top">
+    <div>
+      <div class="brand-row">
+        <div class="brand-d">D</div>
+        <div>
+          <div class="brand-name">Development Policy Lab India</div>
+          <div class="brand-sub">Policy Brief Series &nbsp;·&nbsp; Open Access</div>
+        </div>
+      </div>
+    </div>
+    <div class="brief-badge">
+      <div class="brief-badge-num">Policy Note</div>
+      <div class="brief-badge-date">July 2026 &nbsp;·&nbsp; developmentlab-india.github.io</div>
+    </div>
+  </div>
+
+  <div class="cover-title-block">
+    <div class="cover-eyebrow">Human Development &nbsp;·&nbsp; Indo-Pacific Comparisons &nbsp;·&nbsp; Governance</div>
+    <div class="cover-h1">Everyone Compares India to Sri Lanka on HDI.</div>
+    <div class="cover-h1-sub">No one asks what year that data is from.</div>
+    <div class="cover-desc">India ranks below Sri Lanka and ties with Bangladesh on the UNDP's Human Development Index. Both comparisons use data from before each country's biggest recent crisis. Here is why that matters, and what actually deserves India's attention instead.</div>
+    <div class="cover-tags">
+      <span class="cover-tag">Human Development</span>
+      <span class="cover-tag">HDI</span>
+      <span class="cover-tag">South Asia</span>
+      <span class="cover-tag">Governance</span>
+    </div>
+  </div>
+
+  <div class="cover-footer">
+    <div class="cover-author">
+      <strong>Anant Srivastava</strong> &nbsp;·&nbsp; Founder and Lead Policy Analyst, Development Policy Lab India
+    </div>
+    <div class="evidence-pill">Evidence. Policy. Impact.</div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- KEY FINDINGS -->
+  <div class="findings">
+    <div class="findings-ey">Key Findings</div>
+    <ul class="findings-list">
+      <li>India ranks 130th of 193 countries on the UNDP's 2025 report, tied with Bangladesh, behind Sri Lanka (89th) and Bhutan (125th).</li>
+      <li>Sri Lanka's rank uses 2023 data, one year after the country defaulted on its debt and its president fled the country.</li>
+      <li>Bangladesh's tied rank uses 2023 data too, meaning it predates the August 2024 collapse of its government entirely.</li>
+      <li>India loses 30.7% of its HDI value to inequality, the steepest loss in the region. Bangladesh loses 19%, China 17%, Sri Lanka 16%.</li>
+      <li><strong>A rank comparison against a country that just defaulted or just had its government fall is not a governance verdict. It is a data timing problem.</strong></li>
+    </ul>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="section">
+    <div class="section-eyebrow">Section 1</div>
+    <div class="section-h2">The Comparison Nobody Checks the Date On</div>
+    <p>Every year the same headline shows up somewhere. Sri Lanka beats India on human development. So does Bhutan. Bangladesh is tied with us. People treat this like a scorecard. India loses, again.</p>
+    <p>I used to read these comparisons the same way. Then I looked at what year the data was actually from.</p>
+    <p>Here is the thing nobody mentions.</p>
+    <p>Sri Lanka's 2023 number, the one that puts it at rank 89, comfortably ahead of India, comes one year after the country defaulted on its debt. Not "had a rough patch." Defaulted. The president fled the country. Inflation went past 70 percent. People queued for fuel. This is not ancient history. This happened in 2022.</p>
+    <p>And Sri Lanka still ranks ahead of India using data from right after that.</p>
+
+    <div class="figure-box">
+      <div class="figure-label">Figure 1 &nbsp;·&nbsp; What the 2025 HDI report is actually measuring</div>
+      <div class="figure-inner">
+        <div class="stat-row">
+          <div class="stat-card">
+            <div class="stat-n" style="color:var(--orange)">130</div>
+            <div class="stat-l">India's rank of 193, tied with Bangladesh</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-n" style="color:var(--blue)">89</div>
+            <div class="stat-l">Sri Lanka's rank, one year after its 2022 default</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-n" style="color:var(--red)">30.7%</div>
+            <div class="stat-l">India's HDI lost to inequality, steepest in the region</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p>That is not a mistake in the UNDP's numbers. It is just what happens when you build an index out of things that move slowly. Life expectancy does not collapse because the currency did. Years of schooling already completed do not get erased because the president left the country on a navy ship. The index is measuring stock, not the news cycle. So a country can go through an actual economic collapse and the index barely notices, because the index was never built to notice things like that quickly.</p>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section">
+    <div class="section-eyebrow">Section 2</div>
+    <div class="section-h2">Bangladesh Is the Same Story, Different Flavour</div>
+    <p>Bangladesh ties India at rank 130 using 2023 numbers. Fine. Except in August 2024 the government fell. Sheikh Hasina left the country after a student uprising that, by UN estimates, killed around 1,400 people. An interim government backed by the army has been running things since. There have been mob killings. The economy has slowed hard. None of that is in the number we keep comparing ourselves to, because the number was already locked in before any of it happened.</p>
+
+    <div class="case-study">
+      <div class="case-study-label">The Timing Problem</div>
+      <div class="case-study-title">What "tied with India" actually means here</div>
+      <div class="case-study-body">
+        <p>When someone says Bangladesh matches India on human development, what they are actually saying is that a version of Bangladesh that stopped existing in August 2024 matches India. That is a strange thing to keep repeating as if it is current information.</p>
+        <div class="case-study-key">The next HDR cycle using 2024 or 2025 data may show a very different picture. The current comparison should not be read as a live snapshot of two comparably governed states.</div>
+      </div>
+    </div>
+
+    <p>I am not saying the HDI is rigged or wrong. It isn't. UNDP applies the same method to every country, and that consistency is exactly why the index is useful for what it does measure. What I am saying is that a rank comparison by itself is being asked to answer a question it was never designed to answer: which of these countries is actually more stable, more capable, better governed, right now. It cannot answer that. It was never built to.</p>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section">
+    <div class="section-eyebrow">Section 3</div>
+    <div class="section-h2">The Number That Actually Matters For India</div>
+    <p>If you want the one HDI-related number that should worry Indian policymakers, it isn't the rank. It's the IHDI, the inequality adjusted version.</p>
+    <p>India loses 30.7 percent of its HDI value once you adjust for how unevenly development is spread across the population. That is the steepest loss in the region. Bangladesh loses 19 percent. China loses 17. Sri Lanka, mid recovery from a sovereign default, loses 16.</p>
+
+    <table class="data-table">
+      <tr><th>Country</th><th>HDI Rank</th><th>IHDI Loss</th></tr>
+      <tr><td>China</td><td>78</td><td class="val-green">17%</td></tr>
+      <tr><td>Sri Lanka</td><td>89</td><td class="val-green">16%</td></tr>
+      <tr class="gap-row"><td>India</td><td>130</td><td class="val-red">30.7%</td></tr>
+      <tr><td>Bangladesh</td><td>130 (tied)</td><td class="val-blue">19%</td></tr>
+    </table>
+    <div class="src-note">Source: UNDP Human Development Report 2025, IHDI Statistical Annex.</div>
+
+    <p style="margin-top:16px;">Sit with that for a second. The countries we get told are ahead of us are, on this specific measure, more evenly developed than we are. That part is real. That part should worry us more than any rank comparison ever will, because it points at something we can actually fix: how unevenly the gains of growth get distributed inside our own borders, across states, across genders, across social groups.</p>
+    <p>The rank comparison makes India look bad relative to countries that are, in at least one of those two cases, mid-crisis or post-collapse. The inequality number makes India look genuinely worse at something real and ongoing: sharing development gains evenly across its own population. Both things can be true. They are just different problems, and only one of them is really comparable across countries the way people assume.</p>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section">
+    <div class="section-eyebrow">Section 4</div>
+    <div class="section-h2">What I Am Not Saying</div>
+    <p>I want to be careful here because this argument gets misused easily.</p>
+    <p>I am not saying Sri Lanka's recovery since 2022 is fake. It genuinely is not. Growth came back in 2024 and 2025. Debt restructuring has actually progressed. The World Bank moved Sri Lanka back into upper-middle-income status in mid-2026. That is a real turnaround and it deserves to be called one.</p>
+    <p>I am also not saying Bangladesh is a failed state, or that its 2024 uprising erases everything before it. Governments fall. Countries recover, or don't, on their own timelines. That is normal history, not a scandal.</p>
+    <p>What I am pointing at is narrower than either of those claims. It is this: a single number, calculated once a year off slow moving inputs, cannot tell you which of two neighbouring countries is currently more stable or better governed. People keep using it that way anyway. That is the actual problem here, not the index itself.</p>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section">
+    <div class="section-eyebrow">Section 5</div>
+    <div class="section-h2">What Would Actually Help</div>
+    <p>A few small things would fix most of this.</p>
+    <p>Read the HDI rank next to something that moves faster. A sovereign credit rating. A political stability index. Anything that would have caught Sri Lanka's default or Bangladesh's government collapse in real time, instead of a year or two later.</p>
+    <p>Stop treating a three point rank gap, or a tie, as fine grained measurement. UNDP itself says not to read year on year rank shifts too literally, since the whole historical series gets recalculated with every new report. If UNDP is telling us not to over-read small rank movements, we should probably listen.</p>
+    <p>For India specifically, the IHDI deserves more attention than it currently gets. It is the number that tells us where our own development is thin. Not Sri Lanka's rank. Not Bangladesh's tie. Our own inequality number, sitting there at 30.7 percent, which is the highest loss in the whole region and which nobody quotes nearly as often as they quote the headline rank.</p>
+    <p>A rank comparison against a country that just defaulted or just had its government fall is not a governance verdict on India. It is a data timing problem dressed up as one. The real number worth losing sleep over is the one already sitting inside our own report card.</p>
+  </div>
+
+<!-- SOURCES -->
+<div class="sources">
+  <div class="sources-ey">Sources and References</div>
+  <div class="source-item">UNDP. (2025). Human Development Report 2025: A Matter of Choice. Released 6 May 2025, data year 2023.</div>
+  <div class="source-item">UNDP India country page. undp.org/india/human-development-index-india.</div>
+  <div class="source-item">UNDP Human Development Report 2025, Statistical Annex, IHDI Table.</div>
+  <div class="source-item">World Bank. Sri Lanka Development Update, 2023.</div>
+  <div class="source-item">World Bank income classification update, July 2026.</div>
+  <div class="source-item">House of Commons Library. Bangladesh: The Fall of the Hasina Government and Recent Political Developments. 2024.</div>
+  <div class="source-item">Al Jazeera. Bangladesh teeters between hope and deadlock a year after Hasina's fall. 2025.</div>
+  <div class="source-item">International Crisis Group. Bangladesh: The Dilemmas of a Democratic Transition. 2025.</div>
+</div>
+
+<!-- ABOUT -->
+<div class="about">
+  <div>
+    <div class="about-ey">About DPLI</div>
+    <div class="about-body">Development Policy Lab India (DPLI) is an independent governance research initiative producing evidence-based analysis on state capacity and development effectiveness across India's 28 states and 8 union territories. All publications are open access.</div>
+    <div class="about-link">developmentlab-india.github.io &nbsp;·&nbsp; contact.DPLI@dpli.net</div>
+  </div>
+  <div style="text-align:right;">
+    <div class="about-ey">Author</div>
+    <div class="about-name">Anant Srivastava</div>
+    <div class="about-role">Founder and Lead Policy Analyst<br>Development Policy Lab India</div>
+  </div>
+</div>
+
+<div class="bottom-stripe"></div>
+
+</body>
+</html>
